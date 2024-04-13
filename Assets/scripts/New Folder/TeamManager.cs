@@ -1,24 +1,38 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class TeamManager : MonoBehaviour
 {
-    public GameObject teamPrefab;
-    public List<Team> teams = new List<Team>();
+    public GameObject originalObject;
+    private List<GameObject> cloneObjects = new List<GameObject>();
 
     public void AddTeam()
     {
-        // Instantiate a new team object
-        GameObject newTeamObj = Instantiate(teamPrefab);
-        Team newTeam = newTeamObj.GetComponent<Team>();
-        newTeam.Initialize("Team " + (teams.Count + 1)); // You can customize the name as needed
-        teams.Add(newTeam);
+        // Instantiate a clone of the original object
+        GameObject clone = Instantiate(originalObject, transform.position, transform.rotation);
+        cloneObjects.Add(clone); // Add the clone to the list
     }
 
-    public void RemoveTeam(Team team)
+    public void RemoveTeam()
     {
-        teams.Remove(team);
-        Destroy(team.gameObject);
+        // Check if there are any clones to remove
+        if (cloneObjects.Count > 0)
+        {
+            // Get the index of the last clone in the list
+            int lastIndex = cloneObjects.Count - 1;
+
+            // Get a reference to the last clone object
+            GameObject lastClone = cloneObjects[lastIndex];
+
+            // Check if the last clone object exists before attempting to destroy it
+            if (lastClone != null)
+            {
+                // Destroy the last clone object
+                Destroy(lastClone);
+            }
+
+            // Remove the last clone from the list
+            cloneObjects.RemoveAt(lastIndex);
+        }
     }
 }
