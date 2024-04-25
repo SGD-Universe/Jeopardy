@@ -144,7 +144,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407728821}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &407728823
 Camera:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.99993896, y: -45.79}
+  m_AnchoredPosition: {x: 0.99993896, y: -45.789978}
   m_SizeDelta: {x: -720, y: -310.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &443683719
@@ -424,7 +424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5.0000305, y: 0}
+  m_AnchoredPosition: {x: -5.000061, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &939705984
@@ -1121,7 +1121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.42001343, y: -120.97}
+  m_AnchoredPosition: {x: -0.4199829, y: -120.96997}
   m_SizeDelta: {x: -710.62, y: -306.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1870239809
