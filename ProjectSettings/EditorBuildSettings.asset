@@ -6,10 +6,34 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes 1/Menus.unity
+    path: Assets/Scenes/Menus.unity
     guid: 1fa9fdfde37bd5746bbc1dfe423370c0
   - enabled: 1
-    path: Assets/Scenes/Team selection.unity
+    path: Assets/Scenes 1/TeamSelection.unity
     guid: 397f89ed8866c824f9e9dc910befebf4
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 89a00111146b67a438fc9428d6a45f26
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Category1/C1-100.unity
+    guid: 7702e889bf957384f83ec7a36252928a
+  - enabled: 1
+    path: Assets/Scenes/Category1/C1-300.unity
+    guid: c67296c2d0f84e640bf50325135a7dbf
+  - enabled: 1
+    path: Assets/Scenes/Category1/C1-400.unity
+    guid: 7d70d0bae69dd0545b0cf8071402597a
+  - enabled: 1
+    path: Assets/Scenes/Category1/C1-500.unity
+    guid: 1c65698e4a3fbf74fad8aee1c122e3df
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: e4aeff00ca06d30429cb0e2355856d78
+  - enabled: 1
+    path: Assets/Scenes/Category1/C1-200.unity
+    guid: 6d08cd010d8894e4e9dc80a7d5cda407
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

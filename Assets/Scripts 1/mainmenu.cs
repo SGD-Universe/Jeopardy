@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByName("Game").name);
+        SceneManager.LoadScene(SceneManager.GetSceneByName("TeamSelection").name);
     }
 
     public void QuitGame()
