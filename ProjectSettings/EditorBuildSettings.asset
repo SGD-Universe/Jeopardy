@@ -9,17 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus.unity
     guid: 1fa9fdfde37bd5746bbc1dfe423370c0
   - enabled: 1
-    path: Assets/Scenes 1/TeamSelection.unity
-    guid: 397f89ed8866c824f9e9dc910befebf4
-  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 89a00111146b67a438fc9428d6a45f26
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Options.unity
+    guid: e4aeff00ca06d30429cb0e2355856d78
   - enabled: 1
     path: Assets/Scenes/Category1/C1-100.unity
     guid: 7702e889bf957384f83ec7a36252928a
+  - enabled: 1
+    path: Assets/Scenes/Category1/C1-200.unity
+    guid: 6d08cd010d8894e4e9dc80a7d5cda407
   - enabled: 1
     path: Assets/Scenes/Category1/C1-300.unity
     guid: c67296c2d0f84e640bf50325135a7dbf
@@ -30,10 +30,64 @@ EditorBuildSettings:
     path: Assets/Scenes/Category1/C1-500.unity
     guid: 1c65698e4a3fbf74fad8aee1c122e3df
   - enabled: 1
-    path: Assets/Scenes/Options.unity
-    guid: e4aeff00ca06d30429cb0e2355856d78
+    path: Assets/Scenes/Category2/C2-100.unity
+    guid: cf5e2601a533b17468d7dccd20c3e5da
   - enabled: 1
-    path: Assets/Scenes/Category1/C1-200.unity
-    guid: 6d08cd010d8894e4e9dc80a7d5cda407
+    path: Assets/Scenes/Category2/C2-200.unity
+    guid: 934c3781095cf7e4a98adece553704c7
+  - enabled: 1
+    path: Assets/Scenes/Category2/C2-300.unity
+    guid: b9aae1d07eb08454f8939620590498e1
+  - enabled: 1
+    path: Assets/Scenes/Category2/C2-400.unity
+    guid: 5565c9636742c6141ab5903437987fb6
+  - enabled: 1
+    path: Assets/Scenes/Category2/C2-500.unity
+    guid: c17a14706c1a31a44a1dbfb650cdd220
+  - enabled: 1
+    path: Assets/Scenes/Category3/C3-100.unity
+    guid: 1861ed0221d4086429e8f0957276f417
+  - enabled: 1
+    path: Assets/Scenes/Category3/C3-200.unity
+    guid: b0b3374df86d9a24eb18c12f5d2c6514
+  - enabled: 1
+    path: Assets/Scenes/Category3/C3-300.unity
+    guid: c73045b6295b6d94bbec4b0557ad3a7e
+  - enabled: 1
+    path: Assets/Scenes/Category3/C3-400.unity
+    guid: 22f1888506077ee478d3615160ebd4d7
+  - enabled: 1
+    path: Assets/Scenes/Category3/C3-500.unity
+    guid: 3d08eadacaf1aeb468cc1b08e394080e
+  - enabled: 1
+    path: Assets/Scenes/Category4/C4-100.unity
+    guid: 9ddffb69a72fcec48a5ff5269826c1b4
+  - enabled: 1
+    path: Assets/Scenes/Category4/C4-200.unity
+    guid: 85094013c2292d3489436b515ab6f920
+  - enabled: 1
+    path: Assets/Scenes/Category4/C4-300.unity
+    guid: e8b952998de1ec84684b2384cb50b204
+  - enabled: 1
+    path: Assets/Scenes/Category4/C4-400.unity
+    guid: 288955cfb479a0740b76e36472ca9d42
+  - enabled: 1
+    path: Assets/Scenes/Category4/C4-500.unity
+    guid: 5fdad0cff3e1772499c400c25ac97a3f
+  - enabled: 1
+    path: Assets/Scenes/Category5/C5-100.unity
+    guid: 49d3345fd5d38a048bb1a37d3f52959f
+  - enabled: 1
+    path: Assets/Scenes/Category5/C5-200.unity
+    guid: 753ac05bf8e83ad4ab4c3846be585067
+  - enabled: 1
+    path: Assets/Scenes/Category5/C5-300.unity
+    guid: a729b4f1a960ef244a7229b2e36a8b4f
+  - enabled: 1
+    path: Assets/Scenes/Category5/C5-400.unity
+    guid: 08100dcba3855044fa43e76577b14662
+  - enabled: 1
+    path: Assets/Scenes/Category5/C5-500.unity
+    guid: 08691dde510bd9d4eb86fb042d14cc39
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
