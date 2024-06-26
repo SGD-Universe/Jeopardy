@@ -22,7 +22,7 @@ public class JeperdyGameController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+           /* DontDestroyOnLoad(gameObject);*/
         }
         else
         {
@@ -74,7 +74,7 @@ public class JeperdyGameController : MonoBehaviour
         Debug.Log("Selected number of teams: " + numberOfTeams);
     }
 
-    private void OnPlayButtonClicked()
+  public void OnPlayButtonClicked()
     {
         if (numberOfTeams >= 1 && numberOfTeams <= 6)
         {
