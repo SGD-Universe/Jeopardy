@@ -20,7 +20,7 @@ public class QuestionAnswerManager : MonoBehaviour
     void Start()
     {
         // Hide the answer text at the start
-        /*  answerText.gameObject.SetActive(false);*/
+         answerText.gameObject.SetActive(false);
         sceneKey = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
         // Load the last saved question count
