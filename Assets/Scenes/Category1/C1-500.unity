@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2569446383971953081, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10854
+      value: -268
       objectReference: {fileID: 0}
     - target: {fileID: 2569446383971953081, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9547605, g: 0.97735846, b: 0.04978988, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
