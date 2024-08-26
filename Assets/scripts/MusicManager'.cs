@@ -25,7 +25,7 @@ public class MusicManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            audioSource.volume = 1.0f; // Set volume to 100 (1.0)
+            audioSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1.0f); // Set volume to saved volume or 100 if not applicable
             audioSource.Play(); // Start playing the music
         }
     }
