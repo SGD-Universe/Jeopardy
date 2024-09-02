@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (gm == null)
+        if (gm == null) // Ensures there's one GameManager active at all times
         {
             gm = this;
             DontDestroyOnLoad(gameObject);
@@ -28,9 +28,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S)) // Debug tools, this should be handled by buttons in the final product
+        {
+            SaveUIState();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadUIState();
+        }
+    }
+
     public void SaveUIState()
     {
-        var gameSceneController = FindObjectOfType<GameSceneController>();
+        var gameSceneController = FindObjectOfType<GameSceneController>(); // What does this do?
         if (gameSceneController != null)
         {
             var teamPanels = gameSceneController.GetComponentsInChildren<TeamPanelController>();
@@ -60,7 +73,7 @@ public class GameManager : MonoBehaviour
             string json = PlayerPrefs.GetString("SavedUIState");
             currentState = JsonUtility.FromJson<UIState>(json);
 
-            var gameSceneController = FindObjectOfType<GameSceneController>();
+            var gameSceneController = FindObjectOfType<GameSceneController>(); // Still don't know what this does
             if (gameSceneController != null)
             {
                 var teamPanels = gameSceneController.GetComponentsInChildren<TeamPanelController>();
@@ -71,7 +84,7 @@ public class GameManager : MonoBehaviour
                     {
                         teamPanels[i].teamNameText.text = currentState.teamNames[i];
                         teamPanels[i].teamScoreText.text = "Score: " + currentState.teamScores[i];
-                        teamPanels[i].teamNameInputField.text = currentState.teamNames[i]; // Update input field as well
+                        teamPanels[i].teamNameInputField.text = currentState.teamNames[i]; // Update input field as well (input field is never saved, how could you load it?)
                     }
                 }
 
