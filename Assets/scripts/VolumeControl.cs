@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class VolumeControl : MonoBehaviour
 {
+    //As script name suggusts, this script controls volume and audio elements
+
     public static VolumeControl instance; // Static reference to the VolumeControl instance
     public Slider volumeSlider; // Reference to the volume slider
 
@@ -38,6 +40,7 @@ public class VolumeControl : MonoBehaviour
 
     public void ToggleSliderVisibility()
     {
+        //togles slider visibility
         if (volumeSlider != null)
         {
             volumeSlider.gameObject.SetActive(!volumeSlider.gameObject.activeSelf);

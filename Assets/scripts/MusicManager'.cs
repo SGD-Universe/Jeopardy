@@ -19,6 +19,7 @@ public class MusicManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //not sure what this does
     }
 
     void Start()
@@ -28,10 +29,12 @@ public class MusicManager : MonoBehaviour
             audioSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1.0f); // Set volume to saved volume or 100 if not applicable
             audioSource.Play(); // Start playing the music
         }
+        //starts playing music on startup
     }
 
     public void SetVolume(float volume)
     {
         audioSource.volume = volume;
     }
+    //sets vulume level
 }

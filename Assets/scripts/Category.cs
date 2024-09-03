@@ -14,6 +14,7 @@ public class Category : MonoBehaviour
     void Start()
     {
         LoadCategories();
+        //loads categhories on program start
     }
 
     public void SaveCategories()
@@ -22,9 +23,11 @@ public class Category : MonoBehaviour
         {
             string categoryName = categoryInputFields[i].text;
             PlayerPrefs.SetString("Category" + i, categoryName);
+            //determines category input field length
         }
         PlayerPrefs.Save();
         LoadCategories();
+        //saves player preferences and calls on categories to load
     }
 
     void LoadCategories()
@@ -35,6 +38,7 @@ public class Category : MonoBehaviour
             categoryTexts[i].text = categoryName;
             categoryInputFields[i].text = categoryName; // Set the input field to the loaded name
         }
+        //sets category text length
     }
 }
 

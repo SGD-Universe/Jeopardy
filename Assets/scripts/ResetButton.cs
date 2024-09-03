@@ -21,6 +21,7 @@ public class ResetButton : MonoBehaviour
                 }
             }
         }
+        //programs funtion of reset button
     }
 }
 namespace ResetButtonApp
@@ -55,5 +56,8 @@ namespace ResetButtonApp
                 Console.ReadKey();
             }
         }
+
+        //honestly I have no idea what this is used for
+        //My best guess is that this is a console reset or a reset feature that never actually made it into use
     }
 }

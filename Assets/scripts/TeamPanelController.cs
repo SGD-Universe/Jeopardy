@@ -23,18 +23,22 @@ public class TeamPanelController : MonoBehaviour
 
 
             teamNameInputField.onEndEdit.AddListener(OnTeamNameInputEndEdit);
+
+        // sets up listeners for add and subtact buttons and the team name input
     }
 
     public void SetTeam(Team team)
     {
         this.team = team;
         UpdateUI();
+        //sets teams and calls UpdateUI after
     }
 
     private void UpdateUI()
     {
         
           teamNameText.text = team.teamName;
+        //Sets up team name
 
        
             teamScoreText.text = "Score: " + team.score;
@@ -48,6 +52,7 @@ public class TeamPanelController : MonoBehaviour
         {
             team.score= team.score + 100;
             UpdateUI();
+            //adds score when add button is clicked and updates UI
         }
     }
 
@@ -57,6 +62,7 @@ public class TeamPanelController : MonoBehaviour
         {
             team.score=team.score - 100;
             UpdateUI();
+            //subtracts score when add button is clicked and updates UI
         }
     }
 
@@ -67,6 +73,7 @@ public class TeamPanelController : MonoBehaviour
             teamNameInputField.text = newName;
             
             UpdateUI();
+            //sets up intake and update mechanism for team name
         }
     }
 }

@@ -11,5 +11,6 @@ public class Team : MonoBehaviour
     {
         teamName = name;
         score = 0;
+        //sets up base values for Team Controller
     }
 }

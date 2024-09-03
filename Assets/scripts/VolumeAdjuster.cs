@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class VolumeAdjuster : MonoBehaviour
 {
+    //sets up volume slider
     public Slider volumeSlider;
 
     void Start()
