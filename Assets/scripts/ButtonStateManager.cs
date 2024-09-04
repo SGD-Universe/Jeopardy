@@ -9,6 +9,7 @@ public class ButtonStateManager : MonoBehaviour
     public static bool IsButtonSelected(string buttonName)
     {
         return selectedButtons.Contains(buttonName);
+        //determines if button is selected
     }
 
     public static void SetButtonSelected(string buttonName, bool selected)
@@ -16,10 +17,12 @@ public class ButtonStateManager : MonoBehaviour
         if (selected)
         {
             selectedButtons.Add(buttonName);
+            //adds selected button to command prompts
         }
         else
         {
             selectedButtons.Remove(buttonName);
+            //remoces selected buttons from command prompts
         }
     }
 }

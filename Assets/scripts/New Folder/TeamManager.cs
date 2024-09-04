@@ -6,6 +6,8 @@ public class TeamManager : MonoBehaviour
     public GameObject originalObject;
     private List<GameObject> cloneObjects = new List<GameObject>();
 
+    //Designates how teams are set up
+
     public void AddTeam()
     {
         // Instantiate a clone of the original object

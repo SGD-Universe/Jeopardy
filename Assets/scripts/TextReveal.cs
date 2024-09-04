@@ -40,6 +40,7 @@ public class TextReveal : MonoBehaviour
             }
             else
             {
+                // Failsafe in case there is no update to text componenet
                 textComponent.text = originalText;
             }
         }

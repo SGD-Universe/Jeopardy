@@ -10,6 +10,7 @@ public class NextButtons : MonoBehaviour
     {
         // Load scene 1 (assuming it's at build index 1)
         SceneManager.LoadScene(1);
+        //loads nest scene after button is pressed
     
     }
     

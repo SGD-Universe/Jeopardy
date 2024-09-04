@@ -23,4 +23,6 @@ public class SliderScript : MonoBehaviour
     {
         
     }
+
+    //music volume controller 
 }
