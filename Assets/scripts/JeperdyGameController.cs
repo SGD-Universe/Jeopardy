@@ -29,6 +29,8 @@ public class JeperdyGameController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //not sure what this does
+
 
     private void Start()
     {
@@ -39,6 +41,7 @@ public class JeperdyGameController : MonoBehaviour
             Debug.LogError("PlayButton is not assigned in the Inspector");
             return;
         }
+        //Text for setting teams, and a prompt to remind you to set the teams
 
         playButton.onClick.AddListener(OnPlayButtonClicked);
 
@@ -52,6 +55,8 @@ public class JeperdyGameController : MonoBehaviour
             Debug.LogError("TeamButtons list is not assigned or empty in the Inspector");
             return;
         }
+        //sets text and conditions for error notice
+
 
         // Add listeners to the team buttons
         for (int i = 0; i < teamButtons.Count; i++)
@@ -65,6 +70,7 @@ public class JeperdyGameController : MonoBehaviour
             {
                 Debug.LogError("A TeamButton is not assigned in the Inspector at index: " + i);
             }
+            //sets team buttons and announces error in setting buttons
         }
     }
 
@@ -72,6 +78,7 @@ public class JeperdyGameController : MonoBehaviour
     {
         numberOfTeams = teamCount;
         Debug.Log("Selected number of teams: " + numberOfTeams);
+        //sets number of teams based on player selection
     }
 
   public void OnPlayButtonClicked()
@@ -82,11 +89,13 @@ public class JeperdyGameController : MonoBehaviour
             errorText.text = ""; // Clear any previous error messages
             SetupTeams();
             TransitionToGameScreen();
+            //Sets potential amount of teams
         }
         else
         {
             errorText.text = "Please select a number between 1 and 6.";
             Debug.Log("Invalid input, number of teams must be between 1 and 6.");
+            //Tells user to select a team amount
         }
     }
 
@@ -99,17 +108,20 @@ public class JeperdyGameController : MonoBehaviour
             Teams.Add(newTeam);
             Debug.Log("Setting up " + newTeam.teamName);
         }
+        //sets up data for new teams
     }
 
     public List<Team> GetTeams()
     {
         return Teams;
+        //returns team data
     }
 
     private void TransitionToGameScreen()
     {
         Debug.Log("Transitioning to game screen");
         SceneManager.LoadScene("GameScene");
+        //Sets up transition to game scene
     }
 }
 

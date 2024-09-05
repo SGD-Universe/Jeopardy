@@ -5,6 +5,8 @@ using UnityEngine;
 public class OptionsMenu : MonoBehaviour
 {
     public GameObject optionsMenu;
+    
+    //view and hide options menu
 
     void Start()
     {

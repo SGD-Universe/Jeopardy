@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class GameSceneController : MonoBehaviour
 {
     public GameObject teamPanelPrefab;

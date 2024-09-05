@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class VolumeButton : MonoBehaviour
 {
+    // Sets up device that actually manipulates audio
+
+
     public GameObject volumeSlider; // Reference to the volume slider GameObject
 
     public void ToggleVolumeSlider()

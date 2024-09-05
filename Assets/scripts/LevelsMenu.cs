@@ -9,6 +9,7 @@ public class LevelsMenu : MonoBehaviour
     {
         int levelName = levelId;
         SceneManager.LoadScene(levelName);
+        //sets up calling and loading the main level
     }
  
   
