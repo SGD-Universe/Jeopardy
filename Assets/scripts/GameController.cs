@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameSceneController : MonoBehaviour
@@ -12,6 +14,7 @@ public class GameSceneController : MonoBehaviour
     {
         Debug.Log("GameSceneController Start");
         teamPanelControllers = new List<TeamPanelController>();
+        //Creates new list for team panel controllers
 
         if (JeperdyGameController.Instance == null)
         {
@@ -20,6 +23,7 @@ public class GameSceneController : MonoBehaviour
         }
 
         CreateTeamPanels();
+        //Identifies console prompt and calls for creation of team panels
     }
 
     private void CreateTeamPanels()
@@ -34,6 +38,7 @@ public class GameSceneController : MonoBehaviour
         }
 
         Debug.Log("Number of teams: " + teams.Count);
+        //identifies and calls on prompt for number of teams
 
         for (int i = 0; i < teams.Count; i++)
         {
@@ -55,6 +60,7 @@ public class GameSceneController : MonoBehaviour
             {
                 Debug.LogError("Failed to instantiate team panel prefab");
                 continue;
+                //accounts for failure to create team panel prefab
             }
 
             TeamPanelController controller = panel.GetComponent<TeamPanelController>();
@@ -62,10 +68,14 @@ public class GameSceneController : MonoBehaviour
             {
                 Debug.LogError("TeamPanelController component missing on instantiated prefab");
                 continue;
+                //accounts for failure to find team panel prefab
             }
 
             controller.SetTeam(teams[i]);
+            //sets amount of teams
             teamPanelControllers.Add(controller);
+            //adds controller for the team panels
+
         }
     }
 }
