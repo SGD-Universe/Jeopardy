@@ -9,13 +9,20 @@ public class GameSceneController : MonoBehaviour
     public GameObject teamPanelPrefab;
     public Transform teamPanelParent; // This should be the TeamPanelContainer
 
-    private List<TeamPanelController> teamPanelControllers;
+    public List<TeamPanelController> teamPanelControllers;
 
     private void Start()
     {
         Debug.Log("GameSceneController Start");
         teamPanelControllers = new List<TeamPanelController>();
         //Creates new list for team panel controllers
+
+        if (JeperdyGameController.Instance == null)
+        {
+            Debug.LogError("JeperdyGameController instance is not set. Make sure it's initialized in the previous scene.");
+            return;
+        }
+
         CreateTeamPanels();
         //Identifies console prompt and calls for creation of team panels
     }
@@ -23,13 +30,32 @@ public class GameSceneController : MonoBehaviour
     private void CreateTeamPanels()
     {
         Debug.Log("CreateTeamPanels called");
+
         var teams = JeperdyGameController.Instance.GetTeams();
+        if (teams == null || teams.Count == 0)
+        {
+            Debug.LogError("No teams found. Ensure SetupTeams() was called before transitioning to the game scene.");
+            return;
+        }
+
         Debug.Log("Number of teams: " + teams.Count);
         //identifies and calls on prompt for number of teams
 
         for (int i = 0; i < teams.Count; i++)
         {
             Debug.Log("Creating panel for team: " + teams[i].teamName);
+
+            if (teamPanelPrefab == null)
+            {
+                Debug.LogError("teamPanelPrefab is not set in the inspector!");
+                continue;
+            }
+            if (teamPanelParent == null)
+            {
+                Debug.LogError("teamPanelParent is not set in the inspector!");
+                continue;
+            }
+
             GameObject panel = Instantiate(teamPanelPrefab, teamPanelParent);
             if (panel == null)
             {

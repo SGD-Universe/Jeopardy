@@ -71,6 +71,7 @@ public class TeamPanelController : MonoBehaviour
        
         {
             teamNameInputField.text = newName;
+            team.teamName = newName;
             
             UpdateUI();
             //sets up intake and update mechanism for team name
