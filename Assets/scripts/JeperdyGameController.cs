@@ -22,7 +22,7 @@ public class JeperdyGameController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-           DontDestroyOnLoad(gameObject);
+           /* DontDestroyOnLoad(gameObject);*/
         }
         else
         {
