@@ -148,9 +148,8 @@ GameObject:
   - component: {fileID: 5120177787918829929}
   - component: {fileID: 5899624309935725503}
   - component: {fileID: 6229432247750396985}
-  - component: {fileID: 8907526334378241902}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: closeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,9 +257,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8907526334378241902}
+      - m_Target: {fileID: 29717354192442455, guid: c2ac80e62ea0f408f97eb33e121a0710, type: 3}
         m_TargetAssemblyTypeName: NextButtons, Assembly-CSharp
-        m_MethodName: OnNextButtonClick
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -270,18 +269,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8907526334378241902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172516384207487555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ce627864f6b07a478b004547cebde9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &247488198501925374
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +417,6 @@ GameObject:
   - component: {fileID: 6275260545237292918}
   - component: {fileID: 809719103943509915}
   - component: {fileID: 4663399265922173099}
-  - component: {fileID: 6723918942715782857}
   - component: {fileID: 3644968040097275767}
   m_Layer: 5
   m_Name: NextButton
@@ -553,18 +539,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6723918942715782857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 341311758460062696}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78db9571fcbb5ce4b8d5eb615abf7739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3644968040097275767
 MonoBehaviour:
   m_ObjectHideFlags: 0

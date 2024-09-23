@@ -94,13 +94,12 @@ public class QuestionAnswerManager : MonoBehaviour
         answer = PlayerPrefs.GetString($"{sceneKey}_Answer_{questionCount - 1}");
         questionText.text = question;
         answerText.text = answer;
-        //displays quesation and answer of selected question
+
     }
     public void SetQuestion(string questionText)
     {
         question = questionText;
         questionInputField.text = question;
-        // intake for question and answer
     }
 
 }
