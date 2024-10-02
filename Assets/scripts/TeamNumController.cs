@@ -1,4 +1,4 @@
-/*
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,19 +11,21 @@ public class TeamNumController : MonoBehaviour
     public static TeamNumController Instance { get; private set; }
     public List<Team> Teams { get; private set; }
 
-    public Button createGameButton;
+    public Button continueButton;
     public TMP_Text promptText;
     public TMP_Text errorText;
     public List<Button> teamButtons;
 
     private int numberOfTeams;
 
+    public GameObject teamSelectPanel;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-           /* DontDestroyOnLoad(gameObject);
+           DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -33,15 +35,15 @@ public class TeamNumController : MonoBehaviour
 
     private void Start()
     {
-/*        promptText.text = "Select number of teams (1-6):";
+       promptText.text = "Please select a number of teams:";
 
-        if (createGameButton == null)
+        if (continueButton == null)
         {
-            Debug.LogError("createGameButton is not assigned in the Inspector");
+            Debug.LogError("continueButton is not assigned in the Inspector");
             return;
         }
 
-        createGameButton.onClick.AddListener(OnCreateButtonClicked);
+        continueButton.onClick.AddListener(OnCreateButtonClicked);
 
         if (errorText != null)
         {
@@ -72,10 +74,10 @@ public class TeamNumController : MonoBehaviour
     private void OnTeamButtonClicked(int teamCount)
     {
         numberOfTeams = teamCount;
-        Debug.Log("Selected number of teams: " + numberOfTeams);
+        promptText.text = "Selected number of teams: " + numberOfTeams;
     }
 
-    private void SetupTeams()
+    public void SetupTeams()
     {
         Teams = new List<Team>();
         for (int i = 0; i < numberOfTeams; i++)
@@ -95,7 +97,7 @@ public class TeamNumController : MonoBehaviour
             Debug.Log("Number of teams: " + numberOfTeams);
             errorText.text = ""; // Clear any previous error messages
             SetupTeams();
-            ToCreateGameScene();
+            teamSelectPanel.gameObject.SetActive(false);
         }
         else
         {
@@ -109,11 +111,5 @@ public class TeamNumController : MonoBehaviour
         return Teams;
     }
 
-    public void ToCreateGameScene()
-    {
-        Debug.Log("Transitioning to game screen");
-        SceneManager.LoadScene("CreateGame");
-    }
 }
 
-        */
