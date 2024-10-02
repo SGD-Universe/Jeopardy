@@ -20,21 +20,10 @@ public class TeamNumController : MonoBehaviour
 
     public GameObject teamSelectPanel;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-           DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
+       teamSelectPanel.SetActive(true);
        promptText.text = "Please select a number of teams:";
 
         if (continueButton == null)
