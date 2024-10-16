@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TeamPanelController : MonoBehaviour
 {
-    public TMP_Text teamNameText;
+    //public TMP_Text teamNameText;
     public TMP_Text teamScoreText;
     public Button addScoreButton;
     public Button subtractScoreButton;
@@ -34,7 +34,7 @@ public class TeamPanelController : MonoBehaviour
     private void UpdateUI()
     {
         
-          teamNameText.text = team.teamName;
+          //teamNameText.text = team.teamName;
 
        
             teamScoreText.text = "Score: " + team.score;

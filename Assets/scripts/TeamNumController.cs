@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,28 +9,24 @@ public class TeamNumController : MonoBehaviour
 {
     public static TeamNumController Instance { get; private set; }
     public List<Team> Teams { get; private set; }
-
     public Button continueButton;
     public TMP_Text promptText;
     public TMP_Text errorText;
     public List<Button> teamButtons;
-
     private int numberOfTeams;
-
     public GameObject teamSelectPanel;
-
+    public GameObject[] teamPanels;
 
     private void Start()
     {
-       teamSelectPanel.SetActive(true);
-       promptText.text = "Please select a number of teams:";
+        teamSelectPanel.SetActive(true);
+        promptText.text = "Please select a number of teams:";
 
         if (continueButton == null)
         {
             Debug.LogError("continueButton is not assigned in the Inspector");
             return;
         }
-
         continueButton.onClick.AddListener(OnCreateButtonClicked);
 
         if (errorText != null)
@@ -69,15 +64,20 @@ public class TeamNumController : MonoBehaviour
     public void SetupTeams()
     {
         Teams = new List<Team>();
+
         for (int i = 0; i < numberOfTeams; i++)
         {
             Team newTeam = new Team("Team " + (i + 1));
             Teams.Add(newTeam);
             Debug.Log("Setting up " + newTeam.teamName);
         }
+
+        // Activate the required number of team panels
+        for (int i = 0; i < teamPanels.Length; i++)
+        {
+            teamPanels[i].SetActive(i < numberOfTeams);
+        }
     }
-
-
 
     public void OnCreateButtonClicked()
     {
@@ -99,6 +99,4 @@ public class TeamNumController : MonoBehaviour
     {
         return Teams;
     }
-
 }
-
