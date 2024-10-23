@@ -6,67 +6,53 @@ using UnityEngine.UI;
 
 public class TeamPanelController : MonoBehaviour
 {
+    // Team data
+    public string teamName;
+    public int score;
+
+    // UI elements
     //public TMP_Text teamNameText;
     public TMP_Text teamScoreText;
     public Button addScoreButton;
     public Button subtractScoreButton;
     public TMP_InputField teamNameInputField; // Reference to the input field
 
-    private Team team;
-
     private void Start()
     {
-        
-            addScoreButton.onClick.AddListener(OnAddScoreClicked);
+        // Set up button listeners
+        addScoreButton.onClick.AddListener(OnAddScoreClicked);
+        subtractScoreButton.onClick.AddListener(OnSubtractScoreClicked);
+        teamNameInputField.onEndEdit.AddListener(OnTeamNameInputEndEdit);
 
-            subtractScoreButton.onClick.AddListener(OnSubtractScoreClicked);
-
-
-            teamNameInputField.onEndEdit.AddListener(OnTeamNameInputEndEdit);
-    }
-
-    public void SetTeam(Team team)
-    {
-        this.team = team;
+        // Initialize UI
         UpdateUI();
     }
 
     private void UpdateUI()
     {
-        
-          //teamNameText.text = team.teamName;
-
-       
-            teamScoreText.text = "Score: " + team.score;
-
-          /*  teamNameInputField.text = team.teamName; // Display the team name in the input field*/
+        //teamNameText.text = teamName;
+        teamScoreText.text = "Score: " + score;
+        teamNameInputField.text = teamName; // Display the team name in the input field
     }
 
     private void OnAddScoreClicked()
     {
-       
-        {
-            team.score= team.score + 100;
-            UpdateUI();
-        }
+        score += 100;
+        UpdateUI();
     }
 
     private void OnSubtractScoreClicked()
     {
-       
+        if (score > 0)
         {
-            team.score=team.score - 100;
+            score -= 100;
             UpdateUI();
         }
     }
 
     private void OnTeamNameInputEndEdit(string newName)
     {
-       
-        {
-            teamNameInputField.text = newName;
-            
-            UpdateUI();
-        }
+        teamName = newName;
+        UpdateUI();
     }
 }
