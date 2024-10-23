@@ -11,7 +11,6 @@ public class TeamPanelController : MonoBehaviour
     public int score;
 
     // UI elements
-    //public TMP_Text teamNameText;
     public TMP_Text teamScoreText;
     public Button addScoreButton;
     public Button subtractScoreButton;
@@ -30,7 +29,6 @@ public class TeamPanelController : MonoBehaviour
 
     private void UpdateUI()
     {
-        //teamNameText.text = teamName;
         teamScoreText.text = "Score: " + score;
         teamNameInputField.text = teamName; // Display the team name in the input field
     }

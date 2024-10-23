@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class TeamNumController : MonoBehaviour
 {
     public static TeamNumController Instance { get; private set; }
-    //public List<Team> Teams { get; private set; }
     public Button continueButton;
     public TMP_Text promptText;
     public TMP_Text errorText;
@@ -63,16 +62,6 @@ public class TeamNumController : MonoBehaviour
 
     public void SetupTeams()
     {
-        //Teams = new List<Team>();
-
-        /*for (int i = 0; i < numberOfTeams; i++)
-        {
-            Team newTeam = new Team("Team " + (i + 1));
-            Teams.Add(newTeam);
-            Debug.Log("Setting up " + newTeam.teamName);
-        }*/
-
-        // Activate the required number of team panels
         for (int i = 0; i < teamPanels.Length; i++)
         {
             teamPanels[i].SetActive(i < numberOfTeams);
@@ -94,9 +83,4 @@ public class TeamNumController : MonoBehaviour
             Debug.Log("Invalid input, number of teams must be between 1 and 4.");
         }
     }
-
-    /*public List<Team> GetTeams()
-    {
-        return Teams;
-    }*/
 }
