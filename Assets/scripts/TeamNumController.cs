@@ -24,10 +24,13 @@ public class TeamNumController : MonoBehaviour
             teamSelectPanel.SetActive(false);
         }
         else
-        {*/
+        {
             teamSelectPanel.SetActive(true);
             promptText.text = "Please select a number of teams:";
-        //}
+        }*/
+
+        teamSelectPanel.SetActive(true);
+        promptText.text = "Please select a number of teams:";
 
         if (continueButton == null)
         {
@@ -63,14 +66,12 @@ public class TeamNumController : MonoBehaviour
         }
     }
 
-    // Method to update number of teams
     private void OnTeamButtonClicked(int teamCount)
     {
         numberOfTeams = teamCount;
         promptText.text = "Selected number of teams: " + numberOfTeams;
     }
 
-    // Method to set up teams
     public void SetupTeams()
     {
         for (int i = 0; i < teamPanels.Length; i++)
@@ -84,10 +85,9 @@ public class TeamNumController : MonoBehaviour
         }
     }
 
-    // Setup teams and disable team select panel when create button is clicked and teams have been selected
     public void OnCreateButtonClicked()
     {
-        if (numberOfTeams >= 1 && numberOfTeams <= 4)
+        if (numberOfTeams >= 1 && numberOfTeams <= 6)
         {
             Debug.Log("Number of teams: " + numberOfTeams);
             errorText.text = ""; // Clear any previous error messages
@@ -102,7 +102,6 @@ public class TeamNumController : MonoBehaviour
         }
     }
 
-    // Method to save number of teams
     private void SaveNumberOfTeams()
     {
         PlayerPrefs.SetInt("NumberOfTeams", numberOfTeams);
