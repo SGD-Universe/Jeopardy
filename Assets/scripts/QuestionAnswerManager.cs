@@ -56,9 +56,9 @@ public class QuestionAnswerManager : MonoBehaviour
         SaveQuestionAnswer(question, answer);
 
 
-        // Clear the input fields
-        questionInputField.text = "";
-        answerInputField.text = "";
+        //// Clear the input fields
+        //questionInputField.text = "";
+        //answerInputField.text = "";
        
 
 
