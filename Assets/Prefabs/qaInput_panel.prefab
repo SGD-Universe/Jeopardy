@@ -58,7 +58,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -218,6 +218,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 905651961169835234}
     m_Modifications:
+    - target: {fileID: 113729074366745588, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
+      propertyPath: answerInputField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 113729074366745588, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
+      propertyPath: questionInputField
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 172516384207487555, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
       propertyPath: m_Name
       value: closeButton
@@ -395,7 +403,10 @@ PrefabInstance:
       value: 10410
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6721401704191468564, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
+    - {fileID: 9101204261263397885, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
+    - {fileID: 7438195608786096006, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 191a0df982fd6464aa0712e56e14770b, type: 3}
