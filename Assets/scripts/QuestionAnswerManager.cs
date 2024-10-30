@@ -16,6 +16,8 @@ public class QuestionAnswerManager : MonoBehaviour
     private int questionCount = 0;
     private string sceneKey;
 
+    public int whichQuestion;
+
 
     void Start()
     {
@@ -24,7 +26,7 @@ public class QuestionAnswerManager : MonoBehaviour
         sceneKey = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
         // Load the last saved question count
-        questionCount = PlayerPrefs.GetInt($"{sceneKey}_QuestionCount", 0);
+        questionCount = PlayerPrefs.GetInt($"{whichQuestion}_QuestionCount", 0);
         
         // Optionally, load and display the last question and answer
         if (questionCount > 0)
@@ -54,9 +56,9 @@ public class QuestionAnswerManager : MonoBehaviour
         SaveQuestionAnswer(question, answer);
 
 
-        // Clear the input fields
-        questionInputField.text = "";
-        answerInputField.text = "";
+        //// Clear the input fields
+        //questionInputField.text = "";
+        //answerInputField.text = "";
        
 
 
@@ -78,20 +80,20 @@ public class QuestionAnswerManager : MonoBehaviour
     {
 
         // Save question and answer using PlayerPrefs with the scene-specific key
-        PlayerPrefs.SetString($"{sceneKey}_Question_{questionCount}", question);
-        PlayerPrefs.SetString($"{sceneKey}_Answer_{questionCount}", answer);
+        PlayerPrefs.SetString($"{whichQuestion}_Question_{questionCount}", question);
+        PlayerPrefs.SetString($"{whichQuestion}_Answer_{questionCount}", answer);
 
         // Increment the question count
         questionCount++;
-        PlayerPrefs.SetInt($"{sceneKey}_QuestionCount", questionCount);
+        PlayerPrefs.SetInt($"{whichQuestion}_QuestionCount", questionCount);
 
         // Save changes to PlayerPrefs
         PlayerPrefs.Save();
     }
     private void LoadLastQuestionAnswer()
     {
-        question = PlayerPrefs.GetString($"{sceneKey}_Question_{questionCount - 1}");
-        answer = PlayerPrefs.GetString($"{sceneKey}_Answer_{questionCount - 1}");
+        question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
+        answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
         questionText.text = question;
         answerText.text = answer;
 

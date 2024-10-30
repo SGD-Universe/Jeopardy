@@ -204,7 +204,7 @@ RectTransform:
   m_Father: {fileID: 1668192951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 25, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -988,6 +988,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C3-400_panel
@@ -1529,7 +1533,7 @@ RectTransform:
   m_Father: {fileID: 1812631008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 25, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1763,6 +1767,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -6216,6 +6224,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C1-400_panel
@@ -6438,6 +6450,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
@@ -6685,6 +6701,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -7367,6 +7387,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C2-300_panel
@@ -7442,6 +7466,76 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
   m_PrefabInstance: {fileID: 767087373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &785428868
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1241435470}
+    m_Modifications:
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690095243102719570, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: categoryText
+      value: 
+      objectReference: {fileID: 1870819007}
+    - target: {fileID: 7690095243102719570, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: categoryNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973545344990874664, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_Name
+      value: CategoryManager1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+--- !u!4 &785428869 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+  m_PrefabInstance: {fileID: 785428868}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &810193786
 GameObject:
@@ -9112,6 +9206,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -11626,6 +11724,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235078618}
   m_CullTransparentMesh: 1
+--- !u!1 &1241435469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1241435470}
+  m_Layer: 0
+  m_Name: CategoryManagers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1241435470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241435469}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.9265103, y: 0.8981199, z: -460.7714}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 785428869}
+  - {fileID: 1054309137}
+  - {fileID: 1385916094}
+  - {fileID: 183249338}
+  - {fileID: 185663399}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1245884541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11637,6 +11771,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -12153,6 +12291,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C1-500_panel
@@ -12299,7 +12441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1360668837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12541,6 +12683,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c1fd5e997da4f41a13f5d4a2ac5781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1385916093
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1241435470}
+    m_Modifications:
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7690095243102719570, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: categoryText
+      value: 
+      objectReference: {fileID: 80806871}
+    - target: {fileID: 7690095243102719570, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: categoryNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973545344990874664, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: m_Name
+      value: CategoryManager3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+--- !u!4 &1385916094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 211613216209417810, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+  m_PrefabInstance: {fileID: 1385916093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1393803853
 GameObject:
   m_ObjectHideFlags: 0
@@ -13369,6 +13581,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C3-500_panel
@@ -13729,6 +13945,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C1-200_panel
@@ -13837,7 +14057,7 @@ RectTransform:
   m_Father: {fileID: 958076585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 15, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14053,6 +14273,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -15127,6 +15351,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C5-400_panel
@@ -15372,6 +15600,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -15654,6 +15886,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -16849,6 +17085,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -18680,6 +18920,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C2-400_panel
@@ -19242,6 +19486,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C2-200_panel
@@ -19329,6 +19577,10 @@ PrefabInstance:
     - target: {fileID: 489826833582121408, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
@@ -19843,6 +20095,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 563115722349523494, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
+      propertyPath: whichQuestion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2078413135924811599, guid: 1b14d84fa81d5418e9c138b66ba1081f, type: 3}
       propertyPath: m_Name
       value: C1-100_panel
@@ -20069,6 +20325,7 @@ SceneRoots:
   - {fileID: 1360668840}
   - {fileID: 202268520}
   - {fileID: 619160773}
+  - {fileID: 1241435470}
   - {fileID: 1208412231}
   - {fileID: 954841206}
   - {fileID: 1685601900}
