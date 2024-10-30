@@ -1,4 +1,3 @@
-/*
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,39 +8,37 @@ using UnityEngine.SceneManagement;
 public class TeamNumController : MonoBehaviour
 {
     public static TeamNumController Instance { get; private set; }
-    public List<Team> Teams { get; private set; }
-
-    public Button createGameButton;
+    public Button continueButton;
     public TMP_Text promptText;
     public TMP_Text errorText;
     public List<Button> teamButtons;
-
     private int numberOfTeams;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-           /* DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public GameObject teamSelectPanel;
+    public GameObject[] teamPanels;
 
     private void Start()
     {
-/*        promptText.text = "Select number of teams (1-6):";
-
-        if (createGameButton == null)
+        /*if (LoadNumberOfTeams())
         {
-            Debug.LogError("createGameButton is not assigned in the Inspector");
+            SetupTeams();
+            teamSelectPanel.SetActive(false);
+        }
+        else
+        {
+            teamSelectPanel.SetActive(true);
+            promptText.text = "Please select a number of teams:";
+        }*/
+
+        teamSelectPanel.SetActive(true);
+        promptText.text = "Please select a number of teams:";
+
+        if (continueButton == null)
+        {
+            Debug.LogError("continueButton is not assigned in the Inspector");
             return;
         }
 
-        createGameButton.onClick.AddListener(OnCreateButtonClicked);
+        continueButton.onClick.AddListener(OnCreateButtonClicked);
 
         if (errorText != null)
         {
@@ -72,21 +69,21 @@ public class TeamNumController : MonoBehaviour
     private void OnTeamButtonClicked(int teamCount)
     {
         numberOfTeams = teamCount;
-        Debug.Log("Selected number of teams: " + numberOfTeams);
+        promptText.text = "Selected number of teams: " + numberOfTeams;
     }
 
-    private void SetupTeams()
+    public void SetupTeams()
     {
-        Teams = new List<Team>();
-        for (int i = 0; i < numberOfTeams; i++)
+        for (int i = 0; i < teamPanels.Length; i++)
         {
-            Team newTeam = new Team("Team " + (i + 1));
-            Teams.Add(newTeam);
-            Debug.Log("Setting up " + newTeam.teamName);
+            teamPanels[i].SetActive(i < numberOfTeams);
+            /*if (i < numberOfTeams)
+            {
+                TeamPanelController controller = teamPanels[i].GetComponent<TeamPanelController>();
+                controller.LoadData();
+            }*/
         }
     }
-
-
 
     public void OnCreateButtonClicked()
     {
@@ -94,26 +91,26 @@ public class TeamNumController : MonoBehaviour
         {
             Debug.Log("Number of teams: " + numberOfTeams);
             errorText.text = ""; // Clear any previous error messages
+            SaveNumberOfTeams();
             SetupTeams();
-            ToCreateGameScene();
+            teamSelectPanel.gameObject.SetActive(false);
         }
         else
         {
-            errorText.text = "Please select a number between 1 and 6.";
-            Debug.Log("Invalid input, number of teams must be between 1 and 6.");
+            errorText.text = "Please select a number between 1 and 4.";
+            Debug.Log("Invalid input, number of teams must be between 1 and 4.");
         }
     }
 
-    public List<Team> GetTeams()
+    private void SaveNumberOfTeams()
     {
-        return Teams;
+        PlayerPrefs.SetInt("NumberOfTeams", numberOfTeams);
+        PlayerPrefs.Save();
     }
 
-    public void ToCreateGameScene()
+    /*private bool LoadNumberOfTeams()
     {
-        Debug.Log("Transitioning to game screen");
-        SceneManager.LoadScene("CreateGame");
-    }
+        numberOfTeams = PlayerPrefs.GetInt("NumberOfTeams", 0);
+        return numberOfTeams > 0;
+    }*/
 }
-
-        */
