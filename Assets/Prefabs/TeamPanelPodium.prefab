@@ -370,6 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e303c62ae3f441b8fb54a5d22eca30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamName: 
+  score: 0
   teamScoreText: {fileID: 110280970678946418}
   addScoreButton: {fileID: 8984338746394878021}
   subtractScoreButton: {fileID: 5783678974232735828}

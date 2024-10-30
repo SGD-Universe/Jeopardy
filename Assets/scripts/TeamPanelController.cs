@@ -6,51 +6,65 @@ using UnityEngine.UI;
 
 public class TeamPanelController : MonoBehaviour
 {
-    // Team data
+    public string teamID; // Unique identifier for each team
     public string teamName;
     public int score;
-
-    // UI elements
     public TMP_Text teamScoreText;
     public Button addScoreButton;
     public Button subtractScoreButton;
-    public TMP_InputField teamNameInputField; // Reference to the input field
+    public TMP_InputField teamNameInputField;
 
     private void Start()
     {
-        // Set up button listeners
+        //LoadData();
+        UpdateUI();
         addScoreButton.onClick.AddListener(OnAddScoreClicked);
         subtractScoreButton.onClick.AddListener(OnSubtractScoreClicked);
         teamNameInputField.onEndEdit.AddListener(OnTeamNameInputEndEdit);
-
-        // Initialize UI
-        UpdateUI();
     }
 
+    // Method to display the current score and team name
     private void UpdateUI()
     {
         teamScoreText.text = "Score: " + score;
-        teamNameInputField.text = teamName; // Display the team name in the input field
+        teamNameInputField.text = teamName;
     }
 
+    //Method to add to the score
     private void OnAddScoreClicked()
     {
         score += 100;
         UpdateUI();
+        SaveData();
     }
 
+    //Method to subtract from the score
     private void OnSubtractScoreClicked()
     {
-        if (score > 0)
-        {
-            score -= 100;
-            UpdateUI();
-        }
+        score -= 100;
+        UpdateUI();
+        SaveData();
     }
 
+    //Method to input team name
     private void OnTeamNameInputEndEdit(string newName)
     {
         teamName = newName;
+        SaveData();
         UpdateUI();
     }
+
+    //Method to save score and team name
+    private void SaveData()
+    {
+        PlayerPrefs.SetInt("TeamScore_" + teamID, score);
+        PlayerPrefs.SetString("TeamName_" + teamID, teamName);
+        PlayerPrefs.Save();
+    }
+
+    /*public void LoadData()
+    {
+        score = PlayerPrefs.GetInt("TeamScore_" + teamID, 0);
+        teamName = PlayerPrefs.GetString("TeamName_" + teamID, teamName);
+    }*/
 }

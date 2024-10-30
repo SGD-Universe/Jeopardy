@@ -18,14 +18,23 @@ public class TeamNumController : MonoBehaviour
 
     private void Start()
     {
-        teamSelectPanel.SetActive(true);
-        promptText.text = "Please select a number of teams:";
+        /*if (LoadNumberOfTeams())
+        {
+            SetupTeams();
+            teamSelectPanel.SetActive(false);
+        }
+        else
+        {*/
+            teamSelectPanel.SetActive(true);
+            promptText.text = "Please select a number of teams:";
+        //}
 
         if (continueButton == null)
         {
             Debug.LogError("continueButton is not assigned in the Inspector");
             return;
         }
+
         continueButton.onClick.AddListener(OnCreateButtonClicked);
 
         if (errorText != null)
@@ -54,26 +63,35 @@ public class TeamNumController : MonoBehaviour
         }
     }
 
+    // Method to update number of teams
     private void OnTeamButtonClicked(int teamCount)
     {
         numberOfTeams = teamCount;
         promptText.text = "Selected number of teams: " + numberOfTeams;
     }
 
+    // Method to set up teams
     public void SetupTeams()
     {
         for (int i = 0; i < teamPanels.Length; i++)
         {
             teamPanels[i].SetActive(i < numberOfTeams);
+            /*if (i < numberOfTeams)
+            {
+                TeamPanelController controller = teamPanels[i].GetComponent<TeamPanelController>();
+                controller.LoadData();
+            }*/
         }
     }
 
+    // Setup teams and disable team select panel when create button is clicked and teams have been selected
     public void OnCreateButtonClicked()
     {
-        if (numberOfTeams >= 1 && numberOfTeams <= 6)
+        if (numberOfTeams >= 1 && numberOfTeams <= 4)
         {
             Debug.Log("Number of teams: " + numberOfTeams);
             errorText.text = ""; // Clear any previous error messages
+            SaveNumberOfTeams();
             SetupTeams();
             teamSelectPanel.gameObject.SetActive(false);
         }
@@ -83,4 +101,17 @@ public class TeamNumController : MonoBehaviour
             Debug.Log("Invalid input, number of teams must be between 1 and 4.");
         }
     }
+
+    // Method to save number of teams
+    private void SaveNumberOfTeams()
+    {
+        PlayerPrefs.SetInt("NumberOfTeams", numberOfTeams);
+        PlayerPrefs.Save();
+    }
+
+    /*private bool LoadNumberOfTeams()
+    {
+        numberOfTeams = PlayerPrefs.GetInt("NumberOfTeams", 0);
+        return numberOfTeams > 0;
+    }*/
 }

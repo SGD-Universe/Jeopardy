@@ -8844,7 +8844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &997376047
 Transform:
   m_ObjectHideFlags: 0
@@ -8977,11 +8977,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 460749868880358789, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_Name
-      value: TeamPanelPodium (1)
+      value: TeamPanelPodium2
       objectReference: {fileID: 0}
     - target: {fileID: 460749868880358789, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2293863720472037813, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_fontSize
@@ -10064,7 +10064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1132618165
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11226,11 +11226,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 460749868880358789, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_Name
-      value: TeamPanelPodium (3)
+      value: TeamPanelPodium4
       objectReference: {fileID: 0}
     - target: {fileID: 460749868880358789, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2293863720472037813, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_fontSize
@@ -15457,7 +15457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1685601899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15478,6 +15478,7 @@ MonoBehaviour:
   - {fileID: 1442486010}
   - {fileID: 1826506781}
   - {fileID: 185648840}
+  numberOfTeams: 0
   teamSelectPanel: {fileID: 1132618164}
   teamPanels:
   - {fileID: 976256137}
@@ -16570,11 +16571,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 460749868880358789, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_Name
-      value: TeamPanelPodium (2)
+      value: TeamPanelPodium3
       objectReference: {fileID: 0}
     - target: {fileID: 460749868880358789, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2293863720472037813, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_fontSize
@@ -19923,7 +19924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 460749868880358789, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2293863720472037813, guid: 146c73e12ff156e4d9f387ed86087a5d, type: 3}
       propertyPath: m_fontSize
