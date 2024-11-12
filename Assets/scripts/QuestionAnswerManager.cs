@@ -60,14 +60,6 @@ public class QuestionAnswerManager : MonoBehaviour
         answerText.text = answer;
         SaveQuestionAnswer(question, answer);
 
-
-        //// Clear the input fields
-        //questionInputField.text = "";
-        //answerInputField.text = "";
-       
-
-
-
         // Hide the answer until space bar is pressed
         answerText.gameObject.SetActive(false);
 
@@ -85,7 +77,12 @@ public class QuestionAnswerManager : MonoBehaviour
     {
 
         // Save question and answer using PlayerPrefs with the scene-specific key
+        if (questionInputField.text == "")
+            question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
         PlayerPrefs.SetString($"{whichQuestion}_Question_{questionCount}", question);
+
+        if (answerInputField.text == "")
+            answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
         PlayerPrefs.SetString($"{whichQuestion}_Answer_{questionCount}", answer);
 
         // Increment the question count
@@ -116,10 +113,6 @@ public class QuestionAnswerManager : MonoBehaviour
             answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
             answerText.text = answer;
         }
-        //question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
-        //answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
-        //questionText.text = question;
-        //answerText.text = answer;
 
     }
     public void SetQuestion(string questionText)

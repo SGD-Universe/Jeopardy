@@ -22,7 +22,10 @@ public class CategoryManager : MonoBehaviour
     public void SaveCategories()
     {
         categoryName = categoryInputField.text;
-        PlayerPrefs.SetString($"Category_{categoryNumber}", categoryName);
+        if (categoryName != "")
+        {
+            PlayerPrefs.SetString($"Category_{categoryNumber}", categoryName);
+        }
     }
 
     public void LoadCategories()
