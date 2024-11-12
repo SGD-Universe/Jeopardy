@@ -6632,11 +6632,15 @@ PrefabInstance:
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: answerText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 734089565}
+    - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
+      propertyPath: isCreating
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: questionText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 531205014}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: whichQuestion
       value: 2
@@ -8523,11 +8527,15 @@ PrefabInstance:
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: answerText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 841889591}
+    - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
+      propertyPath: isCreating
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: questionText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 852046689}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: whichQuestion
       value: 1
@@ -8540,6 +8548,10 @@ PrefabInstance:
       propertyPath: questionInputField
       value: 
       objectReference: {fileID: 987234895}
+    - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
+      propertyPath: revealedAnswerText
+      value: 
+      objectReference: {fileID: 1564980053}
     - target: {fileID: 8639455573746815894, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8639,9 +8651,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7690095243102719570, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: categoryText
+      value: 
+      objectReference: {fileID: 1989644190}
+    - target: {fileID: 7690095243102719570, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
       propertyPath: categoryNumber
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7690095243102719570, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
+      propertyPath: categoryAutoFill
+      value: 
+      objectReference: {fileID: 1819667700}
     - target: {fileID: 7690095243102719570, guid: 66287eb2739c58440b0aba0eb66f95e8, type: 3}
       propertyPath: categoryInputField
       value: 

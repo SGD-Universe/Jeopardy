@@ -9,7 +9,7 @@ public class QuestionAnswerManager : MonoBehaviour
     public TMP_InputField answerInputField;
     public TMP_Text questionText;
     public TMP_Text answerText;
-   
+
     private string question;
     private string answer;
 
@@ -18,11 +18,16 @@ public class QuestionAnswerManager : MonoBehaviour
 
     public int whichQuestion;
 
+    public bool isCreating = false;
+
 
     void Start()
     {
         // Hide the answer text at the start
-         answerText.gameObject.SetActive(false);
+        if (isCreating == false)
+        {
+            answerText.gameObject.SetActive(false);
+        }
         sceneKey = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
         // Load the last saved question count
@@ -38,7 +43,7 @@ public class QuestionAnswerManager : MonoBehaviour
     void Update()
     {
         // Check for space bar press
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isCreating == false)
         {
             RevealAnswer();
         }
@@ -92,10 +97,29 @@ public class QuestionAnswerManager : MonoBehaviour
     }
     private void LoadLastQuestionAnswer()
     {
-        question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
-        answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
-        questionText.text = question;
-        answerText.text = answer;
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}")))
+        {
+            questionText.text = "Enter text here";
+        }
+        else
+        {
+            question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
+            questionText.text = question;
+        }
+
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}")))
+        {
+            answerText.text = "Enter text here";
+        }
+        else
+        {
+            answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
+            answerText.text = answer;
+        }
+        //question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
+        //answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
+        //questionText.text = question;
+        //answerText.text = answer;
 
     }
     public void SetQuestion(string questionText)
