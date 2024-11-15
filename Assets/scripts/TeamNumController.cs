@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,33 +8,28 @@ using UnityEngine.SceneManagement;
 public class TeamNumController : MonoBehaviour
 {
     public static TeamNumController Instance { get; private set; }
-    public Button continueButton; // Button to start the game setup
-    public TMP_Text promptText; // Text prompt to guide team selection
-    public TMP_Text errorText; // Error message display
-    public List<Button> teamButtons; // Buttons for selecting number of teams
-    public GameObject teamSelectPanel; // Panel for selecting team number
-    public GameObject[] teamPanels; // Panels for individual teams
-
-    private int numberOfTeams; // Tracks the selected number of teams
-    public List<Team> Teams { get; private set; } // List of created teams
-
-    private void Awake()
-    {
-        // Singleton pattern to ensure a single instance
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public Button continueButton;
+    public TMP_Text promptText;
+    public TMP_Text errorText;
+    public List<Button> teamButtons;
+    private int numberOfTeams;
+    public GameObject teamSelectPanel;
+    public GameObject[] teamPanels;
 
     private void Start()
     {
-        teamSelectPanel.SetActive(true); // Show the team selection panel
+        /*if (LoadNumberOfTeams())
+        {
+            SetupTeams();
+            teamSelectPanel.SetActive(false);
+        }
+        else
+        {
+            teamSelectPanel.SetActive(true);
+            promptText.text = "Please select a number of teams:";
+        }*/
+
+        teamSelectPanel.SetActive(true);
         promptText.text = "Please select a number of teams:";
 
         if (continueButton == null)
@@ -78,20 +74,14 @@ public class TeamNumController : MonoBehaviour
 
     public void SetupTeams()
     {
-        Teams = new List<Team>(); // Initialize the team list
         for (int i = 0; i < teamPanels.Length; i++)
         {
-            bool isActive = i < numberOfTeams;
-            teamPanels[i].SetActive(isActive);
-            if (isActive)
+            teamPanels[i].SetActive(i < numberOfTeams);
+            /*if (i < numberOfTeams)
             {
-                // Initialize team and set up panel for each team
-                Team newTeam = new Team("Team " + (i + 1));
-                Teams.Add(newTeam);
                 TeamPanelController controller = teamPanels[i].GetComponent<TeamPanelController>();
-                controller.SetTeam(newTeam); // Set team data in the panel
-                Debug.Log("Setting up " + newTeam.teamName);
-            }
+                controller.LoadData();
+            }*/
         }
     }
 
@@ -103,13 +93,12 @@ public class TeamNumController : MonoBehaviour
             errorText.text = ""; // Clear any previous error messages
             SaveNumberOfTeams();
             SetupTeams();
-            teamSelectPanel.SetActive(false); // Hide the team selection panel
-            ToCreateGameScene(); // Proceed to the game scene
+            teamSelectPanel.gameObject.SetActive(false);
         }
         else
         {
-            errorText.text = "Please select a number between 1 and 6.";
-            Debug.Log("Invalid input, number of teams must be between 1 and 6.");
+            errorText.text = "Please select a number between 1 and 4.";
+            Debug.Log("Invalid input, number of teams must be between 1 and 4.");
         }
     }
 
@@ -119,14 +108,9 @@ public class TeamNumController : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void ToCreateGameScene()
+    /*private bool LoadNumberOfTeams()
     {
-        Debug.Log("Transitioning to game screen");
-        SceneManager.LoadScene("CreateGame");
-    }
-
-    public List<Team> GetTeams()
-    {
-        return Teams;
-    }
+        numberOfTeams = PlayerPrefs.GetInt("NumberOfTeams", 0);
+        return numberOfTeams > 0;
+    }*/
 }
