@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,28 +7,33 @@ using UnityEngine.SceneManagement;
 public class TeamNumController : MonoBehaviour
 {
     public static TeamNumController Instance { get; private set; }
-    public Button continueButton;
-    public TMP_Text promptText;
-    public TMP_Text errorText;
-    public List<Button> teamButtons;
-    private int numberOfTeams;
-    public GameObject teamSelectPanel;
-    public GameObject[] teamPanels;
+    public Button continueButton; // Button to start the game setup
+    public TMP_Text promptText; // Text prompt to guide team selection
+    public TMP_Text errorText; // Error message display
+    public List<Button> teamButtons; // Buttons for selecting number of teams
+    public GameObject teamSelectPanel; // Panel for selecting team number
+    public GameObject[] teamPanels; // Panels for individual teams
 
-    private void Start()
+    private int numberOfTeams; // Tracks the selected number of teams
+    public List<Team> Teams { get; private set; } // List of created teams
+
+    private void Awake()
     {
-        /*if (LoadNumberOfTeams())
+        // Singleton pattern to ensure a single instance
+        if (Instance == null)
         {
-            SetupTeams();
-            teamSelectPanel.SetActive(false);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            teamSelectPanel.SetActive(true);
-            promptText.text = "Please select a number of teams:";
-        }*/
+            Destroy(gameObject);
+        }
+    }
 
-        teamSelectPanel.SetActive(true);
+    private void Start()
+    {
+        teamSelectPanel.SetActive(true); // Show the team selection panel
         promptText.text = "Please select a number of teams:";
 
         if (continueButton == null)
@@ -74,14 +78,20 @@ public class TeamNumController : MonoBehaviour
 
     public void SetupTeams()
     {
+        Teams = new List<Team>(); // Initialize the team list
         for (int i = 0; i < teamPanels.Length; i++)
         {
-            teamPanels[i].SetActive(i < numberOfTeams);
-            /*if (i < numberOfTeams)
+            bool isActive = i < numberOfTeams;
+            teamPanels[i].SetActive(isActive);
+            if (isActive)
             {
+                // Initialize team and set up panel for each team
+                Team newTeam = new Team("Team " + (i + 1));
+                Teams.Add(newTeam);
                 TeamPanelController controller = teamPanels[i].GetComponent<TeamPanelController>();
-                controller.LoadData();
-            }*/
+                controller.SetTeam(newTeam); // Set team data in the panel
+                Debug.Log("Setting up " + newTeam.teamName);
+            }
         }
     }
 
@@ -93,12 +103,13 @@ public class TeamNumController : MonoBehaviour
             errorText.text = ""; // Clear any previous error messages
             SaveNumberOfTeams();
             SetupTeams();
-            teamSelectPanel.gameObject.SetActive(false);
+            teamSelectPanel.SetActive(false); // Hide the team selection panel
+            ToCreateGameScene(); // Proceed to the game scene
         }
         else
         {
-            errorText.text = "Please select a number between 1 and 4.";
-            Debug.Log("Invalid input, number of teams must be between 1 and 4.");
+            errorText.text = "Please select a number between 1 and 6.";
+            Debug.Log("Invalid input, number of teams must be between 1 and 6.");
         }
     }
 
@@ -108,9 +119,14 @@ public class TeamNumController : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    /*private bool LoadNumberOfTeams()
+    public void ToCreateGameScene()
     {
-        numberOfTeams = PlayerPrefs.GetInt("NumberOfTeams", 0);
-        return numberOfTeams > 0;
-    }*/
+        Debug.Log("Transitioning to game screen");
+        SceneManager.LoadScene("CreateGame");
+    }
+
+    public List<Team> GetTeams()
+    {
+        return Teams;
+    }
 }

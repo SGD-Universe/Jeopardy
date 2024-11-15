@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -7,64 +6,122 @@ using UnityEngine.UI;
 public class TeamPanelController : MonoBehaviour
 {
     public string teamID; // Unique identifier for each team
-    public string teamName;
-    public int score;
-    public TMP_Text teamScoreText;
-    public Button addScoreButton;
-    public Button subtractScoreButton;
-    public TMP_InputField teamNameInputField;
+    public TMP_Text teamNameText; // Text to display the team name
+    public TMP_Text teamScoreText; // Text to display the team's score
+    public Button addScoreButton; // Button to add score
+    public Button subtractScoreButton; // Button to subtract score
+    public TMP_InputField teamNameInputField; // Input field for the team name
 
+    private Team team; // Reference to the Team object
+
+    // Initialize team properties at the start
     private void Start()
     {
-        //LoadData();
-        UpdateUI();
+        // Set up listeners for the buttons and input field
         addScoreButton.onClick.AddListener(OnAddScoreClicked);
         subtractScoreButton.onClick.AddListener(OnSubtractScoreClicked);
         teamNameInputField.onEndEdit.AddListener(OnTeamNameInputEndEdit);
+
+        // Load team data if teamID is set
+        if (!string.IsNullOrEmpty(teamID))
+        {
+            LoadData();
+        }
+
+        // Update the UI to reflect the initial state
+        UpdateUI();
     }
 
-    // Method to display the current score and team name
+    // Assign a Team object and update the UI
+    public void SetTeam(Team team)
+    {
+        this.team = team;
+        teamID = team.teamID; // Assume Team object has a unique identifier
+        UpdateUI();
+    }
+
+    // Update the UI to show the current team name and score
     private void UpdateUI()
     {
-        teamScoreText.text = "Score: " + score;
-        teamNameInputField.text = teamName;
+        if (team != null)
+        {
+            teamNameText.text = team.teamName; // Update displayed team name
+            teamScoreText.text = "Score: " + team.score; // Update displayed score
+            teamNameInputField.text = team.teamName; // Reflect the name in input field
+        }
+        else
+        {
+            teamNameText.text = teamName; // Display loaded name if no Team object
+            teamScoreText.text = "Score: " + score;
+            teamNameInputField.text = teamName;
+        }
     }
 
-    //Method to add to the score
+    // Method called when the Add Score button is clicked
     private void OnAddScoreClicked()
     {
-        score += 100;
+        if (team != null)
+        {
+            team.score += 100;
+        }
+        else
+        {
+            score += 100;
+        }
         UpdateUI();
         SaveData();
     }
 
-    //Method to subtract from the score
+    // Method called when the Subtract Score button is clicked
     private void OnSubtractScoreClicked()
     {
-        score -= 100;
+        if (team != null)
+        {
+            team.score -= 100;
+        }
+        else
+        {
+            score -= 100;
+        }
         UpdateUI();
         SaveData();
     }
 
-    //Method to input team name
+    // Method called when the team name input is edited
     private void OnTeamNameInputEndEdit(string newName)
     {
-        teamName = newName;
+        if (team != null)
+        {
+            team.teamName = newName;
+        }
+        else
+        {
+            teamName = newName;
+        }
         SaveData();
         UpdateUI();
     }
 
-    //Method to save score and team name
+    // Save score and team name using PlayerPrefs
     private void SaveData()
     {
-        PlayerPrefs.SetInt("TeamScore_" + teamID, score);
-        PlayerPrefs.SetString("TeamName_" + teamID, teamName);
-        PlayerPrefs.Save();
+        if (!string.IsNullOrEmpty(teamID))
+        {
+            PlayerPrefs.SetInt("TeamScore_" + teamID, team != null ? team.score : score);
+            PlayerPrefs.SetString("TeamName_" + teamID, team != null ? team.teamName : teamName);
+            PlayerPrefs.Save();
+        }
     }
 
-    /*public void LoadData()
+    // Load score and team name from PlayerPrefs
+    private void LoadData()
     {
         score = PlayerPrefs.GetInt("TeamScore_" + teamID, 0);
-        teamName = PlayerPrefs.GetString("TeamName_" + teamID, teamName);
-    }*/
+        teamName = PlayerPrefs.GetString("TeamName_" + teamID, "Team");
+        if (team != null)
+        {
+            team.score = score;
+            team.teamName = teamName;
+        }
+    }
 }
