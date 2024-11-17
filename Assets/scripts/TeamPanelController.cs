@@ -1,62 +1,70 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class TeamPanelController : MonoBehaviour
 {
-    public TMP_Text teamNameText;            // Text to display the team name
-    public TMP_Text teamScoreText;           // Text to display the team's score
-    public Button addScoreButton;            // Button to add score
-    public Button subtractScoreButton;       // Button to subtract score
-    public TMP_InputField teamNameInputField; // Input field for the team name
-
-    private Team team;  // Reference to the Team object
+    public string teamID; // Unique identifier for each team
+    public string teamName;
+    public int score;
+    public TMP_Text teamScoreText;
+    public Button addScoreButton;
+    public Button subtractScoreButton;
+    public TMP_InputField teamNameInputField;
 
     private void Start()
     {
-        // Set up listeners for the buttons and input field
+        //LoadData();
+        UpdateUI();
         addScoreButton.onClick.AddListener(OnAddScoreClicked);
         subtractScoreButton.onClick.AddListener(OnSubtractScoreClicked);
         teamNameInputField.onEndEdit.AddListener(OnTeamNameInputEndEdit);
     }
 
-    // Method to assign a Team object and update UI
-    public void SetTeam(Team team)
+    // Method to display the current score and team name
+    private void UpdateUI()
     {
-        this.team = team;
+        teamScoreText.text = "Score: " + score;
+        teamNameInputField.text = teamName;
+    }
+
+    //Method to add to the score
+    private void OnAddScoreClicked()
+    {
+        score += 100;
+        UpdateUI();
+        SaveData();
+    }
+
+    //Method to subtract from the score
+    private void OnSubtractScoreClicked()
+    {
+        score -= 100;
+        UpdateUI();
+        SaveData();
+    }
+
+    //Method to input team name
+    private void OnTeamNameInputEndEdit(string newName)
+    {
+        teamName = newName;
+        SaveData();
         UpdateUI();
     }
 
-    // Method to update the UI to reflect the team's current state
-    private void UpdateUI()
+    //Method to save score and team name
+    private void SaveData()
     {
-        teamNameText.text = team.teamName;  // Update the displayed team name
-        teamScoreText.text = "Score: " + team.score;  // Update the displayed score
-
-        // Optionally, reflect the team name in the input field
-        teamNameInputField.text = team.teamName;
+        PlayerPrefs.SetInt("TeamScore_" + teamID, score);
+        PlayerPrefs.SetString("TeamName_" + teamID, teamName);
+        PlayerPrefs.Save();
     }
 
-    // Method called when the Add Score button is clicked
-    private void OnAddScoreClicked()
+    /*public void LoadData()
     {
-        team.score += 100;  // Increase the score by 100
-        UpdateUI();  // Refresh the UI with the updated score
-    }
-
-    // Method called when the Subtract Score button is clicked
-    private void OnSubtractScoreClicked()
-    {
-        team.score -= 100;  // Decrease the score by 100
-        UpdateUI();  // Refresh the UI with the updated score
-    }
-
-    // Method called when the team name input is edited
-    private void OnTeamNameInputEndEdit(string newName)
-    {
-        team.teamName = newName;  // Update the team's name with the new input
-        teamNameInputField.text = newName;  // Reflect the new name in the input field
-        UpdateUI();  // Refresh the UI to display the updated name
-    }
+        score = PlayerPrefs.GetInt("TeamScore_" + teamID, 0);
+        teamName = PlayerPrefs.GetString("TeamName_" + teamID, teamName);
+    }*/
 }
