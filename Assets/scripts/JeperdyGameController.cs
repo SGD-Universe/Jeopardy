@@ -1,28 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class JeperdyGameController : MonoBehaviour
 {
     public static JeperdyGameController Instance { get; private set; }
-    public List<Team> Teams { get; private set; }
 
-    public Button playButton;
-    public TMP_Text promptText;
+    public List<TeamPanelController> Teams { get; private set; } // Holds team panel controllers
+    public GameObject teamPanelPrefab; // Prefab for the team panels
+    public Transform teamPanelParent; // Parent object to hold the team panels
+
     public TMP_Text errorText;
-    public List<Button> teamButtons; // List to hold team buttons
-
-    private int numberOfTeams;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); // Keep the GameController alive across scenes
         }
         else
         {
@@ -30,97 +26,78 @@ public class JeperdyGameController : MonoBehaviour
         }
     }
 
-
     private void Start()
     {
-        promptText.text = "Select number of teams (1-6):";
-
-        if (playButton == null)
+        int numberOfTeams = LoadNumberOfTeams();
+        if (numberOfTeams < 1)
         {
-            Debug.LogError("PlayButton is not assigned in the Inspector");
+            Debug.LogError("No valid number of teams found. Please select a number of teams.");
+            errorText.text = "Error: No teams selected!";
             return;
         }
-        //Text for setting teams, and a prompt to remind you to set the teams
 
-        playButton.onClick.AddListener(OnPlayButtonClicked);
+        SetupTeams(numberOfTeams);
+    }
 
-        if (errorText != null)
+    /// <summary>
+    /// Loads the selected number of teams from PlayerPrefs.
+    /// </summary>
+    private int LoadNumberOfTeams()
+    {
+        return PlayerPrefs.GetInt("NumberOfTeams", 0);
+    }
+
+    /// <summary>
+    /// Dynamically sets up team panels based on the selected number of teams.
+    /// </summary>
+    private void SetupTeams(int numberOfTeams)
+    {
+        Teams = new List<TeamPanelController>();
+
+        if (teamPanelPrefab == null || teamPanelParent == null)
         {
-            errorText.text = ""; // Ensure error text is empty at the start
-        }
-
-        if (teamButtons == null || teamButtons.Count == 0)
-        {
-            Debug.LogError("TeamButtons list is not assigned or empty in the Inspector");
+            Debug.LogError("TeamPanelPrefab or TeamPanelParent is not assigned in the Inspector.");
             return;
         }
-        //sets text and conditions for error notice
 
-
-        // Add listeners to the team buttons
-        for (int i = 0; i < teamButtons.Count; i++)
+        for (int i = 0; i < numberOfTeams; i++)
         {
-            if (teamButtons[i] != null)
+            // Instantiate a new team panel
+            GameObject panel = Instantiate(teamPanelPrefab, teamPanelParent);
+
+            // Get the TeamPanelController for the panel
+            TeamPanelController controller = panel.GetComponent<TeamPanelController>();
+            if (controller != null)
             {
-                int index = i; // Local copy of the loop variable
-                teamButtons[i].onClick.AddListener(() => OnTeamButtonClicked(index + 1));
+                controller.teamID = (i + 1).ToString(); // Assign unique ID to each team
+                controller.teamName = $"Team {i + 1}"; // Default team name
+                controller.score = 0; // Initialize score to 0
+                controller.UpdateUI(); // Update the panel's UI
+                Teams.Add(controller); // Add to the list of teams
             }
             else
             {
-                Debug.LogError("A TeamButton is not assigned in the Inspector at index: " + i);
+                Debug.LogError("TeamPanelController script is not attached to the team panel prefab.");
             }
-            //sets team buttons and announces error in setting buttons
         }
+
+        Debug.Log($"Successfully set up {Teams.Count} teams.");
     }
 
-    private void OnTeamButtonClicked(int teamCount)
-    {
-        numberOfTeams = teamCount;
-        Debug.Log("Selected number of teams: " + numberOfTeams);
-        //sets number of teams based on player selection
-    }
-
-  public void OnPlayButtonClicked()
-    {
-        if (numberOfTeams >= 1 && numberOfTeams <= 6)
-        {
-            Debug.Log("Number of teams: " + numberOfTeams);
-            errorText.text = ""; // Clear any previous error messages
-            SetupTeams();
-            TransitionToGameScreen();
-            //Sets potential amount of teams
-        }
-        else
-        {
-            errorText.text = "Please select a number between 1 and 6.";
-            Debug.Log("Invalid input, number of teams must be between 1 and 6.");
-            //Tells user to select a team amount
-        }
-    }
-
-    private void SetupTeams()
-    {
-        Teams = new List<Team>();
-        for (int i = 0; i < numberOfTeams; i++)
-        {
-            Team newTeam = new Team("Team " + (i + 1));
-            Teams.Add(newTeam);
-            Debug.Log("Setting up " + newTeam.teamName);
-        }
-        //sets up data for new teams
-    }
-
-    public List<Team> GetTeams()
+    /// <summary>
+    /// Returns the list of team panel controllers.
+    /// </summary>
+    public List<TeamPanelController> GetTeams()
     {
         return Teams;
-        //returns team data
     }
 
-    private void TransitionToGameScreen()
+    /// <summary>
+    /// Handles transitioning to the gameplay screen.
+    /// </summary>
+    public void TransitionToGameScreen()
     {
-        Debug.Log("Transitioning to game screen");
+        Debug.Log("Transitioning to game screen.");
         SceneManager.LoadScene("GameScene");
-        //Sets up transition to game scene
     }
 }
-
