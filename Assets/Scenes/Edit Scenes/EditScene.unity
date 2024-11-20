@@ -1050,11 +1050,15 @@ PrefabInstance:
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: answerText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 1522650235}
+    - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
+      propertyPath: isCreating
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: questionText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 1619142874}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: whichQuestion
       value: 3
@@ -1658,7 +1662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the question
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2055,7 +2059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the question
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2672,7 +2676,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the answer
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -3115,7 +3119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the answer
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -3272,7 +3276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the question
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -5429,11 +5433,15 @@ PrefabInstance:
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: answerText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 1894842256}
+    - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
+      propertyPath: isCreating
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: questionText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 1644027724}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: whichQuestion
       value: 4
@@ -5585,7 +5593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the answer
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -6203,7 +6211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the question
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -6360,7 +6368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the question
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -7022,7 +7030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the answer
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -7629,7 +7637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the category
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -8089,11 +8097,15 @@ PrefabInstance:
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: answerText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 2132630820}
+    - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
+      propertyPath: isCreating
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: questionText
       value: 
-      objectReference: {fileID: 1564980053}
+      objectReference: {fileID: 667906741}
     - target: {fileID: 2643262779823956561, guid: 7aced1de1e85a46cb9c5562d3a5431d9, type: 3}
       propertyPath: whichQuestion
       value: 5
@@ -8245,7 +8257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: input the answer
+  m_text: Enter text here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

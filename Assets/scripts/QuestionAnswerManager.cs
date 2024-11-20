@@ -94,6 +94,7 @@ public class QuestionAnswerManager : MonoBehaviour
     }
     private void LoadLastQuestionAnswer()
     {
+        // If/else statements make placeholder text happen if needed
         if (string.IsNullOrEmpty(PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}")))
         {
             questionText.text = "Enter text here";

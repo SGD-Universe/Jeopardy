@@ -8,7 +8,6 @@ using System;
 public class CategoryManager : MonoBehaviour
 {
     public TMP_InputField categoryInputField;
-    //public TMP_InputField categoryAutoFill;
     public TMP_Text categoryText;
 
     public int categoryNumber;
@@ -30,6 +29,7 @@ public class CategoryManager : MonoBehaviour
 
     public void LoadCategories()
     {
+        // If/else statement makes placeholder text happen if needed
         categoryName = PlayerPrefs.GetString($"Category_{categoryNumber}");
         if (string.IsNullOrEmpty(categoryName))
         {
@@ -38,7 +38,6 @@ public class CategoryManager : MonoBehaviour
         else
         {
             categoryText.text = categoryName;
-            //categoryAutoFill.text = categoryName;
         }
     }
 }
