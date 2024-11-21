@@ -195,7 +195,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Team Trivia Buttons_0: 5780380051077873941
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
