@@ -21,13 +21,24 @@ public class CategoryManager : MonoBehaviour
     public void SaveCategories()
     {
         categoryName = categoryInputField.text;
-        PlayerPrefs.SetString($"Category_{categoryNumber}", categoryName);
+        if (categoryName != "")
+        {
+            PlayerPrefs.SetString($"Category_{categoryNumber}", categoryName);
+        }
     }
 
     public void LoadCategories()
     {
+        // If/else statement makes placeholder text happen if needed
         categoryName = PlayerPrefs.GetString($"Category_{categoryNumber}");
-        categoryText.text = categoryName;
+        if (string.IsNullOrEmpty(categoryName))
+        {
+            categoryText.text = "Enter text here";
+        }
+        else
+        {
+            categoryText.text = categoryName;
+        }
     }
 }
 

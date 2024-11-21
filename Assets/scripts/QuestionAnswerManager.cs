@@ -9,7 +9,7 @@ public class QuestionAnswerManager : MonoBehaviour
     public TMP_InputField answerInputField;
     public TMP_Text questionText;
     public TMP_Text answerText;
-   
+
     private string question;
     private string answer;
 
@@ -18,11 +18,16 @@ public class QuestionAnswerManager : MonoBehaviour
 
     public int whichQuestion;
 
+    public bool isCreating = false;
+
 
     void Start()
     {
         // Hide the answer text at the start
-         answerText.gameObject.SetActive(false);
+        if (isCreating == false)
+        {
+            answerText.gameObject.SetActive(false);
+        }
         sceneKey = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
         // Load the last saved question count
@@ -38,7 +43,7 @@ public class QuestionAnswerManager : MonoBehaviour
     void Update()
     {
         // Check for space bar press
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isCreating == false)
         {
             RevealAnswer();
         }
@@ -54,14 +59,6 @@ public class QuestionAnswerManager : MonoBehaviour
         questionText.text = question;
         answerText.text = answer;
         SaveQuestionAnswer(question, answer);
-
-
-        //// Clear the input fields
-        //questionInputField.text = "";
-        //answerInputField.text = "";
-       
-
-
 
         // Hide the answer until space bar is pressed
         answerText.gameObject.SetActive(false);
@@ -80,7 +77,12 @@ public class QuestionAnswerManager : MonoBehaviour
     {
 
         // Save question and answer using PlayerPrefs with the scene-specific key
+        if (questionInputField.text == "")
+            question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
         PlayerPrefs.SetString($"{whichQuestion}_Question_{questionCount}", question);
+
+        if (answerInputField.text == "")
+            answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
         PlayerPrefs.SetString($"{whichQuestion}_Answer_{questionCount}", answer);
 
         // Increment the question count
@@ -92,10 +94,26 @@ public class QuestionAnswerManager : MonoBehaviour
     }
     private void LoadLastQuestionAnswer()
     {
-        question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
-        answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
-        questionText.text = question;
-        answerText.text = answer;
+        // If/else statements make placeholder text happen if needed
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}")))
+        {
+            questionText.text = "Enter text here";
+        }
+        else
+        {
+            question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
+            questionText.text = question;
+        }
+
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}")))
+        {
+            answerText.text = "Enter text here";
+        }
+        else
+        {
+            answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
+            answerText.text = answer;
+        }
 
     }
     public void SetQuestion(string questionText)
