@@ -34,6 +34,7 @@ public class TeamPanelController : MonoBehaviour
         teamNameInputField.text = teamName;
     }
 
+    // Add points based on which question panel is active
     private void OnAddScoreClicked()
     {
         if (IsPanelActive(twoHundredPointPanels))
@@ -61,6 +62,7 @@ public class TeamPanelController : MonoBehaviour
         SaveData();
     }
 
+    // Subtract points based on which question panel is active
     private void OnSubtractScoreClicked()
     {
         if (IsPanelActive(twoHundredPointPanels))
@@ -88,6 +90,7 @@ public class TeamPanelController : MonoBehaviour
         SaveData();
     }
 
+    // Change and save team name 
     private void OnTeamNameInputEndEdit(string newName)
     {
         teamName = newName;
@@ -102,7 +105,7 @@ public class TeamPanelController : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // Method to check if any panel in the given array is active
+    // Method to check if any panel in the question panel array is active
     private bool IsPanelActive(GameObject[] panels)
     {
         foreach (GameObject panel in panels)
@@ -115,6 +118,7 @@ public class TeamPanelController : MonoBehaviour
         return false;
     }
 
+    // Unused but functional load function
     /*public void LoadData()
     {
         score = PlayerPrefs.GetInt("TeamScore_" + teamID, 0);
