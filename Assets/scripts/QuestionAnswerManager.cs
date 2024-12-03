@@ -55,14 +55,8 @@ public class QuestionAnswerManager : MonoBehaviour
         question = questionInputField.text;
         answer = answerInputField.text;
 
-        // Display the question
-        questionText.text = question;
-        answerText.text = answer;
+        // Saves the stuff
         SaveQuestionAnswer(question, answer);
-
-        // Hide the answer until space bar is pressed
-        answerText.gameObject.SetActive(false);
-
     }
 
     private void RevealAnswer()
@@ -75,8 +69,7 @@ public class QuestionAnswerManager : MonoBehaviour
 
     private void SaveQuestionAnswer(string question, string answer)
     {
-
-        // Save question and answer using PlayerPrefs with the scene-specific key
+        // Save question and answer using PlayerPrefs with whichQuestion. If input is blank, uses the previous saved data.
         if (questionInputField.text == "")
             question = PlayerPrefs.GetString($"{whichQuestion}_Question_{questionCount - 1}");
         PlayerPrefs.SetString($"{whichQuestion}_Question_{questionCount}", question);
@@ -85,7 +78,7 @@ public class QuestionAnswerManager : MonoBehaviour
             answer = PlayerPrefs.GetString($"{whichQuestion}_Answer_{questionCount - 1}");
         PlayerPrefs.SetString($"{whichQuestion}_Answer_{questionCount}", answer);
 
-        // Increment the question count
+        // Increment the question count. I'm not entirely sure what that does, it's legacy code. Things break if I turn it off so I'm not touching it.
         questionCount++;
         PlayerPrefs.SetInt($"{whichQuestion}_QuestionCount", questionCount);
 
@@ -118,6 +111,7 @@ public class QuestionAnswerManager : MonoBehaviour
     }
     public void SetQuestion(string questionText)
     {
+        // This might be depreciated, not entirely sure
         question = questionText;
         questionInputField.text = question;
     }
