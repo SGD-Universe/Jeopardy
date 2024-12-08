@@ -18,6 +18,7 @@ public class TeamNumController : MonoBehaviour
 
     private void Start()
     {
+        // Unused but functional load function
         /*if (LoadNumberOfTeams())
         {
             SetupTeams();
@@ -108,6 +109,7 @@ public class TeamNumController : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // Unused but functional load function
     /*private bool LoadNumberOfTeams()
     {
         numberOfTeams = PlayerPrefs.GetInt("NumberOfTeams", 0);

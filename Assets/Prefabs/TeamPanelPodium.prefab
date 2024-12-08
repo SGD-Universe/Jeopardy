@@ -370,12 +370,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e303c62ae3f441b8fb54a5d22eca30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamID: 
   teamName: 
   score: 0
   teamScoreText: {fileID: 110280970678946418}
   addScoreButton: {fileID: 8984338746394878021}
   subtractScoreButton: {fileID: 5783678974232735828}
   teamNameInputField: {fileID: 1327034003903438037}
+  twoHundredPointPanels: []
+  threeHundredPointPanels: []
+  fourHundredPointPanels: []
+  fiveHundredPointPanels: []
 --- !u!1 &1931660267902649911
 GameObject:
   m_ObjectHideFlags: 0

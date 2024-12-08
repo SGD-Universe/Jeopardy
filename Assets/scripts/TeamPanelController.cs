@@ -14,39 +14,83 @@ public class TeamPanelController : MonoBehaviour
     public Button subtractScoreButton;
     public TMP_InputField teamNameInputField;
 
+    // Arrays for each point panel type
+    public GameObject[] twoHundredPointPanels;
+    public GameObject[] threeHundredPointPanels;
+    public GameObject[] fourHundredPointPanels;
+    public GameObject[] fiveHundredPointPanels;
+
     private void Start()
     {
-        //LoadData();
         UpdateUI();
         addScoreButton.onClick.AddListener(OnAddScoreClicked);
         subtractScoreButton.onClick.AddListener(OnSubtractScoreClicked);
         teamNameInputField.onEndEdit.AddListener(OnTeamNameInputEndEdit);
     }
 
-    // Method to display the current score and team name
     private void UpdateUI()
     {
         teamScoreText.text = "Score: " + score;
         teamNameInputField.text = teamName;
     }
 
-    //Method to add to the score
+    // Add points based on which question panel is active
     private void OnAddScoreClicked()
     {
-        score += 100;
+        if (IsPanelActive(twoHundredPointPanels))
+        {
+            score += 200;
+        }
+        else if (IsPanelActive(threeHundredPointPanels))
+        {
+            score += 300;
+        }
+        else if (IsPanelActive(fourHundredPointPanels))
+        {
+            score += 400;
+        }
+        else if (IsPanelActive(fiveHundredPointPanels))
+        {
+            score += 500;
+        }
+        else
+        {
+            score += 100;
+        }
+
         UpdateUI();
         SaveData();
     }
 
-    //Method to subtract from the score
+    // Subtract points based on which question panel is active
     private void OnSubtractScoreClicked()
     {
-        score -= 100;
+        if (IsPanelActive(twoHundredPointPanels))
+        {
+            score -= 200;
+        }
+        else if (IsPanelActive(threeHundredPointPanels))
+        {
+            score -= 300;
+        }
+        else if (IsPanelActive(fourHundredPointPanels))
+        {
+            score -= 400;
+        }
+        else if (IsPanelActive(fiveHundredPointPanels))
+        {   
+            score -= 500;
+        }
+        else
+        {
+            score -= 100;
+        }
+
         UpdateUI();
         SaveData();
     }
 
-    //Method to input team name
+    // Change and save team name 
     private void OnTeamNameInputEndEdit(string newName)
     {
         teamName = newName;
@@ -54,7 +98,6 @@ public class TeamPanelController : MonoBehaviour
         UpdateUI();
     }
 
-    //Method to save score and team name
     private void SaveData()
     {
         PlayerPrefs.SetInt("TeamScore_" + teamID, score);
@@ -62,6 +105,20 @@ public class TeamPanelController : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // Method to check if any panel in the question panel array is active
+    private bool IsPanelActive(GameObject[] panels)
+    {
+        foreach (GameObject panel in panels)
+        {
+            if (panel.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Unused but functional load function
     /*public void LoadData()
     {
         score = PlayerPrefs.GetInt("TeamScore_" + teamID, 0);
