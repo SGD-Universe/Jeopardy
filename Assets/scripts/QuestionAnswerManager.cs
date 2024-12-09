@@ -18,6 +18,7 @@ public class QuestionAnswerManager : MonoBehaviour
 
     public int whichQuestion;
 
+    // This indicates when a QA manager is in edit mode
     public bool isCreating = false;
 
 
@@ -42,10 +43,11 @@ public class QuestionAnswerManager : MonoBehaviour
 
     void Update()
     {
-        // Check for space bar press
+        // Reveals answer in play mode
         if (Input.GetKeyDown(KeyCode.Space) && isCreating == false)
         {
-            RevealAnswer();
+            answerText.text = answer;
+            answerText.gameObject.SetActive(true);
         }
     }
 
@@ -57,14 +59,6 @@ public class QuestionAnswerManager : MonoBehaviour
 
         // Saves the stuff
         SaveQuestionAnswer(question, answer);
-    }
-
-    private void RevealAnswer()
-    {
-        // Display the answer
-        answerText.text = answer;
-        answerText.gameObject.SetActive(true);
-
     }
 
     private void SaveQuestionAnswer(string question, string answer)
@@ -85,6 +79,7 @@ public class QuestionAnswerManager : MonoBehaviour
         // Save changes to PlayerPrefs
         PlayerPrefs.Save();
     }
+
     private void LoadLastQuestionAnswer()
     {
         // If/else statements make placeholder text happen if needed
@@ -109,12 +104,12 @@ public class QuestionAnswerManager : MonoBehaviour
         }
 
     }
+
     public void SetQuestion(string questionText)
     {
         // This might be depreciated, not entirely sure
         question = questionText;
         questionInputField.text = question;
     }
-
 }
 
