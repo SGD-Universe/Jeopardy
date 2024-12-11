@@ -43,13 +43,18 @@ public class QuestionAnswerManager : MonoBehaviour
 
     void Update()
     {
-        // Reveals answer in play mode
-        if (Input.GetKeyDown(KeyCode.Space) && isCreating == false)
+
+    }
+
+    public void RevealAnswer()
+    {
+        if (isCreating == false)
         {
             answerText.text = answer;
             answerText.gameObject.SetActive(true);
         }
     }
+
 
     public void SubmitQuestionAnswer()
     {
