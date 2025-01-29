@@ -18,19 +18,19 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayGame.unity
     guid: 9ec7057fe34114c229a166c364a64456
   - enabled: 1
-    path: Assets/Scenes/Edit Scenes/EditScene.unity
+    path: Assets/Scenes/EditCategory1.unity
     guid: 12e2f3c7b77fc9c4ea65b10bce6dae3f
   - enabled: 1
-    path: Assets/Scenes/Edit Scenes/EditScene2.unity
+    path: Assets/Scenes/EditCategory2.unity
     guid: 728d12113cb67854a99ade202a7c3829
   - enabled: 1
-    path: Assets/Scenes/Edit Scenes/EditScene3.unity
+    path: Assets/Scenes/EditCategory3.unity
     guid: 2f7113b728ca590408ffee8111988695
   - enabled: 1
-    path: Assets/Scenes/Edit Scenes/EditScene4.unity
+    path: Assets/Scenes/EditCategory4.unity
     guid: 9fefef6585b301044b9471e9a4e06974
   - enabled: 1
-    path: Assets/Scenes/Edit Scenes/EditScene5.unity
+    path: Assets/Scenes/EditCategory5.unity
     guid: 841fc0818d18856438501aced89936b2
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

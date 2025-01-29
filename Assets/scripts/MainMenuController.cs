@@ -8,6 +8,7 @@ public class MainMenuController : MonoBehaviour
     public Button createGameButton;
     public Button loadGameButton;
     public Button quitButton;
+    [SerializeField] private GameObject settingsMenu;
 
 
     private void Start()
@@ -21,5 +22,15 @@ public class MainMenuController : MonoBehaviour
 
         if (quitButton != null)
             quitButton.onClick.AddListener(() => GameManager.Instance.QuitGame());
+    }
+
+    public void ShowSettingsMenu()
+    {
+        settingsMenu.SetActive(true);
+    }
+
+    public void HideSettingsMenu()
+    {
+        settingsMenu.SetActive(false);
     }
 }

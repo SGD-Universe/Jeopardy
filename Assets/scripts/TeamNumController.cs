@@ -57,7 +57,7 @@ public class TeamNumController : MonoBehaviour
         {
             if (teamButtons[i] != null)
             {
-                int index = i; // Local copy of the loop variable
+                int index = i; // Local copy of the loop variable // Why????
                 teamButtons[i].onClick.AddListener(() => OnTeamButtonClicked(index + 1));
             }
             else
