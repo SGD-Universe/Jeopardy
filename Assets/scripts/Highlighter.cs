@@ -56,7 +56,7 @@ public class Highlighter : MonoBehaviour
 
     public static void ResetAllButtons()
     {
-        Highlighter[] highlighters = FindObjectsOfType<Highlighter>();
+        Highlighter[] highlighters = FindObjectsByType<Highlighter>(FindObjectsSortMode.None);
         foreach (Highlighter h in highlighters)
         {
             h.ResetButton();

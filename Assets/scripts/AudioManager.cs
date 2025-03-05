@@ -1,59 +1,40 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
-// ## Class needs refactoring
-// Due to the gameobject being set to DontDestroyOnLoad, the reference to musicVolumeSlider is lost
-// when the scene it starts in (MainMenu) is unloaded.
-// Additionally, this class manipulates the static property 'volume' from the AudioListener class,
-// which is the global volume of all sounds in the game. This should be changed to use Unity's Audio Mixers,
-// which allows mixing multiple categories of sounds at the same time
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance;
+    [Header("----- Audio Mixer -----")]
+    [SerializeField] private AudioMixer audioMixer;
 
-    public Slider musicVolumeSlider;
-    //public Slider sfxVolumeSlider;
+    [Header("----- Audio Source -----")]
+    [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioSource sfxSource;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    [Header("----- Audio Clips -----")]
+    public AudioClip Buzzer;
+    public AudioClip Correct;
+    public AudioClip Incorrect;
+    public AudioClip IncorrectBassBoosted;
+    public AudioClip MusEditor;
+    public AudioClip MusJeopardyTheme;
+    public AudioClip MusMainMenu;
+    public AudioClip MusQuizGame;
+    public AudioClip QuestionReveal;
+    public AudioClip QuizIntro;
+    public AudioClip WinClapping;
+    //If you change or remove any sound files (music or sfx), please change or remove the above clips appropriately.
+
+
 
     private void Start()
     {
-        // If there is no saved volume setting, default to 0.5
-        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+        // Load volume preferences - Default value is 0.5f
+        float musicVol = PlayerPrefs.GetFloat("musicVol", 0.5f);
+        float sfxVol = PlayerPrefs.GetFloat("sfxVol", 0.5f);
+        audioMixer.SetFloat("musicVol", Mathf.Log10(musicVol) * 20);
+        audioMixer.SetFloat("sfxVol", Mathf.Log10(sfxVol) * 20);
 
-        musicVolumeSlider.value = savedMusicVolume;
-        //sfxSlider.value = savedSFXVolume;
-
-        SetMusicVolume(savedMusicVolume);
-        //SetSFXVolume(savedSFXVolume);
-
-        musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
-        //sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        musicSource.clip = MusMainMenu;
+        musicSource.Play();
     }
-
-    public void SetMusicVolume(float volume)
-    {
-        AudioListener.volume = volume;
-        PlayerPrefs.SetFloat("MusicVolume", volume);
-        PlayerPrefs.Save();
-    }
-    /*
-    public void SetSFXVolume(float volume)
-    {      
-        PlayerPrefs.SetFloat("SFXVolume", volume);
-        PlayerPrefs.Save();
-    }
-    */
 }
