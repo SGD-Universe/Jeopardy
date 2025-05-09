@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class ExperimentalGameManager : MonoBehaviour
 {
     public static ExperimentalGameManager Instance;
+
+
+
     private void Awake()
     {
         if(Instance == null) Instance = this;
@@ -17,19 +21,5 @@ public class ExperimentalGameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Camera.main.GetComponent<Animator>().Play("CameraPivotFromScreenToMenu");
-        }
-    }
 
-    public void TransitionToGameScreen()
-    {
-        Camera.main.GetComponent<Animator>().enabled = true;
-        Camera.main.GetComponent<Animator>().Play("CameraPivotFromMenuToScreen");
-        ExperimentalGameScreen.Instance.BeginGame();
-    }
 }
