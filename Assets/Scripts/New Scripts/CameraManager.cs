@@ -26,26 +26,27 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Camera will look at whichever object is made currentLookAt
         virtualCamera.LookAt = currentLookAt.transform;
+
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            MakeTransitionGoback();
-            //Camera.main.GetComponent<Animator>().Play("CameraPivotFromScreenToMenu");
+            PerformTransitionGoback();
         }
     }
 
     //called from gameobject: CreateNewQuiz: Button
-    public void MakeTransitionToGameScreen()
+    public void PerformTransitionToGameScreen()
     {
+        //Camera will look at the game screen now.
         currentLookAt = gameScreen;
 
-        //Moves camera
-        //Camera.main.GetComponent<Animator>().enabled = true;
-        //Camera.main.GetComponent<Animator>().Play("CameraPivotFromMenuToScreen");
         //ExperimentalGameScreen.Instance.BeginGame();
     }
 
-    public void MakeTransitionGoback()
+    //Currently really rough, will jump back to menuScreen right now, should be able 
+    public void PerformTransitionGoback()
     {
         currentLookAt = menuScreen;
     }

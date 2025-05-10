@@ -4308,7 +4308,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1723439826}
         m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
-        m_MethodName: TransitionToGameScreen
+        m_MethodName: PerformTransitionToGameScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
