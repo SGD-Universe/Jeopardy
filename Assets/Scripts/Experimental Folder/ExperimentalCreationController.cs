@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Attached on GameObject: CreationScreen
+
 public class ExperimentalCreationController : MonoBehaviour
 {
     [SerializeField] private GameObject buttonTemplate;
-    [SerializeField] private Vector2 buttonSpacing = new Vector2(4, 3);
+    [SerializeField] private Vector2 buttonSpacing = new Vector2(4, 3); //currently not used.
 
-    // Start is called before the first frame update
+    //Makes an array of GameObject: QuestionButton
     void Start()
     {
         float buttonWidth = buttonTemplate.GetComponent<RectTransform>().rect.width;

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Attached on GameObject: GameManager
+
+//This script is currently used to move from one scene to another with LoadSceneByName(string sceneName)
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;

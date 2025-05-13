@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
+//Attached on GameObject: AudioManager
+
 public class AudioManager : MonoBehaviour
 {
     [Header("----- Audio Mixer -----")]

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperimentalGameScreen : MonoBehaviour
+public class GameScreen : MonoBehaviour
 {
-    public static ExperimentalGameScreen Instance;
+    public static GameScreen Instance;
 
     [SerializeField] private GameObject QuestionPanelScreen;
     [SerializeField] private GameObject OverviewScreen;

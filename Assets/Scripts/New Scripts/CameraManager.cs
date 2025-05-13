@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
+//Attached on GameObject: GameManager
+
 public class CameraManager : MonoBehaviour
 {
     //Used to refrence the virtualCamera used to guide the camera
