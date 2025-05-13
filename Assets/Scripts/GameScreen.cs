@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Attached on GameObject: GameScreenCanvas
+
 public class GameScreen : MonoBehaviour
 {
     public static GameScreen Instance;
@@ -43,6 +45,6 @@ public class GameScreen : MonoBehaviour
 
     public void BeginGame()
     {
-        CategoryIntroductionScreen.GetComponent<ExperimentalCategoryIntroduction>().BeginIntroduction();
+        CategoryIntroductionScreen.GetComponent<CategoryIntroduction>().BeginIntroduction();
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+//Attached on GameObject: Settings
+
 public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;

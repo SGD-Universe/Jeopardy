@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Attached on GameObject: CreationScreen
 
-public class ExperimentalCreationController : MonoBehaviour
+public class CreationController : MonoBehaviour
 {
     [SerializeField] private GameObject buttonTemplate;
     [SerializeField] private Vector2 buttonSpacing = new Vector2(4, 3); //currently not used.

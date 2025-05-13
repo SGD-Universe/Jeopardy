@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ExperimentalCategoryIntroduction : MonoBehaviour
+//Attached on GameObject: CatagoryIntroductionScreen
+
+public class CategoryIntroduction : MonoBehaviour
 {
     [SerializeField] private Transform categoriesContainer;
 
@@ -20,7 +22,7 @@ public class ExperimentalCategoryIntroduction : MonoBehaviour
     void Start()
     {
         // Extract all children from categoriesContainer into our own list
-        foreach(Transform category in categoriesContainer)
+        foreach (Transform category in categoriesContainer)
         {
             if(category.gameObject.activeSelf) category.gameObject.SetActive(false);
             categories.Add(category.gameObject);
