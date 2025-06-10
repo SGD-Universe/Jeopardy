@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scuffed-plastic-metal_0: 2884913976023955542
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

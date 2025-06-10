@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gross-dirty-tiles_albedo_0: -4449078003715774149
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gross-dirty-tiles_metallic_0: -8134609801756994466
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

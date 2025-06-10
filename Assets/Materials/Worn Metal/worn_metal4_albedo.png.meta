@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      worn_metal4_albedo_0: 4684330159533696032
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

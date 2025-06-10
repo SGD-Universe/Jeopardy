@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scuffed-plastic-ao_0: 8045925128099143480
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

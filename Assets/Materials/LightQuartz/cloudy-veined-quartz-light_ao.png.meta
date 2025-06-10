@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cloudy-veined-quartz-light_ao_0: -1812889416409926734
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

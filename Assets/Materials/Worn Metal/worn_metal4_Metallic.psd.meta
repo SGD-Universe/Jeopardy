@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      worn_metal4_Metallic_0: 3736855059496908846
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

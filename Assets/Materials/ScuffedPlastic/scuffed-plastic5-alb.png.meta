@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scuffed-plastic5-alb_0: -8771237320301219767
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
