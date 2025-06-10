@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class ExperimentalCreationController : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonTemplate;
-    [SerializeField] private Vector2 buttonSpacing = new Vector2(4, 3);
+    [SerializeField] private GameObject panelTemplate;
+    [SerializeField] private Vector2 panelSpacing = new Vector2(4, 3);
+    private Vector2 panelCount = new Vector2(1, 1);
 
     // Start is called before the first frame update
     void Start()
     {
-        float buttonWidth = buttonTemplate.GetComponent<RectTransform>().rect.width;
-        float buttonHeight = buttonTemplate.GetComponent<RectTransform>().rect.height;
-        for(int c  = 0; c < 6; c ++)
+        // RectTransform panelRectTransform = panelTemplate.GetComponent<RectTransform>();
+        // float panelWidth = panelRectTransform.localScale.x * panelRectTransform.rect.size.x;
+        // float panelHeight = panelRectTransform.localScale.y * panelRectTransform.rect.size.y;
+        // Debug.Log(panelWidth + " " + panelHeight);
+        for(int c  = 0; c < panelCount.x; c ++)
         {
-            for(int r  = 0; r < 5; r ++)
+            for(int r  = 0; r < panelCount.y; r ++)
             {
-                Vector3 spawnPosition = new Vector3((c-3) * buttonWidth, (r-2.5f) * buttonHeight, 0f);
-                GameObject buttonClone = Instantiate(buttonTemplate, transform);
-                buttonClone.transform.localPosition = spawnPosition;
+                // float spawnX = (c - panelCount.x/2) * panelWidth + (c - panelCount.x/2) * panelSpacing.x;
+                // float spawnY = (r - panelCount.y/2) * panelHeight + (r - panelCount.y/2) * panelSpacing.y;
+                float spawnX = (c + 0.5f - panelCount.x / 2f) * panelTemplate.transform.localScale.x * panelSpacing.x;
+                float spawnY = (r + 0.5f - panelCount.y / 2f) * panelTemplate.transform.localScale.y * panelSpacing.y;
+                Vector3 spawnPosition = new Vector3(spawnX, spawnY, 0f);
+                GameObject panelClone = Instantiate(panelTemplate, transform);
+                panelClone.transform.localPosition = spawnPosition;
             }
         }
-        buttonTemplate.SetActive(false);
+        panelTemplate.SetActive(false);
     }
 
     // Update is called once per frame
