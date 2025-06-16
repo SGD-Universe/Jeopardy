@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cloudy-veined-quartz_albedo_0: 338046963183600107
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fiberous_plaster_albedo_0: 4921425223460669251
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

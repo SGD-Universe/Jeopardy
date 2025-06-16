@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fiberous_plaster_Height_0: 7545479368775568406
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

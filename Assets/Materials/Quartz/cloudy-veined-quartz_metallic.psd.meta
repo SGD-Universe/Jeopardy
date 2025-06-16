@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cloudy-veined-quartz_metallic_0: -3985845352309615919
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

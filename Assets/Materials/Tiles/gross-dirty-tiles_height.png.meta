@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gross-dirty-tiles_height_0: -6245059967035239852
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
