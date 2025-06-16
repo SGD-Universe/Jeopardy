@@ -6,6 +6,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ExperimentalCreationController : MonoBehaviour
 {
@@ -13,10 +14,10 @@ public class ExperimentalCreationController : MonoBehaviour
     [SerializeField] private Vector2 panelSpacing = new Vector2(4, 3);
     [SerializeField] private TMP_InputField titleInput;
     [SerializeField] private float titleInputColorLerpFactor = 0f;
-    [SerializeField] private CanvasGroup warningPanel;
     [SerializeField] private TMP_Text warningText;
-    [SerializeField] private float warningPanelAlphaLerpFactor = 0f;
     [SerializeField] private Color errorColor;
+    [SerializeField] private GameObject eraseButton;
+    [SerializeField] private GameObject fillButton;
 
     private Color titleInputOriginalColor;
 
@@ -24,26 +25,9 @@ public class ExperimentalCreationController : MonoBehaviour
     private List<List<MonitorPlane>> panelsBoard = new List<List<MonitorPlane>>();
 
     private Animator animator;
-    
-    [System.Serializable]
-    private struct PanelData {
-        public bool isCategory;
-        public string primaryText;
-        public string secondaryText;
-    }
 
-    [System.Serializable]
-    private struct ColumnData
-    {
-        public List<PanelData> panels;
-    }
+    private SaveManager.BoardData boardData;
 
-    private struct BoardData
-    {
-        public List<ColumnData> columns;
-    }
-
-    private BoardData boardData;
 
     // Start is called before the first frame update
     void Start()
@@ -82,63 +66,59 @@ public class ExperimentalCreationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F1)) SaveBoardData();
-        if(Input.GetKeyDown(KeyCode.F5)) FillBoardWithDummyData();
-        if(Input.GetKeyDown(KeyCode.F9)) EraseBoardData();
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            eraseButton.SetActive(!eraseButton.activeInHierarchy);
+            fillButton.SetActive(!fillButton.activeInHierarchy);
+        }
 
         UnityEngine.UI.ColorBlock titleInputColorBlockClone = titleInput.colors;
         titleInputColorBlockClone.normalColor = Color.Lerp(titleInputOriginalColor, errorColor, titleInputColorLerpFactor);
         titleInput.colors = titleInputColorBlockClone;
-
-        warningPanel.alpha = warningPanelAlphaLerpFactor;
     }
 
-    private void SaveBoardData()
+    public void SaveBoardData()
     {
         if(VerifyBoardData())
         {
-            boardData = new BoardData();
-            boardData.columns = new List<ColumnData>();
+            boardData = new SaveManager.BoardData();
+            int c = 0;
             foreach(List<MonitorPlane> panelsColumn in panelsBoard)
             {
-                ColumnData currentColumnData = new ColumnData();
-                currentColumnData.panels = new List<PanelData>();
                 foreach(MonitorPlane panel in panelsColumn)
                 {
+                    bool isCategory = (panel.GetPanelType() == MonitorPlane.Type.Category);
                     string string1 = panel.GetPrimaryInputString();
                     string string2 = panel.GetSecondaryInputString();
-
-                    PanelData currentPanelData = new PanelData();
-                    currentPanelData.primaryText = string1;
-                    if(panel.GetPanelType() == MonitorPlane.Type.Category) currentPanelData.isCategory = true;
-                    else currentPanelData.secondaryText = string2;
-                    currentColumnData.panels.Add(currentPanelData);
+                    boardData.AddPanel(c, isCategory, string1, string2);
                 }
-                boardData.columns.Add(currentColumnData);
+                c++;
             }
-            string json = JsonUtility.ToJson(boardData, true);
+
             string fileName = titleInput.text.Trim();
-            char[] invalid = Path.GetInvalidFileNameChars();
-            if(string.IsNullOrWhiteSpace(fileName))
+            int saveValidity = SaveManager.SaveBoardData(boardData, fileName);
+
+
+            if(saveValidity == -1)
             {
                 animator.Play("CreationScreenTitleError", 0, 0f);
                 animator.Play("CreationScreenWarningFlash", 1, 0f);
                 warningText.text = "Please give your quiz a title";
                 return;
             }
-            foreach(char c in fileName)
+            else if(saveValidity == -2)
             {
-                if(invalid.Contains(c))
-                {
-                    animator.Play("CreationScreenTitleError", 0, 0f);
-                    animator.Play("CreationScreenWarningFlash", 1, 0f);
-                    warningText.text = "Quiz title has invalid characters. Please give it a different name.";
-                    return;
-                }
+                animator.Play("CreationScreenTitleError", 0, 0f);
+                animator.Play("CreationScreenWarningFlash", 1, 0f);
+                warningText.text = "Quiz title has invalid characters. Please give it a different name.";
+                return;
             }
-            string filePath = Application.persistentDataPath + "/" + fileName + ".json";
-            File.WriteAllText(filePath, json);
-            Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(filePath) + "\"");
+            else if(saveValidity == 0)
+            {
+                // Turn off warning flash and play success flash
+                animator.Play("CreationScreenIdle", 1, 0f);
+                animator.Play("CreationScreenSuccessFlash", 2, 0f);
+            }
         }
     }
 
@@ -171,7 +151,7 @@ public class ExperimentalCreationController : MonoBehaviour
         return dataIsValid;
     }
 
-    private void FillBoardWithDummyData()
+    public void FillBoardWithDummyData()
     {
         foreach(List<MonitorPlane> panelsColumn in panelsBoard)
         {
@@ -190,7 +170,7 @@ public class ExperimentalCreationController : MonoBehaviour
         }
     }
 
-    private void EraseBoardData()
+    public void EraseBoardData()
     {
         foreach(List<MonitorPlane> panelsColumn in panelsBoard)
         {
