@@ -48,4 +48,9 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(Correct);
     }
+
+    public void PlaySoundIncorrect()
+    {
+        sfxSource.PlayOneShot(Incorrect);
+    }
 }

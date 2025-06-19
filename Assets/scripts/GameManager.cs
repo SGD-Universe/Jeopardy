@@ -21,5 +21,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void TriggerQuestionCorrect()
+    {
+        AudioManager.Instance.PlaySoundCorrect();
+    }
 
+    public void TriggerQuestionIncorrect()
+    {
+        AudioManager.Instance.PlaySoundIncorrect();
+    }
 }

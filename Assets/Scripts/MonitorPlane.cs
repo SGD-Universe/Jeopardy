@@ -13,8 +13,7 @@ public class MonitorPlane : MonoBehaviour
     [SerializeField] private bool isEditable = false;
     [Space(10)]
     [SerializeField] private float positionLerpFactor;
-    [SerializeField] private float colorLerpFactor;
-    [SerializeField] private Color errorColor;
+    [SerializeField] private Color displayColor;
     [SerializeField] private TMP_InputField primaryInputField;
     [SerializeField] private TMP_InputField secondaryInputField;
     [SerializeField] private TMP_Text dividerGraphic;
@@ -42,6 +41,7 @@ public class MonitorPlane : MonoBehaviour
 
     private bool isFullscreen = false;
     private bool isHovered = false;
+    private bool isAnswered = false;
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +69,7 @@ public class MonitorPlane : MonoBehaviour
         else calculatedPosition.z = 0f;
         transform.localPosition = calculatedPosition;
 
-        material.color = Color.Lerp(originalColor, errorColor, colorLerpFactor);
+        material.color = displayColor;
 
         if(isFullscreen && type == Type.Question && isEditable)
         {
@@ -82,7 +82,22 @@ public class MonitorPlane : MonoBehaviour
         secondaryInputString = secondaryInputField.text;
 
         if(Input.GetKeyDown(KeyCode.Escape)) OnEscapeDown();
-        if(Input.GetKeyDown(KeyCode.Return) && isFullscreen) AudioManager.Instance.PlaySoundCorrect();
+
+        if(isFullscreen && !isAnswered)
+        {
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                GameManager.Instance.TriggerQuestionCorrect();
+                animator.Play("MonitorPlaneCorrect", 2, 0f);
+                isAnswered = true;
+            }
+            else if(Input.GetKeyDown(KeyCode.Delete))
+            {
+                GameManager.Instance.TriggerQuestionIncorrect();
+                animator.Play("MonitorPlaneIncorrect", 2, 0f);
+                isAnswered = true;
+            }
+        }
     }
 
     private void OnMouseOver()
