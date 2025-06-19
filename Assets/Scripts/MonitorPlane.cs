@@ -9,6 +9,9 @@ public class MonitorPlane : MonoBehaviour
 {
     // Used to animate the position of the panel to the center of the screen
     // (Grow/shrink animations are handled with an actual animator component)
+    [Space(10)]
+    [SerializeField] private bool isEditable = false;
+    [Space(10)]
     [SerializeField] private float positionLerpFactor;
     [SerializeField] private float colorLerpFactor;
     [SerializeField] private Color errorColor;
@@ -68,7 +71,7 @@ public class MonitorPlane : MonoBehaviour
 
         material.color = Color.Lerp(originalColor, errorColor, colorLerpFactor);
 
-        if(isFullscreen && type == Type.Question)
+        if(isFullscreen && type == Type.Question && isEditable)
         {
             primaryInputField.transform.localPosition = new Vector3(-0.1f, inputFieldsSpacing, 0f);
             secondaryInputField.transform.localPosition = new Vector3(-0.1f, -inputFieldsSpacing, 0f);
@@ -79,6 +82,7 @@ public class MonitorPlane : MonoBehaviour
         secondaryInputString = secondaryInputField.text;
 
         if(Input.GetKeyDown(KeyCode.Escape)) OnEscapeDown();
+        if(Input.GetKeyDown(KeyCode.Return) && isFullscreen) AudioManager.Instance.PlaySoundCorrect();
     }
 
     private void OnMouseOver()
@@ -90,14 +94,6 @@ public class MonitorPlane : MonoBehaviour
         }
 
     }
-
-    /*
-    private void OnMouseEnter()
-    {
-        if(!isFullscreen)
-            animator.CrossFadeInFixedTime("MonitorPlaneHover", 0.1f);
-    }
-    */
 
     private void OnMouseExit()
     {
@@ -119,15 +115,17 @@ public class MonitorPlane : MonoBehaviour
             isFullscreen = true;
             isHovered = false;
 
-            primaryInputField.interactable = true;
-            if(type == Type.Question)
+            if(isEditable)
             {
-                primaryInputField.pointSize = 12f;
-                secondaryInputField.gameObject.SetActive(true);
-                secondaryInputField.interactable = true;
-                dividerGraphic.gameObject.SetActive(true);
+                primaryInputField.interactable = true;
+                if(type == Type.Question)
+                {
+                    primaryInputField.pointSize = 12f;
+                    secondaryInputField.gameObject.SetActive(true);
+                    secondaryInputField.interactable = true;
+                    dividerGraphic.gameObject.SetActive(true);
+                }
             }
-
 
         }
     }
@@ -141,19 +139,19 @@ public class MonitorPlane : MonoBehaviour
 
             isFullscreen = false;
 
-            primaryInputField.interactable = false;
-            // primaryInputField.DeactivateInputField(true);
-
-            if(type == Type.Question)
+            if(isEditable)
             {
-                primaryInputField.pointSize = 18f;
-                secondaryInputField.gameObject.SetActive(false);
-                secondaryInputField.interactable = false;
-                secondaryInputField.DeactivateInputField();
-                dividerGraphic.gameObject.SetActive(false);
+                primaryInputField.interactable = false;
+
+                if(type == Type.Question)
+                {
+                    primaryInputField.pointSize = 18f;
+                    secondaryInputField.gameObject.SetActive(false);
+                    secondaryInputField.interactable = false;
+                    secondaryInputField.DeactivateInputField();
+                    dividerGraphic.gameObject.SetActive(false);
+                }
             }
-
-
         }
     }
 

@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ExperimentalCreationController : MonoBehaviour
+public class CreationScreenController : MonoBehaviour
 {
     [SerializeField] private GameObject panelTemplate;
     [SerializeField] private Vector2 panelSpacing = new Vector2(4, 3);

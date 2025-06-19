@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
+    private static string quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
+
     [System.Serializable]
     public class PanelData
     {
@@ -76,11 +79,25 @@ public class SaveManager : MonoBehaviour
 
         // Save Data to file
         string json = JsonUtility.ToJson(boardData, true);
-        string folderPath = Application.persistentDataPath + "/QuizTemplates";
-        if(!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-        string filePath = folderPath + "/" + fileName + ".json";
-        File.WriteAllText(filePath, json);
-        Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(filePath) + "\"");
+        if(!Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
+        string quizTemplatefilePath = quizTemplateFolderPath + "/" + fileName + ".json";
+        File.WriteAllText(quizTemplatefilePath, json);
+        Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(quizTemplatefilePath) + "\"");
         return 0;
+    }
+
+    public static BoardData LoadRandomBoardData()
+    {
+        string[] quizTemplates = Directory.GetFiles(quizTemplateFolderPath, "*.json");
+        
+        if(quizTemplates.Length == 0)
+        {
+            Warning.Caution("No Quiz Templates Found");
+            return new BoardData();
+        }
+
+        string json = File.ReadAllText(quizTemplates[0]);
+        BoardData boardData = JsonUtility.FromJson<BoardData>(json);
+        return boardData;
     }
 }
