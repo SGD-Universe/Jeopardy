@@ -3,6 +3,8 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
+
     [Header("----- Audio Mixer -----")]
     [SerializeField] private AudioMixer audioMixer;
 
@@ -24,17 +26,31 @@ public class AudioManager : MonoBehaviour
     public AudioClip WinClapping;
     //If you change or remove any sound files (music or sfx), please change or remove the above clips appropriately.
 
-
+    private void Awake()
+    {
+        if(Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     private void Start()
     {
         // Load volume preferences - Default value is 0.5f
-        float musicVol = PlayerPrefs.GetFloat("musicVol", 0.5f);
-        float sfxVol = PlayerPrefs.GetFloat("sfxVol", 0.5f);
-        audioMixer.SetFloat("musicVol", Mathf.Log10(musicVol) * 20);
-        audioMixer.SetFloat("sfxVol", Mathf.Log10(sfxVol) * 20);
+        float musicVolume = PlayerPrefs.GetFloat("musicVolume", 0.5f);
+        float sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
+        audioMixer.SetFloat("musicVolume", Mathf.Log10(musicVolume) * 20);
+        audioMixer.SetFloat("sfxVolume", Mathf.Log10(sfxVolume) * 20);
 
         musicSource.clip = MusMainMenu;
         musicSource.Play();
+    }
+
+    public void PlaySoundCorrect()
+    {
+        sfxSource.PlayOneShot(Correct);
+    }
+
+    public void PlaySoundIncorrect()
+    {
+        sfxSource.PlayOneShot(Incorrect);
     }
 }
