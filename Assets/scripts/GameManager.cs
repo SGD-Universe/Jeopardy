@@ -6,7 +6,9 @@ using Cinemachine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    public float teamOneScore;
+    public float teamTwoScore;
+    public float teamThreeScore;
 
 
     private void Awake()
