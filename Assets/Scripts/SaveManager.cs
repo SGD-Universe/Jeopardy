@@ -8,7 +8,35 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    private static string quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
+    public GameManager gameManager;
+    private static string quizTemplateFolderPath;
+    private static string saveScoreFilePath;
+    public static TeamScoringData teamScoring = new TeamScoringData();
+
+    private void Start()
+    {
+
+        saveScoreFilePath = Application.persistentDataPath + "/TeamScoringData.json";
+        quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
+        teamScoring = new TeamScoringData();
+        
+    }
+
+    private void Update()
+    {
+
+        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamOneScore)); //For testing and showcase purposes, shows scores every frame
+        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamTwoScore));
+        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamThreeScore));
+        gameManager.teamOneScore += 1 * Time.deltaTime;
+        gameManager.teamTwoScore += 2 * Time.deltaTime;
+        gameManager.teamThreeScore += 3 * Time.deltaTime;
+        teamScoring.teamOneScore = gameManager.teamOneScore;
+        teamScoring.teamTwoScore = gameManager.teamTwoScore;
+        teamScoring.teamThreeScore = gameManager.teamThreeScore;
+
+    }
+
 
     [System.Serializable]
     public class PanelData
@@ -23,6 +51,16 @@ public class SaveManager : MonoBehaviour
             this.primaryText = primaryText;
             this.secondaryText = secondaryText;
         }
+    }
+
+    [System.Serializable]
+    public class TeamScoringData //Holds score data for JSON file saving
+    {
+        
+        public float teamOneScore;
+        public float teamTwoScore;
+        public float teamThreeScore;
+
     }
 
     [System.Serializable]
@@ -100,4 +138,30 @@ public class SaveManager : MonoBehaviour
         BoardData boardData = JsonUtility.FromJson<BoardData>(json);
         return boardData;
     }
+
+    public void SaveGame() //Saves game data (Currently just team scores)
+    {
+
+        teamScoring.teamOneScore = gameManager.teamOneScore; //Ensures scores are saved properly
+        teamScoring.teamTwoScore = gameManager.teamTwoScore;
+        teamScoring.teamThreeScore = gameManager.teamThreeScore;
+        string teamScoringData = JsonUtility.ToJson(teamScoring); //Saves JSON formatted scores to a string
+        UnityEngine.Debug.Log(saveScoreFilePath); //Displays file path in debug log
+        System.IO.File.WriteAllText(saveScoreFilePath, teamScoringData); //Writes JSON formatted string to the file path specified in the saveScoreFilePath variable
+        UnityEngine.Debug.Log("Scores saved."); //Displays "Scores saved."
+
+    }
+
+    public void LoadGame()
+    {
+
+        string teamScoringData = System.IO.File.ReadAllText(saveScoreFilePath); //Sets string to the text found in the JSON file
+        teamScoring = JsonUtility.FromJson<TeamScoringData>(teamScoringData); //Converts it to floats
+        gameManager.teamOneScore = teamScoring.teamOneScore; //Sets all team scores to what they are in the save file
+        gameManager.teamTwoScore = teamScoring.teamTwoScore;
+        gameManager.teamThreeScore = teamScoring.teamThreeScore;
+        UnityEngine.Debug.Log("Scores loaded."); //Displays "Scores loaded." in the debug log
+
+    }
+
 }
