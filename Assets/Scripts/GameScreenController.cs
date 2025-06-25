@@ -15,7 +15,7 @@ public class GameScreenController : MonoBehaviour
     void Start()
     {
         loadedBoardData = SaveManager.LoadRandomBoardData();
-
+        if(loadedBoardData.columns.Count == 0) return;
         for(int c = 0; c < panelCount.x; c++)
         {
             List<MonitorPlane> panelsColumn = new List<MonitorPlane>();

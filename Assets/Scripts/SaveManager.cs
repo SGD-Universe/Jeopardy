@@ -89,10 +89,10 @@ public class SaveManager : MonoBehaviour
     public static BoardData LoadRandomBoardData()
     {
         string[] quizTemplates = Directory.GetFiles(quizTemplateFolderPath, "*.json");
-        
+
         if(quizTemplates.Length == 0)
         {
-            Warning.Caution("No Quiz Templates Found");
+            UnityEngine.Debug.LogError("No Quiz Templates Found");
             return new BoardData();
         }
 
