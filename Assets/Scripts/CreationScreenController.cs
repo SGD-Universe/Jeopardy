@@ -28,6 +28,10 @@ public class CreationScreenController : MonoBehaviour
 
     private SaveManager.BoardData boardData;
 
+    public GameObject mainMenu1;
+    public GameObject mainMenu2;
+    public GameObject loadMenu;
+
 
     // Start is called before the first frame update
     void Start()
@@ -179,6 +183,34 @@ public class CreationScreenController : MonoBehaviour
                 panel.SetPrimaryInputString("");
                 panel.SetSecondaryInputString("");
             }
+        }
+    }
+
+    public void TransitionMenu()
+    {
+        if (mainMenu1.activeInHierarchy == false)
+        {
+            mainMenu2.SetActive(false);
+            mainMenu1.SetActive(true);
+        }
+        else if (mainMenu2.activeInHierarchy == false)
+        {
+            mainMenu1.SetActive(false);
+            mainMenu2.SetActive(true);
+        }
+    }
+
+    public void TransitionLoadMenu()
+    {
+        if (mainMenu1.activeInHierarchy == false)
+        {
+            loadMenu.SetActive(false);
+            mainMenu1.SetActive(true);
+        }
+        else if (loadMenu.activeInHierarchy == false)
+        {
+            mainMenu1.SetActive(false);
+            loadMenu.SetActive(true);
         }
     }
 }

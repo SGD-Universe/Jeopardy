@@ -4,31 +4,32 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
     public GameManager gameManager;
     private static string quizTemplateFolderPath;
-    private static string saveScoreFilePath;
-    public static TeamScoringData teamScoring = new TeamScoringData();
+    private static string saveScoreFolderPath;
+    public static TeamScoringData teamScoring;
+    public TMP_InputField inputField;
+    public TMP_Dropdown dropDown;
 
     private void Start()
     {
 
-        saveScoreFilePath = Application.persistentDataPath + "/TeamScoringData.json";
+        saveScoreFolderPath = Application.persistentDataPath + "/TeamScoringData";
         quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
         teamScoring = new TeamScoringData();
+        LoadFiles();
         
     }
 
     private void Update()
     {
 
-        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamOneScore)); //For testing and showcase purposes, shows scores every frame
-        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamTwoScore));
-        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamThreeScore));
-        gameManager.teamOneScore += 1 * Time.deltaTime;
+        gameManager.teamOneScore += 1 * Time.deltaTime; //This data is for Save/Load testing only, remove before final release
         gameManager.teamTwoScore += 2 * Time.deltaTime;
         gameManager.teamThreeScore += 3 * Time.deltaTime;
         teamScoring.teamOneScore = gameManager.teamOneScore;
@@ -141,12 +142,14 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame() //Saves game data (Currently just team scores)
     {
-
+       
+        if (!Directory.Exists(saveScoreFolderPath)) Directory.CreateDirectory(saveScoreFolderPath);
+        UnityEngine.Debug.Log(inputField.text);
         teamScoring.teamOneScore = gameManager.teamOneScore; //Ensures scores are saved properly
         teamScoring.teamTwoScore = gameManager.teamTwoScore;
         teamScoring.teamThreeScore = gameManager.teamThreeScore;
+        string saveScoreFilePath = saveScoreFolderPath + "/" + inputField.text + ".json";
         string teamScoringData = JsonUtility.ToJson(teamScoring); //Saves JSON formatted scores to a string
-        UnityEngine.Debug.Log(saveScoreFilePath); //Displays file path in debug log
         System.IO.File.WriteAllText(saveScoreFilePath, teamScoringData); //Writes JSON formatted string to the file path specified in the saveScoreFilePath variable
         UnityEngine.Debug.Log("Scores saved."); //Displays "Scores saved."
 
@@ -155,12 +158,27 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
 
-        string teamScoringData = System.IO.File.ReadAllText(saveScoreFilePath); //Sets string to the text found in the JSON file
-        teamScoring = JsonUtility.FromJson<TeamScoringData>(teamScoringData); //Converts it to floats
+        //string[] saveData = Directory.GetFiles(saveScoreFolderPath, "*.json");
+        string savedGame = File.ReadAllText(saveScoreFolderPath + dropDown.options[dropDown.value].text);
+        string teamScoringData = System.IO.File.ReadAllText(saveScoreFolderPath + dropDown.options[dropDown.value].text); //Sets string to the text found in the JSON file
+        teamScoring = JsonUtility.FromJson<TeamScoringData>(savedGame); //Converts it to floats
         gameManager.teamOneScore = teamScoring.teamOneScore; //Sets all team scores to what they are in the save file
         gameManager.teamTwoScore = teamScoring.teamTwoScore;
         gameManager.teamThreeScore = teamScoring.teamThreeScore;
         UnityEngine.Debug.Log("Scores loaded."); //Displays "Scores loaded." in the debug log
+
+    }
+
+    public void LoadFiles()
+    {
+        string[] saveData = Directory.GetFiles(saveScoreFolderPath, "*.json");
+        for (int i = 0; i < saveData.Length; i++)
+        {
+            //string fileName = Path.GetFileName(saveData[i]);
+            dropDown.options.Add(new TMP_Dropdown.OptionData() {text = saveData[i].Substring(saveScoreFolderPath.Length)});
+        }
+
+        UnityEngine.Debug.Log(saveScoreFolderPath + dropDown.options[dropDown.value].text);
 
     }
 

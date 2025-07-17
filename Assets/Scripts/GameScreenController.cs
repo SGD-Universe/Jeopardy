@@ -10,6 +10,8 @@ public class GameScreenController : MonoBehaviour
     private List<List<MonitorPlane>> panelsBoard = new List<List<MonitorPlane>>();
     private Vector2 panelCount = new Vector2(6, 6);
 
+    public GameObject pauseMenu;
+
     SaveManager.BoardData loadedBoardData;
     // Start is called before the first frame update
     void Start()
@@ -52,6 +54,14 @@ public class GameScreenController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeSelf == false)
+        {
+            pauseMenu.SetActive(true);
+        }
+    }
+
+    public void Return()
+    {
+        pauseMenu.SetActive(false);
     }
 }
