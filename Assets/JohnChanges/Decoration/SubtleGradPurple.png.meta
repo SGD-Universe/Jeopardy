@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 96f0e0aa5380777448facca30db1ac55
+guid: a6f57baa0c5c1804f8488e85d97ab444
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1161840684570884701
-    second: GradientBox1_0
+      213: 2480721561889832170
+    second: SubtleGradPurple_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GradientBox1_0
+      name: SubtleGradPurple_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d5ab17962ffaf1010800000000000000
-      internalID: 1161840684570884701
+      spriteID: aec781bfd1b4d6220800000000000000
+      internalID: 2480721561889832170
       vertices: []
       indices: 
       edges: []
