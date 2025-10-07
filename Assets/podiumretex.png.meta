@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      podiumretex_0: -424757496393351481
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

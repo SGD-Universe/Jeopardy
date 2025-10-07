@@ -383,7 +383,18 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Boardretex_0: 5362497905906484851
+      Boardretex_1: -2643010374464519011
+      Boardretex_10: -6713722191484139439
+      Boardretex_2: 2476644458117514147
+      Boardretex_3: -5352432193825027009
+      Boardretex_4: -5024248456071048931
+      Boardretex_5: 4291345466251807883
+      Boardretex_6: 5804070150297291082
+      Boardretex_7: -5743948591161326137
+      Boardretex_8: 714349672508656639
+      Boardretex_9: 8971014994208130953
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
