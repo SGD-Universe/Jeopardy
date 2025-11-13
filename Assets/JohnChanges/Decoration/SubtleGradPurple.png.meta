@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SubtleGradPurple_0: 2480721561889832170
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
