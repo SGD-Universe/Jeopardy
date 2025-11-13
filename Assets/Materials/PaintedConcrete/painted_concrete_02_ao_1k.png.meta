@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      painted_concrete_02_ao_1k_0: -6398807508515945990
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
