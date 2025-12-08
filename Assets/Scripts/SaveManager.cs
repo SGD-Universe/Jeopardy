@@ -2,41 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    public GameManager gameManager;
+    [Header("References")]
+    [SerializeField] private GameManager gameManager;
+
+    [Header("Debug / Testing")]
+    [Tooltip("If true, scores will auto-increase every frame for testing.")]
+    [SerializeField] private bool testMode = false;
+
     private static string quizTemplateFolderPath;
     private static string saveScoreFilePath;
+
+    // Holds score data for JSON file saving
     public static TeamScoringData teamScoring = new TeamScoringData();
+
+    #region Unity Lifecycle
+
+    private void Awake()
+    {
+        InitPaths();
+
+        if (teamScoring == null)
+            teamScoring = new TeamScoringData();
+    }
 
     private void Start()
     {
-
-        saveScoreFilePath = Application.persistentDataPath + "/TeamScoringData.json";
-        quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
-        teamScoring = new TeamScoringData();
-        
+        // Optional: try loading saved scores on start
+        // LoadGame();  // Uncomment if you want automatic load
     }
 
     private void Update()
     {
+        if (!testMode || gameManager == null)
+            return;
 
-        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamOneScore)); //For testing and showcase purposes, shows scores every frame
+        // For testing and showcase purposes, shows scores and auto-increments
+        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamOneScore));
         UnityEngine.Debug.Log(Mathf.Round(gameManager.teamTwoScore));
         UnityEngine.Debug.Log(Mathf.Round(gameManager.teamThreeScore));
-        gameManager.teamOneScore += 1 * Time.deltaTime;
-        gameManager.teamTwoScore += 2 * Time.deltaTime;
-        gameManager.teamThreeScore += 3 * Time.deltaTime;
+
+        gameManager.teamOneScore += 1f * Time.deltaTime;
+        gameManager.teamTwoScore += 2f * Time.deltaTime;
+        gameManager.teamThreeScore += 3f * Time.deltaTime;
+
         teamScoring.teamOneScore = gameManager.teamOneScore;
         teamScoring.teamTwoScore = gameManager.teamTwoScore;
         teamScoring.teamThreeScore = gameManager.teamThreeScore;
-
     }
 
+    #endregion
+
+    #region Data Classes
 
     [System.Serializable]
     public class PanelData
@@ -54,19 +74,18 @@ public class SaveManager : MonoBehaviour
     }
 
     [System.Serializable]
-    public class TeamScoringData //Holds score data for JSON file saving
+    public class TeamScoringData
     {
-        
         public float teamOneScore;
         public float teamTwoScore;
         public float teamThreeScore;
-
     }
 
     [System.Serializable]
     public class ColumnData
     {
         public List<PanelData> panels;
+
         public ColumnData()
         {
             panels = new List<PanelData>();
@@ -77,6 +96,7 @@ public class SaveManager : MonoBehaviour
     public class BoardData
     {
         public List<ColumnData> columns;
+
         public BoardData()
         {
             columns = new List<ColumnData>();
@@ -84,84 +104,171 @@ public class SaveManager : MonoBehaviour
 
         public void AddPanel(int column, bool isCategory, string primaryText, string secondaryText)
         {
-            while(column > columns.Count() - 1) columns.Add(new ColumnData());
+            while (column > columns.Count - 1)
+            {
+                columns.Add(new ColumnData());
+            }
+
             columns[column].panels.Add(new PanelData(isCategory, primaryText, secondaryText));
         }
     }
 
+    #endregion
+
+    #region Path / Filename Helpers
+
+    private static void InitPaths()
+    {
+        if (string.IsNullOrEmpty(saveScoreFilePath))
+        {
+            saveScoreFilePath = Path.Combine(Application.persistentDataPath, "TeamScoringData.json");
+        }
+
+        if (string.IsNullOrEmpty(quizTemplateFolderPath))
+        {
+            quizTemplateFolderPath = Path.Combine(Application.persistentDataPath, "QuizTemplates");
+        }
+    }
+
+    /// <summary>
+    /// Verifies that a file name is non-empty and has no invalid characters.
+    /// Returns:
+    ///  0  = OK
+    /// -1  = Null/empty/whitespace
+    /// -2  = Contains invalid characters
+    /// </summary>
     public static int VerifyFileName(string fileName)
     {
         char[] invalid = Path.GetInvalidFileNameChars();
 
-        if(string.IsNullOrWhiteSpace(fileName)) return -1;
+        if (string.IsNullOrWhiteSpace(fileName))
+            return -1;
 
-        foreach(char c in fileName)
+        foreach (char c in fileName)
         {
-            if(invalid.Contains(c)) return -2;
+            if (System.Array.IndexOf(invalid, c) >= 0)
+                return -2;
         }
 
         return 0;
     }
 
+    #endregion
+
+    #region Board Save / Load
+
     public static int SaveBoardData(BoardData boardData, string fileName)
     {
-        // Verify File Name
-        char[] invalid = Path.GetInvalidFileNameChars();
+        InitPaths();
 
-        if(string.IsNullOrWhiteSpace(fileName)) return -1;
+        int verifyResult = VerifyFileName(fileName);
+        if (verifyResult != 0)
+            return verifyResult;
 
-        foreach(char c in fileName)
+        // Ensure folder exists
+        if (!Directory.Exists(quizTemplateFolderPath))
         {
-            if(invalid.Contains(c)) return -2;
+            Directory.CreateDirectory(quizTemplateFolderPath);
         }
 
-        // Save Data to file
+        string quizTemplateFilePath = Path.Combine(quizTemplateFolderPath, fileName + ".json");
         string json = JsonUtility.ToJson(boardData, true);
-        if(!Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
-        string quizTemplatefilePath = quizTemplateFolderPath + "/" + fileName + ".json";
-        File.WriteAllText(quizTemplatefilePath, json);
-        Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(quizTemplatefilePath) + "\"");
+        File.WriteAllText(quizTemplateFilePath, json);
+
+        // Open explorer to show file (Windows only)
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+        Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(quizTemplateFilePath) + "\"");
+#endif
+
         return 0;
     }
 
     public static BoardData LoadRandomBoardData()
     {
-        string[] quizTemplates = Directory.GetFiles(quizTemplateFolderPath, "*.json");
+        InitPaths();
 
-        if(quizTemplates.Length == 0)
+        if (!Directory.Exists(quizTemplateFolderPath))
         {
-            UnityEngine.Debug.LogError("No Quiz Templates Found");
+            UnityEngine.Debug.LogError("Quiz template folder not found: " + quizTemplateFolderPath);
             return new BoardData();
         }
 
+        string[] quizTemplates = Directory.GetFiles(quizTemplateFolderPath, "*.json");
+
+        if (quizTemplates == null || quizTemplates.Length == 0)
+        {
+            UnityEngine.Debug.LogError("No Quiz Templates Found in: " + quizTemplateFolderPath);
+            return new BoardData();
+        }
+
+        // TODO: randomize if you want a random one
         string json = File.ReadAllText(quizTemplates[0]);
         BoardData boardData = JsonUtility.FromJson<BoardData>(json);
-        return boardData;
+        return boardData ?? new BoardData();
     }
 
-    public void SaveGame() //Saves game data (Currently just team scores)
-    {
+    #endregion
 
-        teamScoring.teamOneScore = gameManager.teamOneScore; //Ensures scores are saved properly
+    #region Score Save / Load
+
+    public void SaveGame()
+    {
+        InitPaths();
+
+        if (gameManager == null)
+        {
+            UnityEngine.Debug.LogError("SaveManager: GameManager reference is missing.");
+            return;
+        }
+
+        teamScoring.teamOneScore = gameManager.teamOneScore;
         teamScoring.teamTwoScore = gameManager.teamTwoScore;
         teamScoring.teamThreeScore = gameManager.teamThreeScore;
-        string teamScoringData = JsonUtility.ToJson(teamScoring); //Saves JSON formatted scores to a string
-        UnityEngine.Debug.Log(saveScoreFilePath); //Displays file path in debug log
-        System.IO.File.WriteAllText(saveScoreFilePath, teamScoringData); //Writes JSON formatted string to the file path specified in the saveScoreFilePath variable
-        UnityEngine.Debug.Log("Scores saved."); //Displays "Scores saved."
 
+        string teamScoringData = JsonUtility.ToJson(teamScoring, true);
+        UnityEngine.Debug.Log("Saving scores to: " + saveScoreFilePath);
+
+        File.WriteAllText(saveScoreFilePath, teamScoringData);
+        UnityEngine.Debug.Log("Scores saved.");
     }
 
     public void LoadGame()
     {
+        InitPaths();
 
-        string teamScoringData = System.IO.File.ReadAllText(saveScoreFilePath); //Sets string to the text found in the JSON file
-        teamScoring = JsonUtility.FromJson<TeamScoringData>(teamScoringData); //Converts it to floats
-        gameManager.teamOneScore = teamScoring.teamOneScore; //Sets all team scores to what they are in the save file
-        gameManager.teamTwoScore = teamScoring.teamTwoScore;
-        gameManager.teamThreeScore = teamScoring.teamThreeScore;
-        UnityEngine.Debug.Log("Scores loaded."); //Displays "Scores loaded." in the debug log
+        if (!File.Exists(saveScoreFilePath))
+        {
+            UnityEngine.Debug.LogWarning("No save file found at: " + saveScoreFilePath + ". Initializing scores to 0.");
+            teamScoring = new TeamScoringData();
 
+            if (gameManager != null)
+            {
+                gameManager.teamOneScore = 0f;
+                gameManager.teamTwoScore = 0f;
+                gameManager.teamThreeScore = 0f;
+            }
+
+            return;
+        }
+
+        string teamScoringData = File.ReadAllText(saveScoreFilePath);
+        teamScoring = JsonUtility.FromJson<TeamScoringData>(teamScoringData);
+
+        if (teamScoring == null)
+        {
+            UnityEngine.Debug.LogError("Failed to parse TeamScoringData. Resetting scores.");
+            teamScoring = new TeamScoringData();
+        }
+
+        if (gameManager != null)
+        {
+            gameManager.teamOneScore = teamScoring.teamOneScore;
+            gameManager.teamTwoScore = teamScoring.teamTwoScore;
+            gameManager.teamThreeScore = teamScoring.teamThreeScore;
+        }
+
+        UnityEngine.Debug.Log("Scores loaded.");
     }
 
+    #endregion
 }
