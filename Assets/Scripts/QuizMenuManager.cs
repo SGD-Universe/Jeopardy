@@ -11,9 +11,9 @@ public class QuizMenuManager : MonoBehaviour
     public Button importQuizButton;
     public Button backButton;
 
-    public string createQuizSceneName = "CreateQuizScene";
-    public string editQuizSceneName = "EditQuizScene";
-    public string mainMenuSceneName = "MainMenu";
+    string createQuizSceneName = "test-creation-mode";
+    string editQuizSceneName = "EditQuizScene";
+    string mainMenuSceneName = "Main";
 
     void Start()
     {
