@@ -104,7 +104,7 @@ public class SaveManager : MonoBehaviour
 
     public static int SaveBoardData(BoardData boardData, string fileName)
     {
-        quizTemplateFolderPath = Application.persistentDataPath;
+        quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
         // Verify File Name
         char[] invalid = Path.GetInvalidFileNameChars();
 
@@ -118,7 +118,7 @@ public class SaveManager : MonoBehaviour
         // Save Data to file
         UnityEngine.Debug.Log(quizTemplateFolderPath);
         string json = JsonUtility.ToJson(boardData, true);
-        if(Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
+        if(!Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
         string quizTemplatefilePath = quizTemplateFolderPath + "/" + fileName + ".json";
         UnityEngine.Debug.Log(quizTemplatefilePath);
         File.WriteAllText(quizTemplatefilePath, json);
