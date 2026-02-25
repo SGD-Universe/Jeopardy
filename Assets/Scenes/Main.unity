@@ -12009,6 +12009,7 @@ GameObject:
   - component: {fileID: 1723439825}
   - component: {fileID: 1723439824}
   - component: {fileID: 1723439826}
+  - component: {fileID: 1723439827}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -12063,6 +12064,18 @@ MonoBehaviour:
   currentLookAt: {fileID: 217614311}
   menuScreen: {fileID: 217614311}
   gameScreen: {fileID: 747559231}
+--- !u!114 &1723439827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723439823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe5974e2171c1a4eb96d4afb70c4a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1724935765
 GameObject:
   m_ObjectHideFlags: 0
@@ -14619,6 +14632,18 @@ MonoBehaviour:
   editQuizButton: {fileID: 1492510679}
   importQuizButton: {fileID: 612693733}
   backButton: {fileID: 1130518988}
+--- !u!114 &2058970792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058970789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005840f1177cf1049ae3cc7e7140a737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2065326463
 GameObject:
   m_ObjectHideFlags: 0
@@ -14908,6 +14933,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 578855597695814170, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 578855597695814170, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 578855597695814170, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1723439823}
+    - target: {fileID: 578855597695814170, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1821600387939880336, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -14992,6 +15033,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -56.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6056264691348341832, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2058970789}
+    - target: {fileID: 6056264691348341832, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6895799826613797652, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -15042,6 +15091,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5818147975734417770, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2058970791}
+    - targetCorrespondingSourceObject: {fileID: 5818147975734417770, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2058970792}
   m_SourcePrefab: {fileID: 100100000, guid: 8f200ad71bbe3a743a278679014a8bee, type: 3}
 --- !u!1001 &3478284334071583911
 PrefabInstance:
