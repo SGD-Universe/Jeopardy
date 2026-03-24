@@ -56,7 +56,7 @@ public class QuizMenuManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadScene(mainMenuSceneName); // Likely the culprit of the music restarting when exiting
     }
 
     void OnDestroy()
