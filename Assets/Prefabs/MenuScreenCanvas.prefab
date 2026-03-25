@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &3036493481379149184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,7 +1662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3118644114932761231}
   m_Layer: 5
-  m_Name: SfxVolume_GROUP
+  m_Name: SfxVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3177,7 +3177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845366687570702339}
   m_Layer: 5
-  m_Name: MusicVolume_GROUP
+  m_Name: MusicVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4090,7 +4090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3905133164057222604}
   m_Layer: 5
-  m_Name: Settings_GROUP
+  m_Name: SettingsOptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5803,7 +5803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2934163116773025670}
   m_Layer: 5
-  m_Name: MainMenuButtons_GROUP
+  m_Name: MainMenuButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
