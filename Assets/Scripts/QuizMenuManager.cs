@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class QuizMenuManager : MonoBehaviour
 {
@@ -10,10 +12,15 @@ public class QuizMenuManager : MonoBehaviour
     public Button editQuizButton;
     public Button importQuizButton;
     public Button backButton;
+    public TMP_InputField importField;
 
     string createQuizSceneName = "test-creation-mode";
     string editQuizSceneName = "EditQuizScene";
     string mainMenuSceneName = "Main";
+    string importQuizName = "";
+    string importedFilePath = "";
+
+    bool fileImported = false;
 
     void Start()
     {
@@ -36,6 +43,7 @@ public class QuizMenuManager : MonoBehaviour
         {
             backButton.onClick.AddListener(ReturnToMainMenu);
         }
+        importQuizName = importField.text;
     }
 
     public void LoadCreateQuizScene()
@@ -45,13 +53,45 @@ public class QuizMenuManager : MonoBehaviour
 
     public void LoadEditQuizScene()
     {
-        SceneManager.LoadScene(editQuizSceneName);
+        if (fileImported == true)
+        {
+            SceneManager.LoadScene(editQuizSceneName);
+            //will need to load the usual quiz creation scene, but with all information related to the quiz placed in the correct areas
+            //Basically just replacing the standard placeholder text with the text from the quiz questions
+        }
     }
 
     public void ImportQuizFile()
     {
-        Debug.Log("Import Quiz File clicked - feature to be implemented");
+        string localImport = "";
+        
+        if (importQuizName != null || importQuizName != "")
+        {
+            Debug.Log("Importing Quiz...");
+            localImport = Application.persistentDataPath + "/QuizTemplates/" + importQuizName + ".json";
+            if (File.Exists(localImport) == true)
+            {
+                importedFilePath = localImport;
+                fileImported = true;
+                Debug.Log("Imported Quiz - " + importedFilePath);
+            }
+            else
+            {
+                Debug.Log("failed to find file path; ensure file name is correct");
+            }
+        }
+        else
+        {
+            Debug.LogError("Please Input File Name Into Input Field");
+        }
+
         // This will need file browser functionality later
+    }
+
+    public void ReadImportText()
+    {
+        importQuizName = importField.text;
+        Debug.Log(importQuizName);
     }
 
     public void ReturnToMainMenu()
