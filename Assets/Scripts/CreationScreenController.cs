@@ -7,6 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class CreationScreenController : MonoBehaviour
 {
@@ -181,4 +182,10 @@ public class CreationScreenController : MonoBehaviour
             }
         }
     }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
 }
