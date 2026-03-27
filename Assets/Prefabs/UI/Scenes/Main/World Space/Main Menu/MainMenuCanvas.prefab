@@ -234,8 +234,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476892183140758255}
-  m_LocalRotation: {x: 0, y: 0.941911, z: 0, w: 0.33586267}
-  m_LocalPosition: {x: 0, y: 0, z: 0.003949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -246,10 +246,10 @@ RectTransform:
   - {fileID: 4641075765460717372}
   - {fileID: 8949008651948541429}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 140.75, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.003438, y: -0.001162}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.797051, y: 2.399225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1929080373170021725
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5078615408367028369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5161479953274856371}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: UpdateSFXVolume
         m_Mode: 1
@@ -909,14 +909,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8949008651948541429}
-  - component: {fileID: 3654804215385600234}
+  - component: {fileID: 3614248375291762133}
   m_Layer: 5
   m_Name: QuitMenuScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8949008651948541429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -938,7 +938,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3654804215385600234
+--- !u!114 &3614248375291762133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -947,7 +947,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268753412950993060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f12bcd0794eea443b69ac06720d817a, type: 3}
+  m_Script: {fileID: 11500000, guid: 449713e19d8635346a4490407d41e791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   yesButton: {fileID: 6020013969633057296}
@@ -1713,7 +1713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4641075765460717372}
-  - component: {fileID: 5161479953274856371}
+  - component: {fileID: 8475770142372574710}
   m_Layer: 5
   m_Name: SettingsMenuScreen
   m_TagString: Untagged
@@ -1743,7 +1743,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5161479953274856371
+--- !u!114 &8475770142372574710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2331193172919740982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f5611ae4da59924e8b5e49bdb0ead44, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b7c849af4f6efb43bfc16c3dedec487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 478d81cbe51272346a0c7ac9c4146522, type: 2}
@@ -2567,7 +2567,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5161479953274856371}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: UpdateMusicVolume
         m_Mode: 1
@@ -2860,14 +2860,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7016171173136634593}
-  - component: {fileID: 5527260169078315244}
+  - component: {fileID: 1929366436051673721}
   m_Layer: 5
   m_Name: MainMenuScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7016171173136634593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2889,7 +2889,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5527260169078315244
+--- !u!114 &1929366436051673721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2898,7 +2898,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4240587396147396555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11472c88844243c4ea20ea65c197e9a8, type: 3}
+  m_Script: {fileID: 11500000, guid: ebb8519bce33d1749aa5b212d72ce10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   newGameButton: {fileID: 6385209570242116158}
@@ -4527,6 +4527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8102667452688472049}
+  - component: {fileID: 3131107554319136842}
   m_Layer: 0
   m_Name: LoadQuizzesScreen
   m_TagString: Untagged
@@ -4554,6 +4555,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3131107554319136842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6126344404202906423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab6ac5917cb91e40b13b3b74778e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6722935184765487804
 GameObject:
   m_ObjectHideFlags: 0
@@ -5722,7 +5735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2009388176236761405}
-  - component: {fileID: 8555647642807001372}
+  - component: {fileID: 9074766649344099432}
   m_Layer: 5
   m_Name: CreateEditScreen
   m_TagString: Untagged
@@ -5752,7 +5765,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8555647642807001372
+--- !u!114 &9074766649344099432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5761,7 +5774,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8641764811885107561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ade54deaa99e76428f9782867eb9fa5, type: 3}
+  m_Script: {fileID: 11500000, guid: ddd229334e8adb442add410b92e1d1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   createQuizButton: {fileID: 240244246502797858}
