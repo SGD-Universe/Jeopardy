@@ -297,7 +297,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5078615408367028369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5780,7 +5780,6 @@ MonoBehaviour:
   createQuizButton: {fileID: 240244246502797858}
   editQuizButton: {fileID: 1110987639952054864}
   importQuizButton: {fileID: 5184877944243463778}
-  backButton: {fileID: 902102176284521915}
 --- !u!1 &8774936093457932419
 GameObject:
   m_ObjectHideFlags: 0
