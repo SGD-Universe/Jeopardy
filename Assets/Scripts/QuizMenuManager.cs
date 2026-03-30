@@ -48,6 +48,17 @@ public class QuizMenuManager : MonoBehaviour
 
     public void LoadCreateQuizScene()
     {
+        string[] quizTemplates = Directory.GetFiles(importedFilePath);
+
+        if (quizTemplates.Length == 0)
+        {
+            UnityEngine.Debug.LogError("No Quiz Templates Found");
+            //return new BoardData();
+        }
+
+        string json = File.ReadAllText(quizTemplates[0]);
+        //BoardData boardData = JsonUtility.FromJson<BoardData>(json);
+        //return boardData;
         SceneManager.LoadScene(createQuizSceneName);
     }
 
