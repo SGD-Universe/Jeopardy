@@ -20,8 +20,8 @@ public class SettingsMenu : MonoBehaviour
     private void LoadVolumeSettings()
     {
         // Default volume setting is 0.5
-        musicSlider.value = PlayerPrefs.GetFloat("musicVol", 0.5f);
-        sfxSlider.value = PlayerPrefs.GetFloat("sfxVol", 0.5f);
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume", 0.5f);
+        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
 
         UpdateMusicVolume();
         UpdateSFXVolume();
@@ -30,14 +30,14 @@ public class SettingsMenu : MonoBehaviour
     public void UpdateMusicVolume()
     {
         float volume = musicSlider.value;
-        audioMixer.SetFloat("musicVol", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("musicVol", volume);
+        audioMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     public void UpdateSFXVolume()
     {
         float volume = sfxSlider.value;
-        audioMixer.SetFloat("sfxVol", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("sfxVol", volume);
+        audioMixer.SetFloat("sfxVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("sfxVolume", volume);
     }
 }

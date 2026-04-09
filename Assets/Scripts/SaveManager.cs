@@ -9,17 +9,16 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     public GameManager gameManager;
-    private static string quizTemplateFolderPath;
-    private static string saveScoreFilePath;
+    static string quizTemplateFolderPath;
+    static string saveScoreFilePath;
     public static TeamScoringData teamScoring = new TeamScoringData();
 
-    private void Start()
+    void Start()
     {
-
         saveScoreFilePath = Application.persistentDataPath + "/TeamScoringData.json";
         quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
         teamScoring = new TeamScoringData();
-        
+
     }
 
     private void Update()
@@ -56,7 +55,7 @@ public class SaveManager : MonoBehaviour
     [System.Serializable]
     public class TeamScoringData //Holds score data for JSON file saving
     {
-        
+
         public float teamOneScore;
         public float teamTwoScore;
         public float teamThreeScore;
@@ -84,7 +83,7 @@ public class SaveManager : MonoBehaviour
 
         public void AddPanel(int column, bool isCategory, string primaryText, string secondaryText)
         {
-            while(column > columns.Count() - 1) columns.Add(new ColumnData());
+            while (column > columns.Count() - 1) columns.Add(new ColumnData());
             columns[column].panels.Add(new PanelData(isCategory, primaryText, secondaryText));
         }
     }
@@ -105,6 +104,7 @@ public class SaveManager : MonoBehaviour
 
     public static int SaveBoardData(BoardData boardData, string fileName)
     {
+        quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
         // Verify File Name
         char[] invalid = Path.GetInvalidFileNameChars();
 
@@ -116,11 +116,14 @@ public class SaveManager : MonoBehaviour
         }
 
         // Save Data to file
+        UnityEngine.Debug.Log(quizTemplateFolderPath);
         string json = JsonUtility.ToJson(boardData, true);
         if(!Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
         string quizTemplatefilePath = quizTemplateFolderPath + "/" + fileName + ".json";
+        UnityEngine.Debug.Log(quizTemplatefilePath);
         File.WriteAllText(quizTemplatefilePath, json);
         Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(quizTemplatefilePath) + "\"");
+        //It Works!
         return 0;
     }
 
