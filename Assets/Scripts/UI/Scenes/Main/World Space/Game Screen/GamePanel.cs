@@ -26,6 +26,7 @@ public class GamePanel : MonoBehaviour
 
     [Header("Panel Text")]
     [SerializeField] private TextMeshProUGUI pointValueText;
+    [SerializeField] private TextMeshProUGUI categoryNameText;
 
     [Header("Panel Input Fields")]
 
@@ -92,43 +93,80 @@ public class GamePanel : MonoBehaviour
         if (panelType == PanelType.Question)
         {
             pointValueText.text = "$" + string.Format(CultureInfo.InvariantCulture, "{0:N0}", panelPointValue); // This will format the text with comma separators.
+
+            Debug.Log("AWAKE GAME PANEL: Panel's point value set and formatted!");
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        switch (quizPlayMode)
+        {
+            case GameManager.QuizPlayMode.None:
+                Debug.LogWarning("AWAKE PLAY MODE WARNING: The play mode of the game is set to None!");
+                break;
+            case GameManager.QuizPlayMode.Quiz:
+                break;
+            case GameManager.QuizPlayMode.Editor:
+                break;
+        }
     }
 
     public void SetPanelContentsToQuiz()
     {
         if (questionEditorGroup.activeInHierarchy)
         {
+            Debug.Log("PANEL CONTENTS - QUIZ: Question Editor group is active in Hierarchy. Disabling object!");
+
             questionEditorGroup.SetActive(false);
         }
 
+        switch (panelType)
+        {
+            case PanelType.Category:
+                inGameButton.gameObject.SetActive(false);
+                categoryNameText.gameObject.SetActive(true);
+                Debug.Log("PANEL CONTENTS - QUIZ: Panel type is Category. Showing Category text!");
+                break;
+            case PanelType.Question:
+                categoryNameText.gameObject.SetActive(false);
+                inGameButton.gameObject.SetActive(true);
+                Debug.Log("PANEL CONTENTS - QUIZ: Panel type is Question: Showing Question Button!");
+                break;
+        }
+
         inGameGroup.SetActive(true);
+
+        Debug.Log("PANEL CONTENTS - QUIZ: Panel contents set to Quiz mode!");
     }
 
     public void SetPanelContentsToEditor()
     {
         if (inGameGroup.activeInHierarchy)
         {
+            Debug.Log("PANEL CONTENTS - EDITOR: Quiz group is active in Hierarchy. Disabling object!");
+
             inGameGroup.SetActive(false);
         }
 
         switch (panelType)
         {
             case PanelType.Category:
+                editQuestionButton.gameObject.SetActive(false);
                 editCategoryButton.gameObject.SetActive(true);
+                Debug.Log("PANEL CONTENTS - EDITOR: Panel type is Category. Showing Edit Category Button!");
                 break;
             case PanelType.Question:
+                editCategoryButton.gameObject.SetActive(false);
                 editQuestionButton.gameObject.SetActive(true);
+                Debug.Log("PANEL CONTENTS - EDITOR: Panel type is Question. Showing Edit Question Button!");
                 break;
         }
 
         questionEditorGroup.SetActive(true);
+
+        Debug.Log("PANEL CONTENTS - EDITOR: Panel contents set to Editor mode!");
     }
 
     public void OpenQuestion()
