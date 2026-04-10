@@ -44,8 +44,8 @@ public class GamePanel : MonoBehaviour
     void OnEnable()
     {
         // Have code set for the following combinations:
-        // In-game, category
-        // In-game, question
+        // Quiz, category
+        // Quiz, question
         // Editor, category
         // Editor, question
 
@@ -169,11 +169,19 @@ public class GamePanel : MonoBehaviour
         Debug.Log("PANEL CONTENTS - EDITOR: Panel contents set to Editor mode!");
     }
 
+    // This function is for opening the question panel screen when a panel is clicked on.
     public void OpenQuestion()
     {
 
     }
 
+    // This function is for exiting the question panel screen, but does not close the question.
+    public void ExitQuestion()
+    {
+
+    }
+
+    // This function is for closing a question, meaning that in Quiz mode, the question will no longer be accessed for the remainder of a round.
     public void CloseQuestion()
     {
 
@@ -184,6 +192,10 @@ public class GamePanel : MonoBehaviour
         if (isDailyDouble)
         {
             Debug.Log("This panel contains a Daily Double!");
+        }
+        else
+        {
+            Debug.Log("This panel does NOT contain a Daily Double!");
         }
     }
 }

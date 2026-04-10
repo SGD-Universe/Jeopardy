@@ -6468,7 +6468,7 @@ MonoBehaviour:
   pointValueText: {fileID: 1486048015011498889}
   categoryNameText: {fileID: 6843701611610505486}
   quizPlayMode: 2
-  panelType: 1
+  panelType: 0
   panelPointValue: 2000
   isDailyDouble: 0
   isClosed: 0
