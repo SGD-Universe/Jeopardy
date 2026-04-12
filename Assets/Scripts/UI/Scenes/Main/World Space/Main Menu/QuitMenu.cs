@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuitMenuManager : MonoBehaviour
+public class QuitMenu : MonoBehaviour
 {
     public Button yesButton;
     public Button backButton;
@@ -17,14 +15,31 @@ public class QuitMenuManager : MonoBehaviour
             if (yesButton != null)
             {
                 yesButton.onClick.AddListener(QuitGame);
+                Debug.Log("QUIT MENU: QuitGame listener added!");
             }
 
             if (backButton != null)
             {
                 backButton.onClick.AddListener(CloseQuitMenu);
+                Debug.Log("QUIT MENU: CloseQuitMenu listener added!");
             }
 
             listenersAdded = true;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (yesButton != null)
+        {
+            yesButton.onClick.RemoveListener(QuitGame);
+            Debug.Log("QUIT MENU: QuitGame listener removed!");
+        }
+
+        if (backButton != null)
+        {
+            backButton.onClick.RemoveListener(CloseQuitMenu);
+            Debug.Log("QUIT MENU: CloseQuitMenu listener removed!");
         }
     }
 
@@ -42,23 +57,10 @@ public class QuitMenuManager : MonoBehaviour
     {
         Debug.Log("Quitting game...");
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#else
+        #else
         Application.Quit();
-#endif
-    }
-
-    void OnDestroy()
-    {
-        if (yesButton != null)
-        {
-            yesButton.onClick.RemoveListener(QuitGame);
-        }
-
-        if (backButton != null)
-        {
-            backButton.onClick.RemoveListener(CloseQuitMenu);
-        }
+        #endif
     }
 }

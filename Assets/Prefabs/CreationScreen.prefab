@@ -609,7 +609,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 452984831
   m_fontColor: {r: 1, g: 1, b: 1, a: 0.101960786}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1321,7 +1321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1167932397041357581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1684,7 +1684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &76842935542520937
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2245,7 +2245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8569512360969243293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2453,7 +2453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5821734616455058628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3914,9 +3914,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c094e90d1ab2c42943a74dccf983cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEditable: 0
   positionLerpFactor: 0
-  colorLerpFactor: 0
-  errorColor: {r: 1, g: 0, b: 0, a: 1}
+  displayColor: {r: 0, g: 0, b: 0, a: 0}
   primaryInputField: {fileID: 6120061759591257959}
   secondaryInputField: {fileID: 3751979347141328046}
   dividerGraphic: {fileID: 920249595477410511}
