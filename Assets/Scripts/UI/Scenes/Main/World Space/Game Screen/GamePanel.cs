@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -39,6 +40,11 @@ public class GamePanel : MonoBehaviour
 
     [Header("Panel States")]
     public bool isClosed;
+
+    [Header("Default")]
+    public bool fileImported = false;
+    public string importQuizName = "";
+    public string importFilePath = "";
 
     void OnEnable()
     {
@@ -163,18 +169,19 @@ public class GamePanel : MonoBehaviour
 
     public void DefaultImport()
     {
-        /*
+        
         string localImport = "";
 
+        /*
         if (importQuizName != null || importQuizName != "")
         {
             Debug.Log("Importing Quiz...");
             localImport = Application.persistentDataPath + "/QuizTemplates/" + importQuizName + ".json";
             if (File.Exists(localImport) == true)
             {
-                importedFilePath = localImport;
+                importFilePath = localImport;
                 fileImported = true;
-                Debug.Log("Imported Quiz - " + importedFilePath);
+                Debug.Log("Imported Quiz - " + importFilePath);
             }
             else
             {
@@ -185,14 +192,14 @@ public class GamePanel : MonoBehaviour
         {
             Debug.LogError("Please Input File Name Into Input Field");
         }
-
-        // This will need file browser functionality later
         */
+        // This will need file browser functionality later
+        
     }
 
     public void DefaultRead()
     {
         //importQuizName = importField.text;
-        //Debug.Log(importQuizName);
+        Debug.Log(importQuizName);
     }
 }
