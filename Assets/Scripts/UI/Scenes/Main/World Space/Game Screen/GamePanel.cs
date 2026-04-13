@@ -46,6 +46,13 @@ public class GamePanel : MonoBehaviour
     public string importQuizName = "";
     public string importFilePath = "";
 
+    [Header("Placeholder")] //contains related strings and string arrays where category and question information will held for new save files, and later for loaded save files.
+    public string savedQuizTitle; //will also be quiz file name, so no worries on configuring it to imported
+    string[] savedQuizCategories = new string[6];
+    string[] savedQuizQuestions = new string[30];
+    string[] savedQuizAnswers = new string[30];
+    
+
     void OnEnable()
     {
         // Have code set for the following combinations:
@@ -119,6 +126,7 @@ public class GamePanel : MonoBehaviour
 
     public void SetPanelContentsToEditor()
     {
+
         if (inGameGroup.activeInHierarchy)
         {
             inGameGroup.SetActive(false);
@@ -132,6 +140,15 @@ public class GamePanel : MonoBehaviour
             case PanelType.Question:
                 editQuestionButton.gameObject.SetActive(true);
                 break;
+        }
+
+        if (fileImported == true)
+        {
+            //fill with data from an array that contains the information regarding loaded save files
+        }
+        else
+        {
+            //fills with default information, preferably the 'saveQuiz' string information from "Placeholder"
         }
 
         questionEditorGroup.SetActive(true);
@@ -155,24 +172,21 @@ public class GamePanel : MonoBehaviour
         }
     }
 
+    //checks to see if a file has been imported before a the quiz edit screen is pulled up.
     public void DefaultEdit()
     {
-        /*
+        
         if (fileImported == true)
         {
-            SceneManager.LoadScene(editQuizSceneName);
-            //will need to load the usual quiz creation scene, but with all information related to the quiz placed in the correct areas
-            //Basically just replacing the standard placeholder text with the text from the quiz questions
+            Debug.Log("Swap to Quiz Edit Screen");
         }
-        */
+        
     }
 
     public void DefaultImport()
     {
-        
         string localImport = "";
 
-        /*
         if (importQuizName != null || importQuizName != "")
         {
             Debug.Log("Importing Quiz...");
@@ -182,18 +196,19 @@ public class GamePanel : MonoBehaviour
                 importFilePath = localImport;
                 fileImported = true;
                 Debug.Log("Imported Quiz - " + importFilePath);
+                File.ReadAllText(importFilePath);
             }
             else
             {
-                Debug.Log("failed to find file path; ensure file name is correct");
+                Debug.Log("Failed to find file path; ensure file name is correct");
             }
         }
         else
         {
             Debug.LogError("Please Input File Name Into Input Field");
         }
-        */
-        // This will need file browser functionality later
+        
+        // This will need file browser functionality later, probably
         
     }
 
