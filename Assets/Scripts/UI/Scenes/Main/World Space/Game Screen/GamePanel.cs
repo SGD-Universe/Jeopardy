@@ -148,4 +148,51 @@ public class GamePanel : MonoBehaviour
             Debug.Log("This panel contains a Daily Double!");
         }
     }
+
+    public void DefaultEdit()
+    {
+        /*
+        if (fileImported == true)
+        {
+            SceneManager.LoadScene(editQuizSceneName);
+            //will need to load the usual quiz creation scene, but with all information related to the quiz placed in the correct areas
+            //Basically just replacing the standard placeholder text with the text from the quiz questions
+        }
+        */
+    }
+
+    public void DefaultImport()
+    {
+        /*
+        string localImport = "";
+
+        if (importQuizName != null || importQuizName != "")
+        {
+            Debug.Log("Importing Quiz...");
+            localImport = Application.persistentDataPath + "/QuizTemplates/" + importQuizName + ".json";
+            if (File.Exists(localImport) == true)
+            {
+                importedFilePath = localImport;
+                fileImported = true;
+                Debug.Log("Imported Quiz - " + importedFilePath);
+            }
+            else
+            {
+                Debug.Log("failed to find file path; ensure file name is correct");
+            }
+        }
+        else
+        {
+            Debug.LogError("Please Input File Name Into Input Field");
+        }
+
+        // This will need file browser functionality later
+        */
+    }
+
+    public void DefaultRead()
+    {
+        //importQuizName = importField.text;
+        //Debug.Log(importQuizName);
+    }
 }
