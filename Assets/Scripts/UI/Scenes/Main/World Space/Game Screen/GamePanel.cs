@@ -16,6 +16,7 @@ public class GamePanel : MonoBehaviour
     [Header("Panel Object Groups")]
     [SerializeField] private GameObject questionEditorGroup; // The GameObject that groups all objects related to the Create and Edit Quiz mode.
     [SerializeField] private GameObject inGameGroup; // The GameObject that groups all objects related to the in-game mode.
+    [SerializeField] private GameObject panelContentsGroup; // The GameObject that contains all contents of a panel (except the background).
 
     // By getting the group GameObject, enabling/disabling it will cause it and its children to be enabled/disabled.
 
@@ -39,7 +40,7 @@ public class GamePanel : MonoBehaviour
     public bool isDailyDouble;
 
     [Header("Panel States")]
-    public bool isClosed;
+    public bool isClosed; // This state should only be used when the quiz play mode is set to Quiz.
 
     void OnEnable()
     {

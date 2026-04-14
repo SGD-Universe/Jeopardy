@@ -750,7 +750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &91527759
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1904,6 +1904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 244654436}
+  - component: {fileID: 244654437}
   m_Layer: 0
   m_Name: OverviewScreen
   m_TagString: Untagged
@@ -1933,6 +1934,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &244654437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244654435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ecc66d20195e34195ba531c81f3394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &275006755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3072,13 +3085,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 525674297}
+  - component: {fileID: 525674298}
   m_Layer: 0
   m_Name: QuestionPanelScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &525674297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3101,6 +3115,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &525674298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525674296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791140b209409d5429881a7b89a7073d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &548893670
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,6 +3136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 548893671}
+  - component: {fileID: 548893672}
   m_Layer: 0
   m_Name: TeamOptionsScreen
   m_TagString: Untagged
@@ -3141,6 +3168,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &548893672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548893670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec26795e06f4a040a8e8713d137a7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &554517415
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,7 +3280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &568506846
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6462,6 +6501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionEditorGroup: {fileID: 6248202502630155220}
   inGameGroup: {fileID: 7833547310921489461}
+  panelContentsGroup: {fileID: 1975312641844215810}
   editCategoryButton: {fileID: 8374003300287775936}
   editQuestionButton: {fileID: 7037249012253928979}
   inGameButton: {fileID: 2824361658436318350}
@@ -10200,7 +10240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1535736470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12601,7 +12641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1903569089
 RectTransform:
   m_ObjectHideFlags: 0

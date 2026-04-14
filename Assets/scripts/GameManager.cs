@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     public QuizPlayMode quizPlayMode;
 
+    [Range(1, 3)]
+    public int teamCount;
+
     public float teamOneScore;
     public float teamTwoScore;
     public float teamThreeScore;
