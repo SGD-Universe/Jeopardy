@@ -20,7 +20,7 @@ public class SaveQuiz : MonoBehaviour
     [System.Serializable]
     public class BoardSaveData
     {
-        public string Title; //will also be quiz file name, so no worries on configuring it to imported
+        public string Title;
         public string[] Category = new string[6];
         public string[] Question = new string[30];
         public string[] Answer = new string[30];

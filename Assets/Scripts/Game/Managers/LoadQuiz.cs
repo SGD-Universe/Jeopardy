@@ -12,8 +12,6 @@ public class LoadQuiz : MonoBehaviour
     public BoardLoadData LoadData = new BoardLoadData();
 
     public bool quizLoaded = false;
-
-    [Header("Default")]
     public bool fileImported = false;
     public string importQuizName = "";
     public string importFilePath = "";
@@ -21,7 +19,7 @@ public class LoadQuiz : MonoBehaviour
     [System.Serializable]
     public class BoardLoadData
     {
-        public string Title; //will also be quiz file name, so no worries on configuring it to imported
+        public string Title; 
         public string[] Category = new string[6];
         public string[] Question = new string[30];
         public string[] Answer = new string[30];
@@ -41,7 +39,6 @@ public class LoadQuiz : MonoBehaviour
 
         //find objects with a tag that distinguishes the panels, or simply loaded data for them while proving the greenlight to take data from it.
     }
-
 
     //checks to see if a file has been imported before a the quiz edit screen is pulled up.
     public void DefaultEdit()
