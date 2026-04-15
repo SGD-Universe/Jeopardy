@@ -171,6 +171,18 @@ public class CreationScreenController : MonoBehaviour
         }
     }
 
+    public void FillBoardWithExistingData()
+    {
+        foreach(List<MonitorPlane> panelsColumn in panelsBoard)
+        {
+            foreach(MonitorPlane panel in panelsColumn)
+            {
+                //File.ReadAllText("File Name");
+
+            }
+        }
+    }
+
     public void EraseBoardData()
     {
         foreach(List<MonitorPlane> panelsColumn in panelsBoard)

@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PlayGame.unity
     guid: 9ec7057fe34114c229a166c364a64456
-  - enabled: 1
-    path: Assets/Scenes/CreateQuizScene.unity
-    guid: fc99aba71693f5d44b5735b2a6dbecc3
   - enabled: 0
     path: Assets/Scenes/EditCategory1.unity
     guid: 12e2f3c7b77fc9c4ea65b10bce6dae3f
@@ -35,5 +32,17 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/EditCategory5.unity
     guid: 841fc0818d18856438501aced89936b2
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 97f92a07c9df76447aedff9b545b7798
+  - enabled: 1
+    path: Assets/Scenes/CreateQuizScene.unity
+    guid: fc99aba71693f5d44b5735b2a6dbecc3
+  - enabled: 1
+    path: Assets/Scenes/LoadSaveTest.unity
+    guid: fb2673068819ea94198a761cddfee197
+  - enabled: 1
+    path: Assets/Scenes/test-creation-mode.unity
+    guid: eb8e72b3f85a40849b20846c2d12056b
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

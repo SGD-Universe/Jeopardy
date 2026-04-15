@@ -5,7 +5,17 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    public enum QuizPlayMode
+    {
+        None,
+        Quiz,
+        Editor
+    }
+
     public static GameManager Instance;
+
+    public QuizPlayMode quizPlayMode;
+
     public float teamOneScore;
     public float teamTwoScore;
     public float teamThreeScore;
