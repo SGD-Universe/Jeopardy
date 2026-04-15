@@ -41,17 +41,13 @@ public class GamePanel : MonoBehaviour
     [Header("Panel States")]
     public bool isClosed;
 
-    [Header("Default")]
-    public bool fileImported = false;
-    public string importQuizName = "";
-    public string importFilePath = "";
+    [Header("Panel Save Data - Placeholders")]
+    public int panelGroup; //determines whether it is a category or question, only here to prevent moving the 'panelType' variable around
+    public int panelNumb; //determines the order in which it belongs in the panels system, which allows the system to know what data to put where
+    public string panelText_Primary;
+    public string panelText_Secondary;
 
-    [Header("Placeholder")] //contains related strings and string arrays where category and question information will held for new save files, and later for loaded save files.
-    public string savedQuizTitle; //will also be quiz file name, so no worries on configuring it to imported
-    string[] savedQuizCategories = new string[6];
-    string[] savedQuizQuestions = new string[30];
-    string[] savedQuizAnswers = new string[30];
-    
+    public bool loadedQuiz;
 
     void OnEnable()
     {
@@ -142,7 +138,7 @@ public class GamePanel : MonoBehaviour
                 break;
         }
 
-        if (fileImported == true)
+        if (loadedQuiz == true)
         {
             //fill with data from an array that contains the information regarding loaded save files
         }
@@ -172,49 +168,5 @@ public class GamePanel : MonoBehaviour
         }
     }
 
-    //checks to see if a file has been imported before a the quiz edit screen is pulled up.
-    public void DefaultEdit()
-    {
-        
-        if (fileImported == true)
-        {
-            Debug.Log("Swap to Quiz Edit Screen");
-        }
-        
-    }
-
-    public void DefaultImport()
-    {
-        string localImport = "";
-
-        if (importQuizName != null || importQuizName != "")
-        {
-            Debug.Log("Importing Quiz...");
-            localImport = Application.persistentDataPath + "/QuizTemplates/" + importQuizName + ".json";
-            if (File.Exists(localImport) == true)
-            {
-                importFilePath = localImport;
-                fileImported = true;
-                Debug.Log("Imported Quiz - " + importFilePath);
-                File.ReadAllText(importFilePath);
-            }
-            else
-            {
-                Debug.Log("Failed to find file path; ensure file name is correct");
-            }
-        }
-        else
-        {
-            Debug.LogError("Please Input File Name Into Input Field");
-        }
-        
-        // This will need file browser functionality later, probably
-        
-    }
-
-    public void DefaultRead()
-    {
-        //importQuizName = importField.text;
-        Debug.Log(importQuizName);
-    }
+    
 }
