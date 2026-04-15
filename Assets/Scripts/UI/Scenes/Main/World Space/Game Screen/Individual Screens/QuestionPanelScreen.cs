@@ -6,8 +6,6 @@ using TMPro;
 
 public class QuestionPanelScreen : MonoBehaviour
 {
-    [SerializeField] private List<Button> teamButtonsList = new List<Button>(); // The size of the List will depend on how many teams are playing.
-
     [SerializeField] private GameManager gameManager;
 
     [SerializeField] private TextMeshProUGUI panelQuestionText;
@@ -26,7 +24,7 @@ public class QuestionPanelScreen : MonoBehaviour
     {
         for (int i = 0; i < gameManager.teamCount;  i++)
         {
-            teamButtonsList.Add(teamButton);
+            
 
         }
     }

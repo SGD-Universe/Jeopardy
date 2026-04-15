@@ -6,6 +6,9 @@ using System.Globalization;
 
 public class Team : MonoBehaviour
 {
+    [Range(1, 3)]
+    public int teamNumber;
+
     [SerializeField] private TextMeshProUGUI teamScoreText; // The text used to display the score on the team's podium.
     
     public int teamScore;
