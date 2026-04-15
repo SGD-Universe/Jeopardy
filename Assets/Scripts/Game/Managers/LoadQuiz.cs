@@ -11,7 +11,7 @@ public class LoadQuiz : MonoBehaviour
 
     public BoardLoadData LoadData = new BoardLoadData();
 
-    public GameObject SaveObject;
+    public bool quizLoaded = false;
 
     [Header("Default")]
     public bool fileImported = false;
@@ -28,7 +28,7 @@ public class LoadQuiz : MonoBehaviour
     }
     void Start()
     {
-        //set the SaveObject to whatever holds the 'SaveQuiz'
+        
     }
 
     public void LoadSavedQuiz()
@@ -49,7 +49,12 @@ public class LoadQuiz : MonoBehaviour
 
         if (fileImported == true)
         {
-            Debug.Log("Swap to Quiz Edit Screen");
+            LoadSavedQuiz();
+            quizLoaded = true;
+        }
+        else
+        {
+            quizLoaded = false;
         }
 
     }

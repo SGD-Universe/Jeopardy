@@ -45,9 +45,10 @@ public class GamePanel : MonoBehaviour
     public int panelGroup; //determines whether it is a category or question, only here to prevent moving the 'panelType' variable around
     public int panelNumb; //determines the order in which it belongs in the panels system, which allows the system to know what data to put where
     public string panelText_Primary;
-    public string panelText_Secondary;
+    public string panelText_Secondary; //onyl for question panels
 
-    public bool loadedQuiz;
+    public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
+    public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
 
     void OnEnable()
     {
@@ -56,6 +57,17 @@ public class GamePanel : MonoBehaviour
         // In-game, question
         // Editor, category
         // Editor, question
+
+        //Determines whether or not it needs to collect data from the LoadQuiz script of the LoadSystem Object. [Move Around As You See Fit]
+        if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
+        {
+            //access the same object recieve data from an array that contains the information regarding loaded save files/
+            //likely requiring a switch system to distinguish between category and question. Could use 'panelGroup' if neccessary.
+        }
+        else
+        {
+            //fills with default information. Again, still likely needs to have a distinguishment between category and question.
+        }
 
         // Check the quiz play mode to display the proper elements
         switch (quizPlayMode)
@@ -138,14 +150,6 @@ public class GamePanel : MonoBehaviour
                 break;
         }
 
-        if (loadedQuiz == true)
-        {
-            //fill with data from an array that contains the information regarding loaded save files
-        }
-        else
-        {
-            //fills with default information, preferably the 'saveQuiz' string information from "Placeholder"
-        }
 
         questionEditorGroup.SetActive(true);
     }
