@@ -20,6 +20,9 @@ public class GamePanel : MonoBehaviour
 
     // By getting the group GameObject, enabling/disabling it will cause it and its children to be enabled/disabled.
 
+    [Header("Screens")]
+    [SerializeField] private GameObject questionScreen;
+
     [Header("Panel Buttons")]
     [SerializeField] private Button editCategoryButton;
     [SerializeField] private Button editQuestionButton;
@@ -173,7 +176,7 @@ public class GamePanel : MonoBehaviour
     // This function is for opening the question panel screen when a panel is clicked on.
     public void OpenQuestion()
     {
-
+        questionScreen.SetActive(true);
     }
 
     // This function is for exiting the question panel screen, but does not close the question.

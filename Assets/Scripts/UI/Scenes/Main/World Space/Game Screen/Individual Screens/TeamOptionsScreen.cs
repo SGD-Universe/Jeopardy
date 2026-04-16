@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Globalization;
 
 public class TeamOptionsScreen : MonoBehaviour
 {
+    [SerializeField] private GamePanel selectedGamePanel;
+    [SerializeField] TeamButton selectedTeamButton;
+
     public TextMeshProUGUI teamNameText;
     public TextMeshProUGUI selectedPanelPointValueText;
 
@@ -15,16 +19,25 @@ public class TeamOptionsScreen : MonoBehaviour
 
     void Awake()
     {
-        //teamNameText.text = 
+        teamNameText.text = selectedTeamButton.linkedTeam.teamName;
+        selectedPanelPointValueText.text = "$" + string.Format(CultureInfo.InvariantCulture, "{0:N0}", selectedGamePanel.panelPointValue);
     }
 
     void OnEnable()
     {
+        //correctButton.onClick.AddListener();
+
+        //incorrectButton.onClick.AddListener();
+
         cancelButton.onClick.AddListener(CloseTeamOptionsScreen);
     }
 
     void OnDisable()
     {
+        correctButton.onClick.RemoveAllListeners();
+
+        incorrectButton.onClick.RemoveAllListeners();
+
         cancelButton.onClick.RemoveAllListeners();
     }
 

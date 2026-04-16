@@ -7,8 +7,8 @@ using System.Globalization;
 
 public class TeamButton : MonoBehaviour
 {
-    [SerializeField] private GamePanel selectedPanel;
-    [SerializeField] private Team linkedTeam;
+    public Team linkedTeam;
+
     [SerializeField] private Button linkedButton;
     [SerializeField] private TextMeshProUGUI teamButtonText;
 
@@ -16,7 +16,7 @@ public class TeamButton : MonoBehaviour
 
     void Awake()
     {
-        teamButtonText.text = "Team " + linkedTeam.teamNumber;
+        teamButtonText.text = linkedTeam.teamName;
     }
 
     void OnEnable()
@@ -37,9 +37,6 @@ public class TeamButton : MonoBehaviour
 
     public void OpenTeamOptionsScreen()
     {
-        teamOptionsScreen.teamNameText.text = teamButtonText.text;
-        teamOptionsScreen.selectedPanelPointValueText.text = "$" + string.Format(CultureInfo.InvariantCulture, "{0:N0}", selectedPanel.panelPointValue);
-
         if (!teamOptionsScreen.gameObject.activeInHierarchy)
         {
             teamOptionsScreen.gameObject.SetActive(true);

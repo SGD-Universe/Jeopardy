@@ -6,6 +6,8 @@ using System.Globalization;
 
 public class Team : MonoBehaviour
 {
+    public string teamName;
+
     [Range(1, 3)]
     public int teamNumber;
 
@@ -14,9 +16,11 @@ public class Team : MonoBehaviour
     public int teamScore;
 
     [SerializeField] private bool isCurrentPlayer; // This determines if it is the team's turn.
+    [SerializeField] private bool isIncorrect; // This determines if a team gets an answer incorrect and cannot be called again to answer a question.
 
     void Awake()
     {
+        teamName = "Team " + teamNumber;
         teamScoreText.text = "$" + string.Format(CultureInfo.InvariantCulture, "0:N0", teamScore);
     }
 
