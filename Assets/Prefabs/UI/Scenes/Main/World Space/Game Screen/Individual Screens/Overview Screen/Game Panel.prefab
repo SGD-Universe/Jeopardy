@@ -513,7 +513,7 @@ MonoBehaviour:
   inGameButton: {fileID: 3748259097661448417}
   pointValueText: {fileID: 9185230977420634760}
   categoryNameText: {fileID: 4592277530288744843}
-  panelType: 0
+  panelType: 1
   panelPointValue: 200
   isDailyDouble: 0
   isClosed: 0

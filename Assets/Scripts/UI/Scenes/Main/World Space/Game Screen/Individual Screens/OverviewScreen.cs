@@ -56,14 +56,14 @@ public class OverviewScreen : MonoBehaviour
 
     void CreateQuestionPanels(GamePanel questionPanel)
     {
-        int basePanelPointValue = gamePanelPrefab.panelPointValue;
+        // TODO: Rework code here to just load and instantiate game panels. The Grid Layout Group component in the parent object takes care of the layout.
 
         for (int i = 0; i < MAXIMUM_QUESTION_PANELS_PER_COLUMN; i++)
         {
             for (int j = 0; j < MAXIMUM_QUESTION_PANELS_PER_ROW; j++)
             {
                 questionPanel.panelType = GamePanel.PanelType.Question;
-                questionPanel.panelPointValue = basePanelPointValue * (i + 1);
+                questionPanel.panelPointValue = gamePanelPrefab.panelPointValue;
 
                 // Code that will fill panel with information from quiz template goes here.
 

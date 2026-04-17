@@ -24,7 +24,7 @@ public class GamePanel : MonoBehaviour
     // By getting the group GameObject, enabling/disabling it will cause it and its children to be enabled/disabled.
 
     [Header("Screens")]
-    [SerializeField] private GameObject questionScreen;
+    [SerializeField] private QuestionPanelScreen questionScreen;
 
     [Header("Panel Buttons")]
     [SerializeField] private Button editCategoryButton;
@@ -39,7 +39,7 @@ public class GamePanel : MonoBehaviour
 
     [Header("Panel Properties")]
     public PanelType panelType;
-    public int panelPointValue;
+    public int panelPointValue = 200;
 
     [Header("Panel Toggles")]
     public bool isDailyDouble;
@@ -178,13 +178,13 @@ public class GamePanel : MonoBehaviour
     // This function is for opening the question panel screen when a panel is clicked on.
     public void OpenQuestion()
     {
-        questionScreen.SetActive(true);
+        questionScreen.gameObject.SetActive(true);
     }
 
     // This function is for exiting the question panel screen, but does not close the question.
     public void ExitQuestion()
     {
-        questionScreen.SetActive(false);
+        questionScreen.gameObject.SetActive(false);
     }
 
     // This function is for closing a question, meaning that in Quiz mode, the question will no longer be accessed for the remainder of a round.
@@ -209,6 +209,16 @@ public class GamePanel : MonoBehaviour
                 Debug.Log("This panel does NOT contain a Daily Double!");
                 break;
         }
+    }
+
+    public void AddPoints(int points, Team targetTeam)
+    {
+        targetTeam.teamScore += points;
+    }
+
+    public void SubtractPoints(int points, Team targetTeam)
+    {
+        targetTeam.teamScore -= points;
     }
 
     // This function will disable the panel's contents.

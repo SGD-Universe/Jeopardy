@@ -10,19 +10,14 @@ public class QuestionPanelScreen : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI panelQuestionText;
 
-    // This is the point where the first Team Button will be instantiated. Other Team Buttons will be instantiated relative to this point.
-    [SerializeField] private Transform firstTeamButtonPoint;
+    [SerializeField] private GameObject teamButtonsGroup;
 
     [SerializeField] private TeamButton teamButtonPrefab;
-
-    [SerializeField] private List<TeamButton> teamButtonsList = new List<TeamButton>(); // Using a List to instantiate the proper number of team buttons based on team count.
 
     [SerializeField] private Button exitQuestionButton;
     [SerializeField] private Button closeQuestionButton;
 
-    [SerializeField] private GameObject closeQuestionWarningScreen;
-
-    [SerializeField] private float teamButtonHorizontalOffset;
+    [SerializeField] private GameObject closeQuestionWarningScreen; // TODO: Create a close question warning screen object!
 
     void Awake()
     {
@@ -31,13 +26,6 @@ public class QuestionPanelScreen : MonoBehaviour
 
     void OnEnable()
     {
-        
-
-        for (int i = 0; i < gameManager.teamCount; i++)
-        {
-            Instantiate(teamButtonPrefab.gameObject, new Vector3(firstTeamButtonPoint.localPosition.x + (teamButtonHorizontalOffset * i), 0f, 0f), Quaternion.identity);
-        }
-
         exitQuestionButton.onClick.AddListener(CloseQuestionPanelScreen);
         closeQuestionButton.onClick.AddListener(OpenCloseQuestionWarningScreen);
     }
@@ -51,10 +39,16 @@ public class QuestionPanelScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < gameManager.teamCount;  i++)
-        {
-            
+        CreateTeamButtons(teamButtonPrefab);
+    }
 
+    public void CreateTeamButtons(TeamButton teamButton)
+    {
+        for (int i = 0; i < gameManager.teamCount; i++)
+        {
+            // Code that will tie teams to each team button goes here.
+
+            TeamButton teamButtonInstance = Instantiate(teamButtonPrefab, teamButtonsGroup.transform);
         }
     }
 
