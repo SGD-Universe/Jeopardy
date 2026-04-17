@@ -13,6 +13,9 @@ public class GamePanel : MonoBehaviour
         Question
     }
 
+    [Header("Game Manager Component")]
+    [SerializeField] private GameManager gameManager; // This will get the game mode set by the script.
+
     [Header("Panel Object Groups")]
     [SerializeField] private GameObject questionEditorGroup; // The GameObject that groups all objects related to the Create and Edit Quiz mode.
     [SerializeField] private GameObject inGameGroup; // The GameObject that groups all objects related to the in-game mode.
@@ -35,7 +38,6 @@ public class GamePanel : MonoBehaviour
     [Header("Panel Input Fields")]
 
     [Header("Panel Properties")]
-    [SerializeField] private GameManager.QuizPlayMode quizPlayMode;
     public PanelType panelType;
     public int panelPointValue;
 
@@ -54,7 +56,7 @@ public class GamePanel : MonoBehaviour
         // Editor, question
 
         // Check the quiz play mode to display the proper elements
-        switch (quizPlayMode)
+        switch (gameManager.quizPlayMode)
         {
             case GameManager.QuizPlayMode.None:
 
@@ -105,7 +107,7 @@ public class GamePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch (quizPlayMode)
+        switch (gameManager.quizPlayMode)
         {
             case GameManager.QuizPlayMode.None:
                 Debug.LogWarning("AWAKE PLAY MODE WARNING: The play mode of the game is set to None!");
@@ -182,24 +184,36 @@ public class GamePanel : MonoBehaviour
     // This function is for exiting the question panel screen, but does not close the question.
     public void ExitQuestion()
     {
-
+        questionScreen.SetActive(false);
     }
 
     // This function is for closing a question, meaning that in Quiz mode, the question will no longer be accessed for the remainder of a round.
     public void CloseQuestion()
     {
+        if (gameManager.quizPlayMode == GameManager.QuizPlayMode.Quiz)
+        {
+            HideGamePanelContents();
 
+            isClosed = true;
+        }
     }
 
     public void CheckIfDailyDouble()
     {
-        if (isDailyDouble)
+        switch (isDailyDouble)
         {
-            Debug.Log("This panel contains a Daily Double!");
+            case true:
+                Debug.Log("This panel contains a Daily Double!");
+                break;
+            case false:
+                Debug.Log("This panel does NOT contain a Daily Double!");
+                break;
         }
-        else
-        {
-            Debug.Log("This panel does NOT contain a Daily Double!");
-        }
+    }
+
+    // This function will disable the panel's contents.
+    void HideGamePanelContents()
+    {
+        panelContentsGroup.SetActive(false);
     }
 }
