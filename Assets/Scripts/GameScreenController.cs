@@ -7,8 +7,8 @@ public class GameScreenController : MonoBehaviour
     [SerializeField] private GameObject panelTemplate;
     [SerializeField] private Vector2 panelSpacing = new Vector2(3, 1.85f);
 
-    private List<List<MonitorPlane>> panelsBoard = new List<List<MonitorPlane>>();
-    private Vector2 panelCount = new Vector2(6, 6);
+    private List<List<MonitorPlane>> panelsBoard = new List<List<MonitorPlane>>(); // List of a List of panels?
+    private Vector2 panelCount = new Vector2(6, 6); // Why is the panel count a Vector2?
 
     SaveManager.BoardData loadedBoardData;
     // Start is called before the first frame update

@@ -15,13 +15,13 @@ public class QuitMenu : MonoBehaviour
             if (yesButton != null)
             {
                 yesButton.onClick.AddListener(QuitGame);
-                Debug.Log("QUIT MENU: QuitGame listener added!");
+                Debug.Log("QUIT MENU ON ENABLE: QuitGame listener added!");
             }
 
             if (backButton != null)
             {
                 backButton.onClick.AddListener(CloseQuitMenu);
-                Debug.Log("QUIT MENU: CloseQuitMenu listener added!");
+                Debug.Log("QUIT MENU ON ENABLE: CloseQuitMenu listener added!");
             }
 
             listenersAdded = true;
@@ -33,13 +33,13 @@ public class QuitMenu : MonoBehaviour
         if (yesButton != null)
         {
             yesButton.onClick.RemoveListener(QuitGame);
-            Debug.Log("QUIT MENU: QuitGame listener removed!");
+            Debug.Log("QUIT MENU ON DISABLE: QuitGame listener removed!");
         }
 
         if (backButton != null)
         {
             backButton.onClick.RemoveListener(CloseQuitMenu);
-            Debug.Log("QUIT MENU: CloseQuitMenu listener removed!");
+            Debug.Log("QUIT MENU ON DISABLE: CloseQuitMenu listener removed!");
         }
     }
 
@@ -55,7 +55,7 @@ public class QuitMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quitting game...");
+        Debug.Log("QUIT GAME: Quitting game...");
 
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
