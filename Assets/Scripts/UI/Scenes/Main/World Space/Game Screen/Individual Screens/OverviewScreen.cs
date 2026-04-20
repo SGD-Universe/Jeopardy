@@ -47,6 +47,8 @@ public class OverviewScreen : MonoBehaviour
         for (int i = 0; i < MAXIMUM_CATEGORY_PANELS; i++)
         {
             categoryPanel.panelType = GamePanel.PanelType.Category;
+            categoryPanel.panelGroup = 0;
+            categoryPanel.panelNumb = i;
 
             // Code that will fill panel with information from quiz template goes here.
 
@@ -64,6 +66,8 @@ public class OverviewScreen : MonoBehaviour
             {
                 questionPanel.panelType = GamePanel.PanelType.Question;
                 questionPanel.panelPointValue = gamePanelPrefab.panelPointValue;
+                questionPanel.panelGroup = 1;
+                questionPanel.panelNumb = i;
 
                 // Code that will fill panel with information from quiz template goes here.
 
