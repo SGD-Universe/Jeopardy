@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Globalization;
 
-public class GamePanel : MonoBehaviour
+public class GamePTwo : MonoBehaviour
 {
     public enum PanelType
     {
@@ -77,11 +77,11 @@ public class GamePanel : MonoBehaviour
                 break;
             case GameManager.QuizPlayMode.Quiz:
                 SetPanelContentsToQuiz();
-                
+
                 break;
             case GameManager.QuizPlayMode.Editor:
                 SetPanelContentsToEditor();
-                
+
                 break;
         }
 
@@ -89,7 +89,7 @@ public class GamePanel : MonoBehaviour
         switch (panelType)
         {
             case PanelType.Category:
-                
+
                 break;
             case PanelType.Question:
 
@@ -119,7 +119,7 @@ public class GamePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void SetPanelContentsToQuiz()
@@ -171,6 +171,4 @@ public class GamePanel : MonoBehaviour
             Debug.Log("This panel contains a Daily Double!");
         }
     }
-
-    
 }
