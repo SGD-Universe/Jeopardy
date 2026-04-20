@@ -19,19 +19,19 @@ public class QuizMenu : MonoBehaviour
         if (createQuizButton != null)
         {
             createQuizButton.onClick.AddListener(LoadCreateQuizScene);
-            UnityEngine.Debug.Log("QUIZ MENU: LoadCreateQuizScene listener added!");
+            UnityEngine.Debug.Log("QUIZ MENU ON ENABLE: LoadCreateQuizScene listener added!");
         }
 
         if (editQuizButton != null)
         {
             editQuizButton.onClick.AddListener(LoadEditQuizScene);
-            UnityEngine.Debug.Log("QUIZ MENU: LoadEditQuizScene listener added!");
+            UnityEngine.Debug.Log("QUIZ MENU ON ENABLE: LoadEditQuizScene listener added!");
         }
 
         if (importQuizButton != null)
         {
             importQuizButton.onClick.AddListener(ImportQuizFile);
-            UnityEngine.Debug.Log("QUIZ MENU: ImportQuizFile listener added!");
+            UnityEngine.Debug.Log("QUIZ MENU ON ENABLE: ImportQuizFile listener added!");
         }
     }
 
@@ -40,19 +40,19 @@ public class QuizMenu : MonoBehaviour
         if (createQuizButton != null)
         {
             createQuizButton.onClick.RemoveListener(LoadCreateQuizScene);
-            UnityEngine.Debug.Log("QUIZ MENU: LoadCreateQuizScene listener removed!");
+            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: LoadCreateQuizScene listener removed!");
         }
 
         if (editQuizButton != null)
         {
             editQuizButton.onClick.RemoveListener(LoadEditQuizScene);
-            UnityEngine.Debug.Log("QUIZ MENU: LoadEditQuizScene listener removed!");
+            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: LoadEditQuizScene listener removed!");
         }
 
         if (importQuizButton != null)
         {
             importQuizButton.onClick.RemoveListener(ImportQuizFile);
-            UnityEngine.Debug.Log("QUIZ MENU: ImportQuizFile listener removed!");
+            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: ImportQuizFile listener removed!");
         }
     }
 

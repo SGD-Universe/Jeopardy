@@ -16,9 +16,12 @@ public class GameManager : MonoBehaviour
 
     public QuizPlayMode quizPlayMode;
 
-    public float teamOneScore;
-    public float teamTwoScore;
-    public float teamThreeScore;
+    [Range(1, 3)]
+    public int teamCount;
+
+    public int teamOneScore;
+    public int teamTwoScore;
+    public int teamThreeScore;
 
 
     private void Awake()
