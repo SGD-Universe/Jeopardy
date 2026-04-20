@@ -36,7 +36,8 @@ public class GamePanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI categoryNameText;
 
     [Header("Panel Input Fields")]
-
+    private int nothing;
+    
     [Header("Panel Properties")]
     public PanelType panelType;
     public int panelPointValue = 200;
@@ -47,6 +48,15 @@ public class GamePanel : MonoBehaviour
     [Header("Panel States")]
     public bool isClosed; // This state should only be used when the quiz play mode is set to Quiz.
 
+    [Header("Panel Save Data")]
+    public int panelGroup; //determines whether it is a category or question, only here to prevent moving the 'panelType' variable around
+    public int panelNumb; //determines the order in which it belongs in the panels system, which allows the system to know what data to put where
+    public string panelText_Primary;
+    public string panelText_Secondary; //only for question panels
+
+    public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
+    public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
+
     void OnEnable()
     {
         // Have code set for the following combinations:
@@ -54,6 +64,25 @@ public class GamePanel : MonoBehaviour
         // Quiz, question
         // Editor, category
         // Editor, question
+
+        //Loads panel data if there is panel data to be loaded. 
+        //Shouldn't matter whether it's in the quiz editor or elsewhere, just use the  variables to access relevant data.
+        if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
+        {
+            if (panelGroup == 0)
+            {
+                panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Category[panelNumb];
+            }
+            else
+            {
+                panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Question[panelNumb];
+                panelText_Secondary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Answer[panelNumb];
+            }
+        }
+        else
+        {
+            //fills with default information. I'll let someone else figure this out.
+        }
 
         // Check the quiz play mode to display the proper elements
         switch (gameManager.quizPlayMode)
