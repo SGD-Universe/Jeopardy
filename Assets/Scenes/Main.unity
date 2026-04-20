@@ -3628,6 +3628,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6126344404202906423, guid: 882339beb907f1e4087dff611be0d11e, type: 3}
   m_PrefabInstance: {fileID: 7750193551285125616}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &729995379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729995378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fe1f1483e407943a50b41fc9dc1e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &730060418
 GameObject:
   m_ObjectHideFlags: 0
@@ -12682,7 +12694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1943052241}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LoadGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19115,10 +19127,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3131107554319136842, guid: 882339beb907f1e4087dff611be0d11e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6126344404202906423, guid: 882339beb907f1e4087dff611be0d11e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 729995379}
   m_SourcePrefab: {fileID: 100100000, guid: 882339beb907f1e4087dff611be0d11e, type: 3}
 --- !u!222 &7757886585716351741
 CanvasRenderer:
