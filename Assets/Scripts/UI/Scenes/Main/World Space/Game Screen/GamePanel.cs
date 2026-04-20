@@ -59,6 +59,8 @@ public class GamePanel : MonoBehaviour
 
     void OnEnable()
     {
+        SaveSystem = GameObject.Find("SaveGameObject");
+        LoadSystem = GameObject.Find("LoadGameObject");
         // Have code set for the following combinations:
         // Quiz, category
         // Quiz, question
@@ -72,6 +74,7 @@ public class GamePanel : MonoBehaviour
             if (panelGroup == 0)
             {
                 panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Category[panelNumb];
+                categoryNameText.text = panelText_Primary;
             }
             else
             {
