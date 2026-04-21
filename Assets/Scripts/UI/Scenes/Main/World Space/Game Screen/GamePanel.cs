@@ -13,8 +13,7 @@ public class GamePanel : MonoBehaviour
         Question
     }
 
-    [Header("Game Manager Component")]
-    [SerializeField] private GameManager gameManager; // This will get the game mode set by the script.
+    private GameManager gameManager; // This will get the game mode set by the script.
 
     [Header("Panel Object Groups")]
     [SerializeField] private GameObject questionEditorGroup; // The GameObject that groups all objects related to the Create and Edit Quiz mode.
@@ -24,7 +23,7 @@ public class GamePanel : MonoBehaviour
     // By getting the group GameObject, enabling/disabling it will cause it and its children to be enabled/disabled.
 
     [Header("Screens")]
-    [SerializeField] private QuestionPanelScreen questionScreen;
+    [SerializeField] private QuestionPanelScreen questionScreen; // This (at least the object with this component attached) needs to be a prefab.
 
     [Header("Panel Buttons")]
     [SerializeField] private Button editCategoryButton;
@@ -48,80 +47,14 @@ public class GamePanel : MonoBehaviour
     [Header("Panel States")]
     public bool isClosed; // This state should only be used when the quiz play mode is set to Quiz.
 
-    [Header("Panel Save Data")]
-    public int panelGroup; //determines whether it is a category or question, only here to prevent moving the 'panelType' variable around
-    public int panelNumb; //determines the order in which it belongs in the panels system, which allows the system to know what data to put where
-    public string panelText_Primary;
-    public string panelText_Secondary; //only for question panels
+    //[Header("Panel Save Data")]
+    //public int panelGroup; //determines whether it is a category or question, only here to prevent moving the 'panelType' variable around
+    //public int panelNumb; //determines the order in which it belongs in the panels system, which allows the system to know what data to put where
+    //public string panelText_Primary;
+    //public string panelText_Secondary; //only for question panels
 
-    public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
-    public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
-
-    void OnEnable()
-    {
-        // Have code set for the following combinations:
-        // Quiz, category
-        // Quiz, question
-        // Editor, category
-        // Editor, question
-
-        //Loads panel data if there is panel data to be loaded. 
-        //Shouldn't matter whether it's in the quiz editor or elsewhere, just use the  variables to access relevant data.
-        if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
-        {
-            if (panelGroup == 0)
-            {
-                panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Category[panelNumb];
-            }
-            else
-            {
-                panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Question[panelNumb];
-                panelText_Secondary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Answer[panelNumb];
-            }
-        }
-        else
-        {
-            //fills with default information. I'll let someone else figure this out.
-        }
-
-        // Check the quiz play mode to display the proper elements
-        switch (gameManager.quizPlayMode)
-        {
-            case GameManager.QuizPlayMode.None:
-
-                break;
-            case GameManager.QuizPlayMode.Quiz:
-                SetPanelContentsToQuiz();
-                
-                break;
-            case GameManager.QuizPlayMode.Editor:
-                SetPanelContentsToEditor();
-                
-                break;
-        }
-
-        // Check the panel type
-        switch (panelType)
-        {
-            case PanelType.Category:
-                
-                break;
-            case PanelType.Question:
-
-                break;
-        }
-
-        inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
-        inGameButton.onClick.AddListener(CheckIfDailyDouble);
-    }
-
-    void OnDisable()
-    {
-        editCategoryButton.onClick.RemoveAllListeners();
-        editQuestionButton.onClick.RemoveAllListeners();
-
-        inGameButton.onClick.RemoveAllListeners();
-    }
+    //public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
+    //public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
 
     void Awake()
     {
@@ -133,91 +66,172 @@ public class GamePanel : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        // Have code set for the following combinations:
+        // Quiz, category
+        // Quiz, question
+        // Editor, category
+        // Editor, question
+
+        //Loads panel data if there is panel data to be loaded. 
+        //Shouldn't matter whether it's in the quiz editor or elsewhere, just use the  variables to access relevant data.
+        //if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
+        //{
+            //if (panelGroup == 0)
+            //{
+                //panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Category[panelNumb];
+            //}
+            //else
+            //{
+                //panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Question[panelNumb];
+                //panelText_Secondary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Answer[panelNumb];
+            //}
+        //}
+        //else
+        //{
+            //fills with default information. I'll let someone else figure this out.
+        //}
+
+        inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
+        Debug.Log("ON ENABLE: Added the OpenQuestion function to In-Game Button's OnClick event!");
+        inGameButton.onClick.AddListener(CheckIfDailyDouble);
+        Debug.Log("ON ENABLE: Added the CheckIfDailyDouble function to In-Game Button's OnClick event!");
+    }
+
+    void OnDisable()
+    {
+        Debug.Log("ON DISABLE: OnDisable function called!");
+
+        editCategoryButton.onClick.RemoveAllListeners();
+        Debug.Log("ON DISABLE: Removed all functions from Edit Category Button's OnClick event!");
+        editQuestionButton.onClick.RemoveAllListeners();
+        Debug.Log("ON DISABLE: Removed all functions from Edit Question Button's OnClick event!");
+
+        inGameButton.onClick.RemoveAllListeners();
+        Debug.Log("ON DISABLE: Removed all functions from In-Game Button's OnClick event!");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        switch (gameManager.quizPlayMode)
+        gameManager = GameManager.Instance;
+
+        Debug.Log("START: Start function called!");
+
+        // If the Game Manager's game mode is not set to None...
+        if (gameManager.quizPlayMode != GameManager.QuizPlayMode.None)
         {
-            case GameManager.QuizPlayMode.None:
-                Debug.LogWarning("AWAKE PLAY MODE WARNING: The play mode of the game is set to None!");
-                break;
-            case GameManager.QuizPlayMode.Quiz:
-                break;
-            case GameManager.QuizPlayMode.Editor:
-                break;
+            SetUpPanelContents(); // ...set up the panel's contents.
+        }
+        else
+        {
+            Debug.LogWarning("START - GAME PANEL: The Game Manager's game mode is set to None!");
         }
     }
 
-    public void SetPanelContentsToQuiz()
+    public void SetUpPanelContents()
     {
-        if (questionEditorGroup.activeInHierarchy)
+        Debug.Log("SET UP PANEL CONTENTS: Setting up panel's contents!");
+
+        if (gameManager.quizPlayMode == GameManager.QuizPlayMode.Quiz)
         {
-            Debug.Log("PANEL CONTENTS - QUIZ: Question Editor group is active in Hierarchy. Disabling object!");
+            Debug.Log("SET UP PANEL CONTENTS - QUIZ: Game mode is Quiz!");
 
-            questionEditorGroup.SetActive(false);
+            // If the quiz editor group is active in the Hierarchy window...
+            if (questionEditorGroup.activeInHierarchy)
+            {
+                Debug.Log("SET UP PANEL CONTENTS - QUIZ: Question Editor group is active in Hierarchy. Disabling object!");
+
+                questionEditorGroup.SetActive(false); // ...set its active state to false.
+            }
+
+            // Check the panel's type
+            switch (panelType)
+            {
+                case PanelType.Category:
+                    ShowQuizCategory();
+                    break;
+                case PanelType.Question:
+                    ShowQuizQuestion();
+                    break;
+            }
+
+            inGameGroup.SetActive(true);
+
+            Debug.Log("SET UP PANEL CONTENTS - QUIZ: Panel contents set to Quiz mode!");
         }
-
-        switch (panelType)
+        else if (gameManager.quizPlayMode == GameManager.QuizPlayMode.Editor)
         {
-            case PanelType.Category:
-                inGameButton.gameObject.SetActive(false);
-                categoryNameText.gameObject.SetActive(true);
-                Debug.Log("PANEL CONTENTS - QUIZ: Panel type is Category. Showing Category text!");
-                break;
-            case PanelType.Question:
-                categoryNameText.gameObject.SetActive(false);
-                inGameButton.gameObject.SetActive(true);
-                Debug.Log("PANEL CONTENTS - QUIZ: Panel type is Question: Showing Question Button!");
-                break;
+            Debug.Log("SET UP PANEL CONTENTS - EDITOR: Game mode is Editor!");
+
+            // If the in-game group is active in the Hierarchy window...
+            if (inGameGroup.activeInHierarchy)
+            {
+                Debug.Log("SET UP PANEL CONTENTS - EDITOR: Quiz group is active in Hierarchy. Disabling object!");
+
+                inGameGroup.SetActive(false); // ...set its active state to false.
+            }
+
+            // Check the panel's type
+            switch (panelType)
+            {
+                case PanelType.Category:
+                    ShowEditorCategory();
+                    break;
+                case PanelType.Question:
+                    ShowEditorQuestion();
+                    break;
+            }
+
+            questionEditorGroup.SetActive(true);
+
+            Debug.Log("SET UP PANEL CONTENTS - EDITOR: Panel contents set to Editor mode!");
         }
-
-        inGameGroup.SetActive(true);
-
-        Debug.Log("PANEL CONTENTS - QUIZ: Panel contents set to Quiz mode!");
     }
 
-    public void SetPanelContentsToEditor()
+    void ShowQuizCategory()
     {
-        if (inGameGroup.activeInHierarchy)
-        {
-            Debug.Log("PANEL CONTENTS - EDITOR: Quiz group is active in Hierarchy. Disabling object!");
+        inGameButton.gameObject.SetActive(false);
+        categoryNameText.gameObject.SetActive(true);
+        Debug.Log("SHOW QUIZ CATEGORY: Panel type is Category. Showing Category text!");
+    }
 
-            inGameGroup.SetActive(false);
-        }
+    void ShowQuizQuestion()
+    {
+        categoryNameText.gameObject.SetActive(false);
+        inGameButton.gameObject.SetActive(true);
+        Debug.Log("SHOW QUIZ QUESTION: Panel type is Question: Showing Question Button!");
+    }
 
-        switch (panelType)
-        {
-            case PanelType.Category:
-                editQuestionButton.gameObject.SetActive(false);
-                editCategoryButton.gameObject.SetActive(true);
-                Debug.Log("PANEL CONTENTS - EDITOR: Panel type is Category. Showing Edit Category Button!");
-                break;
-            case PanelType.Question:
-                editCategoryButton.gameObject.SetActive(false);
-                editQuestionButton.gameObject.SetActive(true);
-                Debug.Log("PANEL CONTENTS - EDITOR: Panel type is Question. Showing Edit Question Button!");
-                break;
-        }
+    void ShowEditorCategory()
+    {
+        editQuestionButton.gameObject.SetActive(false);
+        editCategoryButton.gameObject.SetActive(true);
+        Debug.Log("SHOW EDITOR CATEGORY: Panel type is Category. Showing Edit Category Button!");
+    }
 
-        questionEditorGroup.SetActive(true);
-
-        Debug.Log("PANEL CONTENTS - EDITOR: Panel contents set to Editor mode!");
+    void ShowEditorQuestion()
+    {
+        editCategoryButton.gameObject.SetActive(false);
+        editQuestionButton.gameObject.SetActive(true);
+        Debug.Log("SHOW EDITOR QUESTION: Panel type is Question. Showing Edit Question Button!");
     }
 
     // This function is for opening the question panel screen when a panel is clicked on.
-    public void OpenQuestion()
+    void OpenQuestion()
     {
         questionScreen.gameObject.SetActive(true);
     }
 
     // This function is for exiting the question panel screen, but does not close the question.
-    public void ExitQuestion()
+    void ExitQuestion()
     {
         questionScreen.gameObject.SetActive(false);
     }
 
     // This function is for closing a question, meaning that in Quiz mode, the question will no longer be accessed for the remainder of a round.
-    public void CloseQuestion()
+    void CloseQuestion()
     {
         if (gameManager.quizPlayMode == GameManager.QuizPlayMode.Quiz)
         {

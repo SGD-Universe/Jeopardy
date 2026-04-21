@@ -1825,7 +1825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ecc66d20195e34195ba531c81f3394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1723439824}
   gamePanelPrefab: {fileID: 6745147319563567732, guid: e9fc8c94f8a0e1c4cae3c78056dcf923, type: 3}
   categoryPanelsGroup: {fileID: 579941726}
   questionPanelsGroup: {fileID: 601689641}
@@ -3010,7 +3009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791140b209409d5429881a7b89a7073d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1723439824}
+  gameManager: {fileID: 1368310859396996684}
   panelQuestionText: {fileID: 1535736471}
   teamButtonsGroup: {fileID: 566848292}
   teamButtonPrefab: {fileID: 4803466630914439247, guid: f259e094dfe9b3a4f913a3ad2fe74389, type: 3}
@@ -7395,7 +7394,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1723439825}
+  - {fileID: 6712414641491627016}
   - {fileID: 175084577}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11807,55 +11806,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1806052654}
   m_SourcePrefab: {fileID: 100100000, guid: 0b6def206cbb132479917416722f5e0a, type: 3}
---- !u!1 &1723439823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1723439825}
-  - component: {fileID: 1723439824}
-  m_Layer: 0
-  m_Name: Game Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1723439824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723439823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10501082dff4c814eb612dc29eb711ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quizPlayMode: 2
-  teamCount: 3
-  teamOneScore: 0
-  teamTwoScore: 0
-  teamThreeScore: 0
---- !u!4 &1723439825
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723439823}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1197938628}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755294515
 GameObject:
   m_ObjectHideFlags: 0
@@ -14803,6 +14753,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1368310859396996684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544110636130342992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10501082dff4c814eb612dc29eb711ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quizPlayMode: 2
+  teamCount: 3
+  teamOneScore: 0
+  teamTwoScore: 0
+  teamThreeScore: 0
 --- !u!224 &1379199698190727465
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17886,6 +17853,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4829860935512151282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &6712414641491627016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544110636130342992}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1197938628}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6726015033274209164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19852,6 +19834,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8544110636130342992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6712414641491627016}
+  - component: {fileID: 1368310859396996684}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &8585274127125298273
 GameObject:
   m_ObjectHideFlags: 0
