@@ -6,6 +6,8 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button loadGameButton;
+    [SerializeField] private Button createEditQuizButton;
+    [SerializeField] private Button settingsButton;
 
     string quizTemplatePath;
     int quizTemplateCount;
@@ -18,6 +20,22 @@ public class MainMenu : MonoBehaviour
         quizTemplateCount = CountQuizTemplateJsonFiles(quizTemplatePath); // Get the number of JSON files in the quiz template path
 
         //Debug.Log("Number of quiz template JSON files in the quiz template folder: " + quizTemplateCount);
+    }
+
+    void OnEnable()
+    {
+        
+    }
+
+    void OnDisable()
+    {
+        newGameButton.onClick.RemoveAllListeners();
+
+        loadGameButton.onClick.RemoveAllListeners();
+
+        createEditQuizButton.onClick.RemoveAllListeners();
+
+        settingsButton.onClick.RemoveAllListeners();
     }
 
     void Start()
