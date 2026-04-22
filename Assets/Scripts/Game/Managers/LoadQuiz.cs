@@ -37,7 +37,6 @@ public class LoadQuiz : MonoBehaviour
         LoadData = JsonUtility.FromJson<BoardLoadData>(QuizLoadData);
         Debug.Log(LoadData.Title + " has been loaded");
 
-        //find objects with a tag that distinguishes the panels, or simply loaded data for them while proving the greenlight to take data from it.
     }
 
     //checks to see if a file has been imported before a the quiz edit screen is pulled up.
