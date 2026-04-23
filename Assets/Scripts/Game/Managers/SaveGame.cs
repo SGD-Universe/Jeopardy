@@ -10,10 +10,10 @@ public class SaveGame : MonoBehaviour
 {
     public GameSaveData SaveData = new GameSaveData();
 
-    public string savedQuizTitle;
-    public string[] savedQuizCategory = new string[6];
-    public string[] savedQuizQuestion = new string[30];
-    public string[] savedQuizAnswer = new string[30];
+    public string savedTitle;
+    public string[] savedCategory = new string[6];
+    public string[] savedQuestion = new string[30];
+    public string[] savedAnswer = new string[30];
     public bool[] isComplete = new bool[30];
     public int[] pointValue = new int[30];
     public bool[] isDailyDouble = new bool[30];
@@ -42,17 +42,20 @@ public class SaveGame : MonoBehaviour
 
     public void SaveGameState()
     {
-        SaveData.Title = savedQuizTitle; //replace with quiz title input
-        string fileName = savedQuizTitle;
+        SaveData.Title = savedTitle;
+        string fileName = savedTitle;
 
         for (int i = 0; i < 6; i++)
         {
-            SaveData.Category[i] = savedQuizCategory[i]; //replace with each game panel under the categories type
+            SaveData.Category[i] = savedCategory[i];
         }
         for (int j = 0; j < 30; j++)
         {
-            SaveData.Question[j] = savedQuizQuestion[j];
-            SaveData.Answer[j] = savedQuizAnswer[j];
+            SaveData.Question[j] = savedQuestion[j];
+            SaveData.Answer[j] = savedAnswer[j];
+            SaveData.Completed[j] = isComplete[j];
+            SaveData.Value[j] = pointValue[j];
+            SaveData.DDouble[j] = isDailyDouble[j];
         }
 
         string QuizSaveData = JsonUtility.ToJson(SaveData);

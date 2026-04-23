@@ -59,6 +59,7 @@ public class OverviewScreen : MonoBehaviour
     void CreateQuestionPanels(GamePanel questionPanel)
     {
         // TODO: Rework code here to just load and instantiate game panels. The Grid Layout Group component in the parent object takes care of the layout.
+        int k = 0;
 
         for (int i = 0; i < MAXIMUM_QUESTION_PANELS_PER_COLUMN; i++)
         {
@@ -67,14 +68,13 @@ public class OverviewScreen : MonoBehaviour
                 questionPanel.panelType = GamePanel.PanelType.Question;
                 questionPanel.panelPointValue = gamePanelPrefab.panelPointValue;
                 questionPanel.panelGroup = 1;
-                questionPanel.panelNumb = i;
-
+                questionPanel.panelNumb = j + k;
                 // Code that will fill panel with information from quiz template goes here.
 
                 GamePanel questionPanelInstance = Instantiate(gamePanelPrefab, questionPanelsGroup.transform);
             }
-
             // Code after a row is completed goes here.
+            k += 6;
         }
     }
 }

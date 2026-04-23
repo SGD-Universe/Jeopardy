@@ -11,9 +11,9 @@ public class LoadGame : MonoBehaviour
 
     public GameLoadData LoadData = new GameLoadData();
 
-    public bool quizLoaded = false;
+    public bool gameLoaded = false;
     public bool fileImported = false;
-    public string importQuizName = "";
+    public string importGameName = "";
     public string importFilePath = "";
 
     [System.Serializable]
@@ -37,7 +37,7 @@ public class LoadGame : MonoBehaviour
         
     }
 
-    public void LoadSavedQuiz()
+    public void LoadSavedGame()
     {
         string filePath = importFilePath;
         string QuizLoadData = File.ReadAllText(importFilePath);
@@ -47,14 +47,29 @@ public class LoadGame : MonoBehaviour
 
     }
 
-    public void DefaultLoad()
+    public void LoadingGame()
+    {
+
+        if (fileImported == true)
+        {
+            LoadSavedGame();
+            gameLoaded = true;
+        }
+        else
+        {
+            gameLoaded = false;
+        }
+
+    }
+
+    public void LoadGameFile()
     {
         string localImport = "";
 
-        if (importQuizName != null || importQuizName != "")
+        if (importGameName != null || importGameName != "")
         {
             Debug.Log("Importing Quiz...");
-            localImport = Application.persistentDataPath + "/QuizTemplates/" + importQuizName + ".json";
+            localImport = Application.persistentDataPath + "/QuizTemplates/" + importGameName + ".json";
             if (File.Exists(localImport) == true)
             {
                 importFilePath = localImport;

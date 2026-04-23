@@ -39,8 +39,8 @@ public class LoadQuiz : MonoBehaviour
 
     }
 
-    //checks to see if a file has been imported before a the quiz edit screen is pulled up.
-    public void DefaultEdit()
+    //checks to see if a file has been imported before the quiz edit screen is pulled up.
+    public void EditingGame()
     {
 
         if (fileImported == true)
@@ -55,7 +55,7 @@ public class LoadQuiz : MonoBehaviour
 
     }
 
-    public void DefaultImport()
+    public void ImportSavedQuiz()
     {
         string localImport = "";
 

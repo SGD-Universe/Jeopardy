@@ -33,12 +33,12 @@ public class SaveQuiz : MonoBehaviour
 
     public void SaveNewQuiz()
     {
-        SaveData.Title = savedQuizTitle; //replace with quiz title input
+        SaveData.Title = savedQuizTitle;
         string fileName = savedQuizTitle;
 
         for (int i = 0; i < 6; i++)
         {
-            SaveData.Category[i] = savedQuizCategory[i]; //replace with each game panel under the categories type
+            SaveData.Category[i] = savedQuizCategory[i];
         }
         for (int j = 0; j < 30; j++)
         {

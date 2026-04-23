@@ -54,8 +54,11 @@ public class GamePanel : MonoBehaviour
     public string panelText_Primary;
     public string panelText_Secondary; //only for question panels
 
+    [Header("Save/Load Objects")]
     public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
     public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
+    public GameObject GameSave;
+    public GameObject GameLoad;
 
     void OnEnable()
     {
@@ -69,6 +72,22 @@ public class GamePanel : MonoBehaviour
 
         //Loads panel data if there is panel data to be loaded. 
         //Shouldn't matter whether it's in the quiz editor or elsewhere, just use the  variables to access relevant data.
+        
+        if (GameLoad.GetComponent<LoadGame>().gameLoaded == true)
+        {
+            if (panelGroup == 0)
+            {
+                panelText_Primary = GameLoad.GetComponent<LoadGame>().LoadData.Category[panelNumb];
+                categoryNameText.text = panelText_Primary;
+            }
+            else
+            {
+                panelText_Primary = GameLoad.GetComponent<LoadGame>().LoadData.Question[panelNumb];
+                panelText_Secondary = GameLoad.GetComponent<LoadGame>().LoadData.Answer[panelNumb];
+                isClosed = GameLoad.GetComponent<LoadGame>().LoadData.Completed[panelNumb];
+                isDailyDouble = GameLoad.GetComponent<LoadGame>().LoadData.DDouble[panelNumb];
+            }
+        }
         if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
         {
             if (panelGroup == 0)
@@ -81,10 +100,6 @@ public class GamePanel : MonoBehaviour
                 panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Question[panelNumb];
                 panelText_Secondary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Answer[panelNumb];
             }
-        }
-        else
-        {
-            //fills with default information. I'll let someone else figure this out.
         }
 
         // Check the quiz play mode to display the proper elements
@@ -139,6 +154,11 @@ public class GamePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SaveSystem = GameObject.Find("SaveQuizObject");
+        LoadSystem = GameObject.Find("LoadQuizObject");
+        GameSave = GameObject.Find("SaveGameObject");
+        GameLoad = GameObject.Find("LoadGameObject");
+
         switch (gameManager.quizPlayMode)
         {
             case GameManager.QuizPlayMode.None:
@@ -257,5 +277,38 @@ public class GamePanel : MonoBehaviour
     void HideGamePanelContents()
     {
         panelContentsGroup.SetActive(false);
+    }
+
+    //Apply this function after panels contents are edited
+    public void SaveContents_Quiz()
+    {
+        switch (panelType)
+        {
+            case PanelType.Category:
+                SaveSystem.GetComponent<SaveQuiz>().savedQuizCategory[panelNumb] = panelText_Primary;
+                break;
+            case PanelType.Question:
+                SaveSystem.GetComponent<SaveQuiz>().savedQuizQuestion[panelNumb] = panelText_Primary;
+                SaveSystem.GetComponent<SaveQuiz>().savedQuizAnswer[panelNumb] = panelText_Secondary;
+                break;
+        }
+    }
+
+    //Apply this function when a 'save game' button is pressed or similar (may require being reassigned elsewhere or given some sort of trigger)
+    public void SaveContents_Game()
+    {
+        switch (panelType)
+        {
+            case PanelType.Category:
+                GameSave.GetComponent<SaveGame>().savedCategory[panelNumb] = panelText_Primary;
+                break;
+            case PanelType.Question:
+                GameSave.GetComponent<SaveGame>().savedQuestion[panelNumb] = panelText_Primary;
+                GameSave.GetComponent<SaveGame>().savedAnswer[panelNumb] = panelText_Secondary;
+                GameSave.GetComponent<SaveGame>().isComplete[panelNumb] = isClosed;
+                //GameSave.GetComponent<SaveGame>().pointValue[panelNumb] =
+                GameSave.GetComponent<SaveGame>().isDailyDouble[panelNumb] = isDailyDouble;
+                break;
+        }
     }
 }
