@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class QuizMenu : MonoBehaviour
 {
+    [Header("Quiz Menu Buttons")]
     public Button createQuizButton;
     public Button editQuizButton;
     public Button importQuizButton;
+    public Button backButton;
 
     void Start()
     {

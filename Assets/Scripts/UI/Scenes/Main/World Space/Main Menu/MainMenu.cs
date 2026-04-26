@@ -4,8 +4,19 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private Button newGameButton;
-    [SerializeField] private Button loadGameButton;
+    [Header("Main Menu Buttons")]
+    public Button newGameButton;
+    public Button loadGameButton;
+    public Button createEditQuizButton;
+    public Button settingsButton;
+    public Button quitButton;
+
+    [Header("Screens")]
+    [SerializeField] private GameObject newGameScreen;
+    [SerializeField] private GameObject loadGameScreen;
+    [SerializeField] private GameObject createEditQuizScreen;
+    [SerializeField] private GameObject settingsScreen;
+    [SerializeField] private GameObject quitScreen;
 
     string quizTemplatePath;
     int quizTemplateCount;
@@ -18,6 +29,37 @@ public class MainMenu : MonoBehaviour
         quizTemplateCount = CountQuizTemplateJsonFiles(quizTemplatePath); // Get the number of JSON files in the quiz template path
 
         //Debug.Log("Number of quiz template JSON files in the quiz template folder: " + quizTemplateCount);
+    }
+
+    void OnEnable()
+    {
+        newGameButton.onClick.AddListener(() => HideMenu(gameObject)); // This will allow functions with parameters to be added into events.
+        newGameButton.onClick.AddListener(() => ShowMenu(newGameScreen));
+
+        loadGameButton.onClick.AddListener(() => HideMenu(gameObject));
+        loadGameButton.onClick.AddListener(() => ShowMenu(loadGameScreen));
+
+        createEditQuizButton.onClick.AddListener(() => HideMenu(gameObject));
+        createEditQuizButton.onClick.AddListener(() => ShowMenu(createEditQuizScreen));
+
+        settingsButton.onClick.AddListener(() => HideMenu(gameObject));
+        settingsButton.onClick.AddListener(() => ShowMenu(settingsScreen));
+
+        quitButton.onClick.AddListener(() => HideMenu(gameObject));
+        quitButton.onClick.AddListener(() => ShowMenu(quitScreen));
+    }
+
+    void OnDisable()
+    {
+        newGameButton.onClick.RemoveAllListeners();
+
+        loadGameButton.onClick.RemoveAllListeners();
+
+        createEditQuizButton.onClick.RemoveAllListeners();
+
+        settingsButton.onClick.RemoveAllListeners();
+
+        quitButton.onClick.RemoveAllListeners();
     }
 
     void Start()
@@ -64,5 +106,15 @@ public class MainMenu : MonoBehaviour
         string[] quizTemplateFiles = Directory.GetFiles(quizTemplateFolderPath, "*.json");
 
         return quizTemplateFiles.Length;
+    }
+
+    void HideMenu(GameObject menuObject)
+    {
+        menuObject.SetActive(false);
+    }
+
+    void ShowMenu(GameObject menuObject)
+    {
+        menuObject.SetActive(true);
     }
 }

@@ -477,7 +477,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2630410084108972883}
-  m_LocalRotation: {x: -0, y: 0.00000002107342, z: 0.00000006322026, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -517,6 +517,12 @@ MonoBehaviour:
   panelPointValue: 200
   isDailyDouble: 0
   isClosed: 0
+  panelGroup: 0
+  panelNumb: 0
+  panelText_Primary: 
+  panelText_Secondary: 
+  SaveSystem: {fileID: 0}
+  LoadSystem: {fileID: 0}
 --- !u!1 &2682120004476964713
 GameObject:
   m_ObjectHideFlags: 0

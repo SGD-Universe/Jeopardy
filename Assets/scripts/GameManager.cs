@@ -24,10 +24,16 @@ public class GameManager : MonoBehaviour
     public int teamThreeScore;
 
 
-    private void Awake()
+    void Awake()
     {
-        if(Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Start is called before the first frame update
