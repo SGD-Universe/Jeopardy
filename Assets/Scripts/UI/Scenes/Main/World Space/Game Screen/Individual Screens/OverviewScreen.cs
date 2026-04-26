@@ -72,6 +72,8 @@ public class OverviewScreen : MonoBehaviour
     {
         // TODO: Rework code here to just load and instantiate game panels. The Grid Layout Group component in the parent object takes care of the layout.
 
+        int k = 0;
+
         for (int i = 0; i < MAXIMUM_QUESTION_PANELS_PER_COLUMN; i++)
         {
             for (int j = 0; j < MAXIMUM_QUESTION_PANELS_PER_ROW; j++)
@@ -86,9 +88,9 @@ public class OverviewScreen : MonoBehaviour
                 questionPanelInstance.panelPointValue = gamePanelPrefab.panelPointValue;
 
                 //questionPanelInstance.panelGroup = 1;
-                //questionPanelInstance.panelNumb = i;
+                //questionPanelInstance.panelNumb = j + k;
             }
-
+            k += 6;
             // Code after a row is completed goes here.
         }
     }

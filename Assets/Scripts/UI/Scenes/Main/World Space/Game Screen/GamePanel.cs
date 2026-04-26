@@ -47,14 +47,17 @@ public class GamePanel : MonoBehaviour
     [Header("Panel States")]
     public bool isClosed; // This state should only be used when the quiz play mode is set to Quiz.
 
-    //[Header("Panel Save Data")]
-    //public int panelGroup; //determines whether it is a category or question, only here to prevent moving the 'panelType' variable around
-    //public int panelNumb; //determines the order in which it belongs in the panels system, which allows the system to know what data to put where
-    //public string panelText_Primary;
-    //public string panelText_Secondary; //only for question panels
+    [Header("Panel Save Data")]
+    public int panelGroup; //determines whether it is a category or question, only here to prevent moving the 'panelType' variable around
+    public int panelNumb; //determines the order in which it belongs in the panels system, which allows the system to know what data to put where
+    public string panelText_Primary;
+    public string panelText_Secondary; //only for question panels
 
-    //public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
-    //public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
+    [Header("Save/Load Objects")]
+    public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
+    public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
+    public GameObject GameSave;
+    public GameObject GameLoad;
 
     void Awake()
     {
@@ -76,22 +79,22 @@ public class GamePanel : MonoBehaviour
 
         //Loads panel data if there is panel data to be loaded. 
         //Shouldn't matter whether it's in the quiz editor or elsewhere, just use the  variables to access relevant data.
-        //if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
-        //{
-            //if (panelGroup == 0)
-            //{
-                //panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Category[panelNumb];
-            //}
-            //else
-            //{
-                //panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Question[panelNumb];
-                //panelText_Secondary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Answer[panelNumb];
-            //}
-        //}
-        //else
-        //{
+        if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
+        {
+            if (panelGroup == 0)
+            {
+                panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Category[panelNumb];
+            }
+            else
+            {
+                panelText_Primary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Question[panelNumb];
+                panelText_Secondary = LoadSystem.GetComponent<LoadQuiz>().LoadData.Answer[panelNumb];
+            }
+        }
+        else
+        {
             //fills with default information. I'll let someone else figure this out.
-        //}
+        }
 
         inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
         Debug.Log("ON ENABLE: Added the OpenQuestion function to In-Game Button's OnClick event!");
@@ -116,6 +119,11 @@ public class GamePanel : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+
+        SaveSystem = GameObject.Find("SaveQuizObject");
+        LoadSystem = GameObject.Find("LoadQuizObject");
+        GameSave = GameObject.Find("SaveGameObject");
+        GameLoad = GameObject.Find("LoadGameObject");
 
         Debug.Log("START: Start function called!");
 
@@ -268,5 +276,37 @@ public class GamePanel : MonoBehaviour
     void HideGamePanelContents()
     {
         panelContentsGroup.SetActive(false);
+    }
+
+    public void SaveContents_Quiz()
+    {
+        switch (panelType)
+        {
+            case PanelType.Category:
+                SaveSystem.GetComponent<SaveQuiz>().savedQuizCategory[panelNumb] = panelText_Primary;
+                break;
+            case PanelType.Question:
+                SaveSystem.GetComponent<SaveQuiz>().savedQuizQuestion[panelNumb] = panelText_Primary;
+                SaveSystem.GetComponent<SaveQuiz>().savedQuizAnswer[panelNumb] = panelText_Secondary;
+                break;
+        }
+    }
+
+    //Apply this function when a 'save game' button is pressed or similar (may require being reassigned elsewhere or given some sort of trigger)
+    public void SaveContents_Game()
+    {
+        switch (panelType)
+        {
+            case PanelType.Category:
+                GameSave.GetComponent<SaveGame>().savedCategory[panelNumb] = panelText_Primary;
+                break;
+            case PanelType.Question:
+                GameSave.GetComponent<SaveGame>().savedQuestion[panelNumb] = panelText_Primary;
+                GameSave.GetComponent<SaveGame>().savedAnswer[panelNumb] = panelText_Secondary;
+                GameSave.GetComponent<SaveGame>().isComplete[panelNumb] = isClosed;
+                //GameSave.GetComponent<SaveGame>().pointValue[panelNumb] =
+                GameSave.GetComponent<SaveGame>().isDailyDouble[panelNumb] = isDailyDouble;
+                break;
+        }
     }
 }
