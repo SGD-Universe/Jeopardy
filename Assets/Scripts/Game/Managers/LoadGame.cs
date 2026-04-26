@@ -6,63 +6,70 @@ using UnityEngine.UI;
 using TMPro;
 using System.Globalization;
 
-public class LoadQuiz : MonoBehaviour
+public class LoadGame : MonoBehaviour
 {
 
-    public BoardLoadData LoadData = new BoardLoadData();
+    public GameLoadData LoadData = new GameLoadData();
 
-    public bool quizLoaded = false;
+    public bool gameLoaded = false;
     public bool fileImported = false;
-    public string importQuizName = "";
+    public string importGameName = "";
     public string importFilePath = "";
 
     [System.Serializable]
-    public class BoardLoadData
+    public class GameLoadData
     {
-        public string Title; 
+        public string Title;
         public string[] Category = new string[6];
         public string[] Question = new string[30];
         public string[] Answer = new string[30];
+        public bool[] Completed = new bool[30];
+        public int[] Value = new int[30]; //might not be neccessary
+        public bool[] DDouble = new bool[30];
+        public int TeamCount = 0;
+        public int Team_1_Score = 0;
+        public int Team_2_Score = 0;
+        public int Team_3_Score = 0;
     }
+    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void LoadSavedQuiz()
+    public void LoadSavedGame()
     {
         string filePath = importFilePath;
         string QuizLoadData = File.ReadAllText(importFilePath);
 
-        LoadData = JsonUtility.FromJson<BoardLoadData>(QuizLoadData);
+        LoadData = JsonUtility.FromJson<GameLoadData>(QuizLoadData);
         Debug.Log(LoadData.Title + " has been loaded");
 
     }
 
-    //checks to see if a file has been imported before the quiz edit screen is pulled up.
-    public void EditingGame()
+    public void LoadingGame()
     {
 
         if (fileImported == true)
         {
-            LoadSavedQuiz();
-            quizLoaded = true;
+            LoadSavedGame();
+            gameLoaded = true;
         }
         else
         {
-            quizLoaded = false;
+            gameLoaded = false;
         }
 
     }
 
-    public void ImportSavedQuiz()
+    public void LoadGameFile()
     {
         string localImport = "";
 
-        if (importQuizName != null || importQuizName != "")
+        if (importGameName != null || importGameName != "")
         {
             Debug.Log("Importing Quiz...");
-            localImport = Application.persistentDataPath + "/QuizTemplates/" + importQuizName + ".json";
+            localImport = Application.persistentDataPath + "/QuizTemplates/" + importGameName + ".json";
             if (File.Exists(localImport) == true)
             {
                 importFilePath = localImport;
@@ -81,11 +88,5 @@ public class LoadQuiz : MonoBehaviour
 
         // This will need file browser functionality later, probably
 
-    }
-
-    public void DefaultRead()
-    {
-        //importQuizName = importField.text;
-        Debug.Log(importQuizName);
     }
 }
