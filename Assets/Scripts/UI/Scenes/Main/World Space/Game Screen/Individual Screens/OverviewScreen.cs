@@ -63,8 +63,8 @@ public class OverviewScreen : MonoBehaviour
 
             categoryPanelInstance.panelType = GamePanel.PanelType.Category;
 
-            //categoryPanelInstance.panelGroup = 0;
-            //categoryPanelInstance.panelNumb = i;
+            categoryPanelInstance.panelGroup = 0;
+            categoryPanelInstance.panelNumb = i;
         }
     }
 
@@ -87,8 +87,8 @@ public class OverviewScreen : MonoBehaviour
                 questionPanelInstance.panelType = GamePanel.PanelType.Question;
                 questionPanelInstance.panelPointValue = gamePanelPrefab.panelPointValue;
 
-                //questionPanelInstance.panelGroup = 1;
-                //questionPanelInstance.panelNumb = j + k;
+                questionPanelInstance.panelGroup = 1;
+                questionPanelInstance.panelNumb = j + k;
             }
             k += 6;
             // Code after a row is completed goes here.
