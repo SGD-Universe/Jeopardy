@@ -489,7 +489,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.65, y: 0.45}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &6745147319563567732
 MonoBehaviour:
@@ -503,7 +503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ccb5641d50b5546a890d6f5c26f91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   questionEditorGroup: {fileID: 7547439694810307925}
   inGameGroup: {fileID: 5835476679499360725}
   panelContentsGroup: {fileID: 3645422129219374084}
@@ -517,12 +516,6 @@ MonoBehaviour:
   panelPointValue: 200
   isDailyDouble: 0
   isClosed: 0
-  panelGroup: 0
-  panelNumb: 0
-  panelText_Primary: 
-  panelText_Secondary: 
-  SaveSystem: {fileID: 0}
-  LoadSystem: {fileID: 0}
 --- !u!1 &2682120004476964713
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,13 +39,15 @@ public class GamePanel : MonoBehaviour
     
     [Header("Panel Properties")]
     public PanelType panelType;
-    public int panelPointValue = 200;
+    public int panelPointValue = 200; // The base point value of each question panel. Will be multiplied based on the row the panel is on.
+    public int panelXCoordinate; // Coordinate system used for keeping track of a panel's placement on the category and question layouts.
+    public int panelYCoordinate;
 
     [Header("Panel Toggles")]
     public bool isDailyDouble;
 
     [Header("Panel States")]
-    public bool isClosed; // This state should only be used when the quiz play mode is set to Quiz.
+    public bool isClosed; // This state should only be used when the game's play mode is set to Quiz.
 
     //[Header("Panel Save Data")]
     //public int panelGroup; //determines whether it is a category or question, only here to prevent moving the 'panelType' variable around
@@ -192,6 +194,8 @@ public class GamePanel : MonoBehaviour
 
     void ShowQuizCategory()
     {
+        panelPointValue = 0; // Category panels do not need points. Added in case a bug somehow adds points to a team's score.
+
         inGameButton.gameObject.SetActive(false);
         categoryNameText.gameObject.SetActive(true);
         Debug.Log("SHOW QUIZ CATEGORY: Panel type is Category. Showing Category text!");
@@ -206,6 +210,8 @@ public class GamePanel : MonoBehaviour
 
     void ShowEditorCategory()
     {
+        panelPointValue = 0;
+
         editQuestionButton.gameObject.SetActive(false);
         editCategoryButton.gameObject.SetActive(true);
         Debug.Log("SHOW EDITOR CATEGORY: Panel type is Category. Showing Edit Category Button!");

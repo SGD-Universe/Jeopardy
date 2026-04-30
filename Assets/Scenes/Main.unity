@@ -3298,7 +3298,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 579941726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -3306,13 +3306,15 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 0.65, y: 0.45}
-  m_Spacing: {x: 0.05, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 6
+  m_ChildAlignment: 0
+  m_Spacing: 0.05
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &587779323
 GameObject:
   m_ObjectHideFlags: 0
@@ -8085,7 +8087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1335663486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8573,7 +8575,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 50
-  field of view: 60.000004
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -8599,8 +8601,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392049985}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.045271445, y: 0.6962848, z: -0.04408779, w: 0.7149785}
-  m_LocalPosition: {x: 7.75595, y: 3.1284456, z: 6.451207}
+  m_LocalRotation: {x: -0.0002449555, y: -0.50746197, z: -0.00014426057, w: 0.86167413}
+  m_LocalPosition: {x: -4.0900497, y: 3.4994454, z: 19.007208}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11424,7 +11426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1684351258
 MonoBehaviour:
   m_ObjectHideFlags: 0

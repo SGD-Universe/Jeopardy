@@ -53,7 +53,7 @@ public class OverviewScreen : MonoBehaviour
 
     void CreateCategoryPanels(GamePanel categoryPanel)
     {
-        for (int i = 0; i < MAXIMUM_CATEGORY_PANELS; i++)
+        for (int x = 0; x < MAXIMUM_CATEGORY_PANELS; x++)
         {
             
 
@@ -62,6 +62,10 @@ public class OverviewScreen : MonoBehaviour
             GamePanel categoryPanelInstance = Instantiate(gamePanelPrefab, categoryPanelsGroup.transform);
 
             categoryPanelInstance.panelType = GamePanel.PanelType.Category;
+            categoryPanelInstance.panelXCoordinate = x;
+            categoryPanelInstance.panelYCoordinate = 0;
+
+            // The y-coordinate for category panels is set to 0 as there is no vertical placement of these panels.
 
             //categoryPanelInstance.panelGroup = 0;
             //categoryPanelInstance.panelNumb = i;
@@ -72,9 +76,9 @@ public class OverviewScreen : MonoBehaviour
     {
         // TODO: Rework code here to just load and instantiate game panels. The Grid Layout Group component in the parent object takes care of the layout.
 
-        for (int i = 0; i < MAXIMUM_QUESTION_PANELS_PER_COLUMN; i++)
+        for (int y = 0; y < MAXIMUM_QUESTION_PANELS_PER_COLUMN; y++)
         {
-            for (int j = 0; j < MAXIMUM_QUESTION_PANELS_PER_ROW; j++)
+            for (int x = 0; x < MAXIMUM_QUESTION_PANELS_PER_ROW; x++)
             {
                 
 
@@ -83,6 +87,8 @@ public class OverviewScreen : MonoBehaviour
                 GamePanel questionPanelInstance = Instantiate(gamePanelPrefab, questionPanelsGroup.transform);
 
                 questionPanelInstance.panelType = GamePanel.PanelType.Question;
+                questionPanelInstance.panelXCoordinate = x;
+                questionPanelInstance.panelYCoordinate = y;
                 questionPanelInstance.panelPointValue = gamePanelPrefab.panelPointValue;
 
                 //questionPanelInstance.panelGroup = 1;

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class SavedGameButton : MonoBehaviour
 {
+    // When this button gets instantiated every time a saved game file is found in the Saved Games folder, tie the appropriate game data to each button.
+
     [Header("Button")]
     [SerializeField] private Button savedGameButton;
 
@@ -36,6 +38,6 @@ public class SavedGameButton : MonoBehaviour
 
     void LoadSelectedGame()
     {
-
+        // Code for loading the game tied to a saved game button goes here.
     }
 }
