@@ -6,7 +6,7 @@ using TMPro;
 
 public class QuestionPanelScreen : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
+    private GameManager gameManager;
 
     [SerializeField] private TextMeshProUGUI panelQuestionText;
 
@@ -18,6 +18,7 @@ public class QuestionPanelScreen : MonoBehaviour
     [SerializeField] private Button closeQuestionButton;
 
     [SerializeField] private GameObject closeQuestionWarningScreen; // TODO: Create a close question warning screen object!
+    [SerializeField] private GameObject answerScreen; // TODO: Create an answer screen object!
 
     void Awake()
     {
@@ -39,6 +40,8 @@ public class QuestionPanelScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.Instance;
+
         CreateTeamButtons(teamButtonPrefab);
     }
 
@@ -54,7 +57,7 @@ public class QuestionPanelScreen : MonoBehaviour
 
     public void CloseQuestionPanelScreen()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void OpenCloseQuestionWarningScreen()

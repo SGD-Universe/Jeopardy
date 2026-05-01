@@ -41,11 +41,11 @@ public class LoadQuizzesMenu : MonoBehaviour
 
     void HideMenu(GameObject menuObject)
     {
-
+        menuObject.SetActive(false);
     }
 
     void ShowMenu(GameObject menuObject)
     {
-
+        menuObject.SetActive(true);
     }
 }
