@@ -8,7 +8,17 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
 
+    void OnEnable()
+    {
+        musicSlider.onValueChanged.AddListener(UpdateMusicVolume);
+        sfxSlider.onValueChanged.AddListener(UpdateSFXVolume);
+    }
 
+    void OnDisable()
+    {
+        musicSlider.onValueChanged.RemoveAllListeners();
+        sfxSlider.onValueChanged.RemoveAllListeners();
+    }
 
     private void Start()
     {
@@ -21,20 +31,18 @@ public class SettingsMenu : MonoBehaviour
         musicSlider.value = PlayerPrefs.GetFloat("musicVolume", 0.5f);
         sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
 
-        UpdateMusicVolume();
-        UpdateSFXVolume();
+        UpdateMusicVolume(musicSlider.value);
+        UpdateSFXVolume(sfxSlider.value);
     }
 
-    public void UpdateMusicVolume()
+    public void UpdateMusicVolume(float volume)
     {
-        float volume = musicSlider.value;
         audioMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
-    public void UpdateSFXVolume()
+    public void UpdateSFXVolume(float volume)
     {
-        float volume = sfxSlider.value;
         audioMixer.SetFloat("sfxVolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("sfxVolume", volume);
     }

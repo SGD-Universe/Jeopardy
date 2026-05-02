@@ -5,16 +5,21 @@ using UnityEngine.UI;
 
 public class QuizMenu : MonoBehaviour
 {
+    // TODO: Clicking on the Create Quiz Button should disable the Main Menu Virtual Camera and load an empty panel grid, ready to be edited.
+
+    /* TODO: Clicking on the Edit Quiz Button should open a menu similar to the Load Quizzes Menu, with quiz template buttons created
+     * depending on the number of quiz templates found in the Quiz Templates folder.
+     */
+
+    /* TODO: Clicking on the Import Quiz Button should open File Explorer (in file select mode) at the Quiz Templates folder. When a file is selected,
+     * disable the Main Menu Virtual Camera, load the panel grid, and load the template data into the respective panels.
+     */
+
     [Header("Quiz Menu Buttons")]
     public Button createQuizButton;
     public Button editQuizButton;
     public Button importQuizButton;
     public Button backButton;
-
-    void Start()
-    {
-        
-    }
 
     void OnEnable()
     {
@@ -35,26 +40,37 @@ public class QuizMenu : MonoBehaviour
             importQuizButton.onClick.AddListener(ImportQuizFile);
             UnityEngine.Debug.Log("QUIZ MENU ON ENABLE: ImportQuizFile listener added!");
         }
+
+        if (backButton != null)
+        {
+
+        }
     }
 
     void OnDisable()
     {
         if (createQuizButton != null)
         {
-            createQuizButton.onClick.RemoveListener(LoadCreateQuizScene);
-            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: LoadCreateQuizScene listener removed!");
+            createQuizButton.onClick.RemoveAllListeners();
+            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: All listeners from Create Quiz Button removed!");
         }
 
         if (editQuizButton != null)
         {
-            editQuizButton.onClick.RemoveListener(LoadEditQuizScene);
-            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: LoadEditQuizScene listener removed!");
+            editQuizButton.onClick.RemoveAllListeners();
+            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: All listeners from Edit Quiz Button removed!");
         }
 
         if (importQuizButton != null)
         {
-            importQuizButton.onClick.RemoveListener(ImportQuizFile);
-            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: ImportQuizFile listener removed!");
+            importQuizButton.onClick.RemoveAllListeners();
+            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: All listeners from Import Quiz Button removed!");
+        }
+
+        if (backButton != null)
+        {
+            backButton.onClick.RemoveAllListeners();
+            UnityEngine.Debug.Log("QUIZ MENU ON DISABLE: All listeners from Back Button removed!");
         }
     }
 

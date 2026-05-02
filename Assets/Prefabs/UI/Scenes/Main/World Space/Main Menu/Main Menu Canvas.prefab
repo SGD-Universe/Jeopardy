@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6148848608008117024}
   m_Layer: 5
-  m_Name: SfxVolume
+  m_Name: Sfx Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5078615408367028369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 2459613589631039685}
   - component: {fileID: 2437828467035848679}
   m_Layer: 5
-  m_Name: SfxVolumeSlider
+  m_Name: Sfx Volume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,19 +404,7 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: UpdateSFXVolume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &724109504424435464
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,7 +562,7 @@ GameObject:
   - component: {fileID: 3286451570653810367}
   - component: {fileID: 1287007137695170655}
   m_Layer: 5
-  m_Name: MusicVolumeText
+  m_Name: Music Volume Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2666,7 +2654,7 @@ GameObject:
   - component: {fileID: 861738901058113455}
   - component: {fileID: 3186167902517581234}
   m_Layer: 5
-  m_Name: MusicVolumeSlider
+  m_Name: Music Volume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2744,19 +2732,7 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: UpdateMusicVolume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4008841923522243921
 GameObject:
   m_ObjectHideFlags: 0
@@ -3888,7 +3864,7 @@ GameObject:
   - component: {fileID: 8892637238317725352}
   - component: {fileID: 899863860009619887}
   m_Layer: 5
-  m_Name: SfxVolumeText
+  m_Name: Sfx Volume Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4524,7 +4500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6332037696598200863}
   m_Layer: 5
-  m_Name: MusicVolume
+  m_Name: Music Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
