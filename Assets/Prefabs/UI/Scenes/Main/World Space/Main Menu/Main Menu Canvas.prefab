@@ -297,7 +297,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5078615408367028369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4834,10 +4834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab6ac5917cb91e40b13b3b74778e712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollViewContentObject: {fileID: 0}
-  savedGameButtonPrefab: {fileID: 0}
-  backButton: {fileID: 0}
-  mainMenuScreen: {fileID: 0}
+  scrollViewContentObject: {fileID: 3343688513282513238}
+  savedGameButtonPrefab: {fileID: 4913617708979471998, guid: 41ca03f0b0be6554bb325141e9af33bc, type: 3}
+  backButton: {fileID: 4528104151262098547}
+  mainMenuScreen: {fileID: 4240587396147396555}
 --- !u!1 &6722935184765487804
 GameObject:
   m_ObjectHideFlags: 0

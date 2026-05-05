@@ -12,8 +12,8 @@ public class SavedGameButton : MonoBehaviour
     [SerializeField] private Button savedGameButton;
 
     [Header("Text Components")]
-    [SerializeField] private TextMeshProUGUI quizNameText;
-    [SerializeField] private TextMeshProUGUI teamScoreText;
+    [SerializeField] private TextMeshProUGUI quizNameText; // The name of the quiz template whose data is tied to the button.
+    [SerializeField] private TextMeshProUGUI teamScoreText; // 
 
     void Awake()
     {

@@ -7,6 +7,7 @@ using System.Globalization;
 
 public class GamePanel : MonoBehaviour
 {
+    // The enumerator that lists the different panel types. Each item is tied to a constant (in this case, Category is equal to 0, and Question is equal to 1).
     public enum PanelType
     {
         Category,
@@ -64,7 +65,7 @@ public class GamePanel : MonoBehaviour
         {
             pointValueText.text = "$" + string.Format(CultureInfo.InvariantCulture, "{0:N0}", panelPointValue); // This will format the text with comma separators.
 
-            Debug.Log("AWAKE GAME PANEL: Panel's point value set and formatted!");
+            Debug.Log("AWAKE - GAME PANEL - PANEL TYPE - QUESTION: Panel's point value set and formatted!");
         }
     }
 
@@ -96,22 +97,22 @@ public class GamePanel : MonoBehaviour
         //}
 
         inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
-        Debug.Log("ON ENABLE: Added the OpenQuestion function to In-Game Button's OnClick event!");
+        Debug.Log("ON ENABLE - GAME PANEL: Added the OpenQuestion function to In-Game Button's OnClick event!");
         inGameButton.onClick.AddListener(CheckIfDailyDouble);
-        Debug.Log("ON ENABLE: Added the CheckIfDailyDouble function to In-Game Button's OnClick event!");
+        Debug.Log("ON ENABLE - GAME PANEL: Added the CheckIfDailyDouble function to In-Game Button's OnClick event!");
     }
 
     void OnDisable()
     {
-        Debug.Log("ON DISABLE: OnDisable function called!");
+        Debug.Log("ON DISABLE - GAME PANEL: OnDisable function called!");
 
         editCategoryButton.onClick.RemoveAllListeners();
-        Debug.Log("ON DISABLE: Removed all functions from Edit Category Button's OnClick event!");
+        Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from Edit Category Button's OnClick event!");
         editQuestionButton.onClick.RemoveAllListeners();
-        Debug.Log("ON DISABLE: Removed all functions from Edit Question Button's OnClick event!");
+        Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from Edit Question Button's OnClick event!");
 
         inGameButton.onClick.RemoveAllListeners();
-        Debug.Log("ON DISABLE: Removed all functions from In-Game Button's OnClick event!");
+        Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from In-Game Button's OnClick event!");
     }
 
     // Start is called before the first frame update
@@ -119,7 +120,7 @@ public class GamePanel : MonoBehaviour
     {
         gameManager = GameManager.Instance;
 
-        Debug.Log("START: Start function called!");
+        Debug.Log("START - GAME PANEL: Start function called!");
 
         // If the Game Manager's game mode is not set to None...
         if (gameManager.quizPlayMode != GameManager.QuizPlayMode.None)
@@ -128,7 +129,7 @@ public class GamePanel : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("START - GAME PANEL: The Game Manager's game mode is set to None!");
+            Debug.LogWarning("START - GAME PANEL - GAME MODE - NONE: The Game Manager's game mode is set to None!");
         }
     }
 

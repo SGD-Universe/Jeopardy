@@ -21,6 +21,9 @@ public class MainMenu : MonoBehaviour
     string quizTemplatePath;
     int quizTemplateCount;
 
+    string savedGamePath;
+    int savedGameCount;
+
     // TODO: Check if the game has at least 1 quiz template. If not, disable the New Game and Load Game buttons because you cannot start a game without one.
 
     void Awake()
@@ -29,6 +32,9 @@ public class MainMenu : MonoBehaviour
         quizTemplateCount = CountQuizTemplateJsonFiles(quizTemplatePath); // Get the number of JSON files in the quiz template path
 
         //Debug.Log("Number of quiz template JSON files in the quiz template folder: " + quizTemplateCount);
+
+        savedGamePath = Application.persistentDataPath + "/SavedGames";
+        savedGameCount = CountSavedGameJsonFiles(savedGamePath);
     }
 
     void OnEnable()
@@ -101,11 +107,34 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    void CreateQuizTemplateFolder(string quizTemplateFolderPath)
+    {
+        if (!Directory.Exists(quizTemplateFolderPath))
+        {
+            Directory.CreateDirectory(quizTemplateFolderPath);
+        }
+    }
+
     int CountQuizTemplateJsonFiles(string quizTemplateFolderPath)
     {
         string[] quizTemplateFiles = Directory.GetFiles(quizTemplateFolderPath, "*.json");
 
         return quizTemplateFiles.Length;
+    }
+
+    void CreateSavedGameFolder(string savedGameFolderPath)
+    {
+        if (!Directory.Exists(savedGameFolderPath))
+        {
+            Directory.CreateDirectory(savedGameFolderPath);
+        }
+    }
+
+    int CountSavedGameJsonFiles(string savedGameFolderPath)
+    {
+        string[] savedGameFiles = Directory.GetFiles(savedGameFolderPath, "*.json");
+
+        return savedGameFiles.Length;
     }
 
     void HideMenu(GameObject menuObject)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,5 +48,10 @@ public class LoadQuizzesMenu : MonoBehaviour
     void ShowMenu(GameObject menuObject)
     {
         menuObject.SetActive(true);
+    }
+
+    void CreateSavedGameButton()
+    {
+        
     }
 }
