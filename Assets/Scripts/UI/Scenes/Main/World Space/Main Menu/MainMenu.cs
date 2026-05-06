@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    GameManager gameManager;
+
     [Header("Main Menu Buttons")]
     public Button newGameButton;
     public Button loadGameButton;
@@ -17,25 +19,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject createEditQuizScreen;
     [SerializeField] private GameObject settingsScreen;
     [SerializeField] private GameObject quitScreen;
-
-    string quizTemplatePath;
-    int quizTemplateCount;
-
-    string savedGamePath;
-    int savedGameCount;
-
-    // TODO: Check if the game has at least 1 quiz template. If not, disable the New Game and Load Game buttons because you cannot start a game without one.
-
-    void Awake()
-    {
-        quizTemplatePath = Application.persistentDataPath + "/QuizTemplates";
-        quizTemplateCount = CountQuizTemplateJsonFiles(quizTemplatePath); // Get the number of JSON files in the quiz template path
-
-        //Debug.Log("Number of quiz template JSON files in the quiz template folder: " + quizTemplateCount);
-
-        savedGamePath = Application.persistentDataPath + "/SavedGames";
-        savedGameCount = CountSavedGameJsonFiles(savedGamePath);
-    }
 
     void OnEnable()
     {
@@ -70,71 +53,29 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        // If the quiz template folder does not exist...
-        if (!Directory.Exists(quizTemplatePath))
+        gameManager = GameManager.Instance;
+
+        if (gameManager.quizTemplateCount <= 0)
         {
-            // ...create a new quiz template folder...
-
-            Directory.CreateDirectory(quizTemplatePath);
-
-            //Debug.Log("Directory was not found. Quiz template folder created at: " + quizTemplatePath);
-        }
-        // ...otherwise...
-        else
-        {
-            // ...move on with the rest of Start()
-
-            //Debug.Log("Quiz template folder already exists at: " + quizTemplatePath);
-        }
-
-        // If there are no quiz template JSON files...
-        if (quizTemplateCount == 0)
-        {
-            // ...disable the New Game and Load Game buttons...
-            //Debug.Log("JSON files are not found in the quiz template folder. Disabling the New Game and Load Game buttons!");
+            // A new game cannot be started without a quiz template.
 
             newGameButton.interactable = false;
-            loadGameButton.interactable = false;
         }
-        // ...otherwise...
         else
         {
-            // ...enable the New Game and Load Game buttons
-            //Debug.Log("JSON files have been found in the quiz template folder. Enabling the New Game and Load Game buttons!");
-
             newGameButton.interactable = true;
+        }
+
+        if (gameManager.savedGameCount <= 0)
+        {
+            // A game cannot be loaded without a saved game file.
+
+            loadGameButton.interactable = false;
+        }
+        else
+        {
             loadGameButton.interactable = true;
         }
-    }
-
-    void CreateQuizTemplateFolder(string quizTemplateFolderPath)
-    {
-        if (!Directory.Exists(quizTemplateFolderPath))
-        {
-            Directory.CreateDirectory(quizTemplateFolderPath);
-        }
-    }
-
-    int CountQuizTemplateJsonFiles(string quizTemplateFolderPath)
-    {
-        string[] quizTemplateFiles = Directory.GetFiles(quizTemplateFolderPath, "*.json");
-
-        return quizTemplateFiles.Length;
-    }
-
-    void CreateSavedGameFolder(string savedGameFolderPath)
-    {
-        if (!Directory.Exists(savedGameFolderPath))
-        {
-            Directory.CreateDirectory(savedGameFolderPath);
-        }
-    }
-
-    int CountSavedGameJsonFiles(string savedGameFolderPath)
-    {
-        string[] savedGameFiles = Directory.GetFiles(savedGameFolderPath, "*.json");
-
-        return savedGameFiles.Length;
     }
 
     void HideMenu(GameObject menuObject)

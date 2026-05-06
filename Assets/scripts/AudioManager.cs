@@ -50,6 +50,8 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
+    // TODO: Move the below functions elsewhere.
+
     public void PlaySoundCorrect()
     {
         sfxSource.PlayOneShot(Correct);
