@@ -53,6 +53,11 @@ public class OverviewScreen : MonoBehaviour
 
     void CreateCategoryPanels(GamePanel categoryPanel)
     {
+        /* Category panel coordinates for context:
+         * (0, 0) is the leftmost category panel
+         * (5, 0) is the rightmost category panel
+         */
+
         for (int x = 0; x < MAXIMUM_CATEGORY_PANELS; x++)
         {
             
@@ -76,6 +81,13 @@ public class OverviewScreen : MonoBehaviour
     {
         // TODO: Rework code here to just load and instantiate game panels. The Grid Layout Group component in the parent object takes care of the layout.
 
+        /* Question panel coordinates for context:
+         * (0, 0) is the top left question panel
+         * (0, 4) is the bottom left question panel
+         * (5, 0) is the top right question panel
+         * (5, 4) is the bottom right question panel
+         */
+
         for (int y = 0; y < MAXIMUM_QUESTION_PANELS_PER_COLUMN; y++)
         {
             for (int x = 0; x < MAXIMUM_QUESTION_PANELS_PER_ROW; x++)
@@ -89,7 +101,13 @@ public class OverviewScreen : MonoBehaviour
                 questionPanelInstance.panelType = GamePanel.PanelType.Question;
                 questionPanelInstance.panelXCoordinate = x;
                 questionPanelInstance.panelYCoordinate = y;
-                questionPanelInstance.panelPointValue = gamePanelPrefab.panelPointValue;
+                questionPanelInstance.panelPointValue = gamePanelPrefab.panelPointValue * (y + 1);
+                questionPanelInstance.pointValueText.text = questionPanelInstance.panelPointValue.ToString();
+
+                questionPanelInstance.FormatPointsText(questionPanelInstance.pointValueText);
+
+                Debug.Log($"Panel Coordinates: ({questionPanelInstance.panelXCoordinate}, {questionPanelInstance.panelYCoordinate})");
+                Debug.Log($"Panel Point Value: {questionPanelInstance.panelPointValue}");
 
                 //questionPanelInstance.panelGroup = 1;
                 //questionPanelInstance.panelNumb = i;

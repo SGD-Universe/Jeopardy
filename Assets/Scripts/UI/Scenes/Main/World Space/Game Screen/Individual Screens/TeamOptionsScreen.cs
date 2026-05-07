@@ -25,9 +25,9 @@ public class TeamOptionsScreen : MonoBehaviour
 
     void OnEnable()
     {
-        //correctButton.onClick.AddListener();
-
-        //incorrectButton.onClick.AddListener();
+        correctButton.onClick.AddListener(RewardTeam);
+        
+        incorrectButton.onClick.AddListener(PenalizeTeam);
 
         cancelButton.onClick.AddListener(CloseTeamOptionsScreen);
     }
@@ -47,11 +47,21 @@ public class TeamOptionsScreen : MonoBehaviour
         
     }
 
+    public void RewardTeam()
+    {
+        selectedGamePanel.AddPoints(selectedGamePanel.panelPointValue, selectedTeamButton.linkedTeam);
+    }
+
+    public void PenalizeTeam()
+    {
+        selectedGamePanel.SubtractPoints(selectedGamePanel.panelPointValue, selectedTeamButton.linkedTeam);
+    }
+
     public void CloseTeamOptionsScreen()
     {
-        if (this.gameObject.activeInHierarchy)
+        if (gameObject.activeInHierarchy)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

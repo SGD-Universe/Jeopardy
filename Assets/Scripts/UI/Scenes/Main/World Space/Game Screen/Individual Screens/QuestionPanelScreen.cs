@@ -49,9 +49,9 @@ public class QuestionPanelScreen : MonoBehaviour
     {
         for (int i = 0; i < gameManager.teamCount; i++)
         {
-            // Code that will tie teams to each team button goes here.
-
             TeamButton teamButtonInstance = Instantiate(teamButtonPrefab, teamButtonsGroup.transform);
+
+            // Code that will set up team button instances goes here.
         }
     }
 
@@ -62,6 +62,6 @@ public class QuestionPanelScreen : MonoBehaviour
 
     public void OpenCloseQuestionWarningScreen()
     {
-
+        closeQuestionWarningScreen.SetActive(true);
     }
 }

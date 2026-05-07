@@ -32,7 +32,7 @@ public class GamePanel : MonoBehaviour
     [SerializeField] private Button inGameButton; // The button used for showing the point value and question during a game.
 
     [Header("Panel Text")]
-    [SerializeField] private TextMeshProUGUI pointValueText;
+    public TextMeshProUGUI pointValueText;
     [SerializeField] private TextMeshProUGUI categoryNameText;
 
     [Header("Panel Input Fields")]
@@ -63,9 +63,9 @@ public class GamePanel : MonoBehaviour
     {
         if (panelType == PanelType.Question)
         {
-            pointValueText.text = "$" + string.Format(CultureInfo.InvariantCulture, "{0:N0}", panelPointValue); // This will format the text with comma separators.
+            FormatPointsText(pointValueText);
 
-            Debug.Log("AWAKE - GAME PANEL - PANEL TYPE - QUESTION: Panel's point value set and formatted!");
+            //Debug.Log("AWAKE - GAME PANEL - PANEL TYPE - QUESTION: Panel's point value set and formatted!");
         }
     }
 
@@ -97,22 +97,22 @@ public class GamePanel : MonoBehaviour
         //}
 
         inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
-        Debug.Log("ON ENABLE - GAME PANEL: Added the OpenQuestion function to In-Game Button's OnClick event!");
+        //Debug.Log("ON ENABLE - GAME PANEL: Added the OpenQuestion function to In-Game Button's OnClick event!");
         inGameButton.onClick.AddListener(CheckIfDailyDouble);
-        Debug.Log("ON ENABLE - GAME PANEL: Added the CheckIfDailyDouble function to In-Game Button's OnClick event!");
+        //Debug.Log("ON ENABLE - GAME PANEL: Added the CheckIfDailyDouble function to In-Game Button's OnClick event!");
     }
 
     void OnDisable()
     {
-        Debug.Log("ON DISABLE - GAME PANEL: OnDisable function called!");
+        //Debug.Log("ON DISABLE - GAME PANEL: OnDisable function called!");
 
         editCategoryButton.onClick.RemoveAllListeners();
-        Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from Edit Category Button's OnClick event!");
+        //Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from Edit Category Button's OnClick event!");
         editQuestionButton.onClick.RemoveAllListeners();
-        Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from Edit Question Button's OnClick event!");
+        //Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from Edit Question Button's OnClick event!");
 
         inGameButton.onClick.RemoveAllListeners();
-        Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from In-Game Button's OnClick event!");
+        //Debug.Log("ON DISABLE - GAME PANEL: Removed all functions from In-Game Button's OnClick event!");
     }
 
     // Start is called before the first frame update
@@ -120,7 +120,7 @@ public class GamePanel : MonoBehaviour
     {
         gameManager = GameManager.Instance;
 
-        Debug.Log("START - GAME PANEL: Start function called!");
+        //Debug.Log("START - GAME PANEL: Start function called!");
 
         // If the Game Manager's game mode is not set to None...
         if (gameManager.quizPlayMode != GameManager.QuizPlayMode.None)
@@ -135,16 +135,16 @@ public class GamePanel : MonoBehaviour
 
     public void SetUpPanelContents()
     {
-        Debug.Log("SET UP PANEL CONTENTS: Setting up panel's contents!");
+        //Debug.Log("SET UP PANEL CONTENTS: Setting up panel's contents!");
 
         if (gameManager.quizPlayMode == GameManager.QuizPlayMode.Quiz)
         {
-            Debug.Log("SET UP PANEL CONTENTS - QUIZ: Game mode is Quiz!");
+            //Debug.Log("SET UP PANEL CONTENTS - QUIZ: Game mode is Quiz!");
 
             // If the quiz editor group is active in the Hierarchy window...
             if (questionEditorGroup.activeInHierarchy)
             {
-                Debug.Log("SET UP PANEL CONTENTS - QUIZ: Question Editor group is active in Hierarchy. Disabling object!");
+                //Debug.Log("SET UP PANEL CONTENTS - QUIZ: Question Editor group is active in Hierarchy. Disabling object!");
 
                 questionEditorGroup.SetActive(false); // ...set its active state to false.
             }
@@ -162,16 +162,16 @@ public class GamePanel : MonoBehaviour
 
             inGameGroup.SetActive(true);
 
-            Debug.Log("SET UP PANEL CONTENTS - QUIZ: Panel contents set to Quiz mode!");
+            //Debug.Log("SET UP PANEL CONTENTS - QUIZ: Panel contents set to Quiz mode!");
         }
         else if (gameManager.quizPlayMode == GameManager.QuizPlayMode.Editor)
         {
-            Debug.Log("SET UP PANEL CONTENTS - EDITOR: Game mode is Editor!");
+            //Debug.Log("SET UP PANEL CONTENTS - EDITOR: Game mode is Editor!");
 
             // If the in-game group is active in the Hierarchy window...
             if (inGameGroup.activeInHierarchy)
             {
-                Debug.Log("SET UP PANEL CONTENTS - EDITOR: Quiz group is active in Hierarchy. Disabling object!");
+                //Debug.Log("SET UP PANEL CONTENTS - EDITOR: Quiz group is active in Hierarchy. Disabling object!");
 
                 inGameGroup.SetActive(false); // ...set its active state to false.
             }
@@ -189,7 +189,7 @@ public class GamePanel : MonoBehaviour
 
             questionEditorGroup.SetActive(true);
 
-            Debug.Log("SET UP PANEL CONTENTS - EDITOR: Panel contents set to Editor mode!");
+            //Debug.Log("SET UP PANEL CONTENTS - EDITOR: Panel contents set to Editor mode!");
         }
     }
 
@@ -275,5 +275,10 @@ public class GamePanel : MonoBehaviour
     void HideGamePanelContents()
     {
         panelContentsGroup.SetActive(false);
+    }
+
+    public void FormatPointsText(TextMeshProUGUI pointsText)
+    {
+        pointsText.text = "$" + string.Format(CultureInfo.InvariantCulture, "{0:N0}", panelPointValue); // This will format the text with comma separators.
     }
 }

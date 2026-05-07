@@ -14731,11 +14731,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10501082dff4c814eb612dc29eb711ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quizPlayMode: 2
+  quizPlayMode: 1
   teamCount: 3
   teamOneScore: 0
   teamTwoScore: 0
   teamThreeScore: 0
+  quizTemplateCount: 0
+  savedGameCount: 0
 --- !u!224 &1379199698190727465
 RectTransform:
   m_ObjectHideFlags: 0
