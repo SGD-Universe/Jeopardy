@@ -1,2 +1,25 @@
 fileFormatVersion: 2
 guid: b52fdfc9fd39449b08b90fb0e98fafbc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - audioMixer: {instanceID: 0}
+  - musicSource: {instanceID: 0}
+  - sfxSource: {instanceID: 0}
+  - Buzzer: {fileID: 8300000, guid: 1e8e807a36d4a4783990077fe6810b98, type: 3}
+  - Correct: {fileID: 8300000, guid: ab42ac348ee27ed4a8d909d506b6d2ea, type: 3}
+  - Incorrect: {fileID: 8300000, guid: 11740a6ab8c2c4bf89d6ce0fe7894c5a, type: 3}
+  - IncorrectBassBoosted: {fileID: 8300000, guid: cc769bbb79aef4c3ea124474b3aa1390, type: 3}
+  - MusEditor: {instanceID: 0}
+  - MusJeopardyTheme: {fileID: 8300000, guid: 7a6abb1e03f434f4db74c9463cde4c35, type: 3}
+  - MusMainMenu: {fileID: 8300000, guid: fb8eb3cc57a4d044780718f181fbaf33, type: 3}
+  - MusQuizGame: {fileID: 8300000, guid: 67baab53fbb7c42458548e0f2258b583, type: 3}
+  - QuestionReveal: {fileID: 8300000, guid: 336b70faf9df4d744a04bcb369b89157, type: 3}
+  - QuizIntro: {fileID: 8300000, guid: 7ac22f4016f093b448ae54dd792c71ff, type: 3}
+  - WinClapping: {fileID: 8300000, guid: 9aa81f9486c7492469daef6ef5ca1911, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
