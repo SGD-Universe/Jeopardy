@@ -5158,6 +5158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10501082dff4c814eb612dc29eb711ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quizPlayMode: 0
+  teamCount: 1
   teamOneScore: 0
   teamTwoScore: 0
   teamThreeScore: 0
@@ -7863,17 +7865,17 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 478d81cbe51272346a0c7ac9c4146522, type: 2}
   musicSource: {fileID: 732623176}
   sfxSource: {fileID: 682076635}
-  Buzzer: {fileID: 0}
+  Buzzer: {fileID: 8300000, guid: 1e8e807a36d4a4783990077fe6810b98, type: 3}
   Correct: {fileID: 8300000, guid: ab42ac348ee27ed4a8d909d506b6d2ea, type: 3}
   Incorrect: {fileID: 8300000, guid: 11740a6ab8c2c4bf89d6ce0fe7894c5a, type: 3}
-  IncorrectBassBoosted: {fileID: 0}
-  MusEditor: {fileID: 0}
-  MusJeopardyTheme: {fileID: 0}
-  MusMainMenu: {fileID: 0}
-  MusQuizGame: {fileID: 0}
-  QuestionReveal: {fileID: 0}
-  QuizIntro: {fileID: 0}
-  WinClapping: {fileID: 0}
+  IncorrectBassBoosted: {fileID: 8300000, guid: cc769bbb79aef4c3ea124474b3aa1390, type: 3}
+  MusEditor: {fileID: 8300000, guid: c0dc6f35b70780a418ade555ab3b1903, type: 3}
+  MusJeopardyTheme: {fileID: 8300000, guid: ebd0b361ab448da49b8c0543feec6bec, type: 3}
+  MusMainMenu: {fileID: 8300000, guid: fb8eb3cc57a4d044780718f181fbaf33, type: 3}
+  MusQuizGame: {fileID: 8300000, guid: 67baab53fbb7c42458548e0f2258b583, type: 3}
+  QuestionReveal: {fileID: 8300000, guid: 336b70faf9df4d744a04bcb369b89157, type: 3}
+  QuizIntro: {fileID: 8300000, guid: 7ac22f4016f093b448ae54dd792c71ff, type: 3}
+  WinClapping: {fileID: 8300000, guid: 9aa81f9486c7492469daef6ef5ca1911, type: 3}
 --- !u!4 &2126464394
 Transform:
   m_ObjectHideFlags: 0
