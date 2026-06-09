@@ -130,6 +130,7 @@ public class MonitorPlane : MonoBehaviour
             isFullscreen = true;
             isHovered = false;
 
+            // this code plays when editing the questions
             if(isEditable)
             {
                 primaryInputField.interactable = true;
