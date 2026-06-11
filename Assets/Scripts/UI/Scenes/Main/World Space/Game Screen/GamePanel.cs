@@ -207,7 +207,8 @@ public class GamePanel : MonoBehaviour
     // This function is for opening the question panel screen when a panel is clicked on.
     public void OpenQuestion()
     {
-        questionScreen.gameObject.SetActive(true);
+        questionScreen.gameObject.SetActive
+            (true);
     }
 
     // This function is for exiting the question panel screen, but does not close the question.
