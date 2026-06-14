@@ -1,7 +1,10 @@
+using SFB;
 using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class QuizMenu : MonoBehaviour
 {
@@ -70,16 +73,15 @@ public class QuizMenu : MonoBehaviour
     {
         string targetApplication = "explorer.exe";
         string quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
-
-        UnityEngine.Debug.Log("Import Quiz File clicked - feature to be implemented");
+        var paths = StandaloneFileBrowser.OpenFilePanel("Quizzes", Application.persistentDataPath + "/QuizTemplates", "json", false);
+        //UnityEngine.Debug.Log("Import Quiz File clicked - feature to be implemented"); *Solved now needs to be connected with the jeopardy board
         // This will need file browser functionality later
 
-        // TODO: Open the File Explorer into the quiz template folder path when the respective button is pressed
 
-        Process.Start(targetApplication, $"/select,\"" + quizTemplateFolderPath + "\"");
+        //Process.Start(targetApplication, $"/select,\"" + quizTemplateFolderPath + "\"");
 
         UnityEngine.Debug.Log(targetApplication + " opened to file path: " + quizTemplateFolderPath);
 
-        // Opens the File Explorer, but does not take the player to the quiz templates folder and does not let the player to select a quiz template file
+        
     }
 }
