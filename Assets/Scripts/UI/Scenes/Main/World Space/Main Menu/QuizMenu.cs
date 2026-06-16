@@ -1,5 +1,6 @@
 using SFB;
 using System.Diagnostics;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,10 +13,8 @@ public class QuizMenu : MonoBehaviour
     public Button editQuizButton;
     public Button importQuizButton;
 
-    void Start()
-    {
-        
-    }
+    [Header("UI Reference")]
+    public LoadQuizzesMenu loadQuizzesMenu;
 
     void OnEnable()
     {
@@ -71,17 +70,45 @@ public class QuizMenu : MonoBehaviour
 
     public void ImportQuizFile()
     {
-        string targetApplication = "explorer.exe";
-        string quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
-        var paths = StandaloneFileBrowser.OpenFilePanel("Quizzes", Application.persistentDataPath + "/QuizTemplates", "json", false);
+        //string targetApplication = "explorer.exe";
+        string quizTemplateFolderPath = Application.streamingAssetsPath + "/QuizTemplates";
+        if (!Directory.Exists(quizTemplateFolderPath))
+        {
+            Directory.CreateDirectory(quizTemplateFolderPath);
+            UnityEngine.Debug.Log("Directory created");
+        }
+        var paths = StandaloneFileBrowser.OpenFilePanel("Quizzes", Application.streamingAssetsPath + "/QuizTemplates", "json", false);
         //UnityEngine.Debug.Log("Import Quiz File clicked - feature to be implemented"); *Solved now needs to be connected with the jeopardy board
         // This will need file browser functionality later
+        if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
+        {
+            string selectedFilePath = paths[0];
+            string fileName = Path.GetFileName(selectedFilePath);
+            string destinationPath = Path.Combine(quizTemplateFolderPath, fileName);
+            try
+            {
+                File.Copy(selectedFilePath, destinationPath, true);
+                UnityEngine.Debug.Log("Quiz imported successfully to: " + destinationPath);
+
+                if (loadQuizzesMenu != null)
+                {
+                    loadQuizzesMenu.PopulateQuizList();
+                }
+                else
+                {
+                    UnityEngine.Debug.LogError("LoadQuizzesMenu reference is missing on QuizMenu script!");
+                }
+            }
 
 
-        //Process.Start(targetApplication, $"/select,\"" + quizTemplateFolderPath + "\"");
+            catch (UnityException e)
+            {
+                UnityEngine.Debug.LogError("Failed to copy quiz file: " + e.Message);
+            }
 
-        UnityEngine.Debug.Log(targetApplication + " opened to file path: " + quizTemplateFolderPath);
 
-        
+
+
+        }
     }
 }
