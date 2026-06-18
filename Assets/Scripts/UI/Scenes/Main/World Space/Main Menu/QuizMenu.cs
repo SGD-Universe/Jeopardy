@@ -1,7 +1,4 @@
-using SFB;
-using System.Diagnostics;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -70,45 +67,21 @@ public class QuizMenu : MonoBehaviour
 
     public void ImportQuizFile()
     {
-        //string targetApplication = "explorer.exe";
         string quizTemplateFolderPath = Application.streamingAssetsPath + "/QuizTemplates";
         if (!Directory.Exists(quizTemplateFolderPath))
         {
             Directory.CreateDirectory(quizTemplateFolderPath);
             UnityEngine.Debug.Log("Directory created");
         }
-        var paths = StandaloneFileBrowser.OpenFilePanel("Quizzes", Application.streamingAssetsPath + "/QuizTemplates", "json", false);
-        //UnityEngine.Debug.Log("Import Quiz File clicked - feature to be implemented"); *Solved now needs to be connected with the jeopardy board
-        // This will need file browser functionality later
-        if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
+
+        // Refresh the scroll view with all quizzes in the folder
+        if (loadQuizzesMenu != null)
         {
-            string selectedFilePath = paths[0];
-            string fileName = Path.GetFileName(selectedFilePath);
-            string destinationPath = Path.Combine(quizTemplateFolderPath, fileName);
-            try
-            {
-                File.Copy(selectedFilePath, destinationPath, true);
-                UnityEngine.Debug.Log("Quiz imported successfully to: " + destinationPath);
-
-                if (loadQuizzesMenu != null)
-                {
-                    loadQuizzesMenu.PopulateQuizList();
-                }
-                else
-                {
-                    UnityEngine.Debug.LogError("LoadQuizzesMenu reference is missing on QuizMenu script!");
-                }
-            }
-
-
-            catch (UnityException e)
-            {
-                UnityEngine.Debug.LogError("Failed to copy quiz file: " + e.Message);
-            }
-
-
-
-
+            loadQuizzesMenu.PopulateQuizList();
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("LoadQuizzesMenu reference is missing on QuizMenu script!");
         }
     }
 }
