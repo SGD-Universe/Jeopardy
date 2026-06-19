@@ -226,7 +226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7991684166783137348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4900,6 +4900,7 @@ MonoBehaviour:
   sR: {fileID: 0}
   content: {fileID: 0}
   quizButtonPrefab: {fileID: 0}
+  cameraManager: {fileID: 0}
 --- !u!1 &6169394620102148396
 GameObject:
   m_ObjectHideFlags: 0
@@ -6149,6 +6150,7 @@ MonoBehaviour:
   sR: {fileID: 0}
   content: {fileID: 0}
   quizButtonPrefab: {fileID: 0}
+  cameraManager: {fileID: 0}
 --- !u!1 &8572230494421037870
 GameObject:
   m_ObjectHideFlags: 0
