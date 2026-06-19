@@ -13,6 +13,9 @@ public class LoadQuizzesMenu : MonoBehaviour
     [Header("Quiz List Setup")]
     public GameObject quizButtonPrefab; // A button prefab representing a single quiz item
 
+    [Header("Camera")]
+    public CameraManager cameraManager; // Drag the CameraManager from the scene
+
     void Start()
     {
         // Populate the list when the menu starts up
@@ -87,6 +90,16 @@ public class LoadQuizzesMenu : MonoBehaviour
             
             // Trigger loading operations or proceed to the game
             loadQuiz.LoadSavedQuiz();
+
+            // Transition the camera to the game board
+            if (cameraManager != null)
+            {
+                cameraManager.PerformTransitionToGameScreen();
+            }
+            else
+            {
+                Debug.LogWarning("CameraManager reference is missing on LoadQuizzesMenu!");
+            }
         }
     }
 }

@@ -7,7 +7,10 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
     // Second camera looking at game board
-    [SerializeField] private CinemachineVirtualCamera virtualCamera2;
+    [SerializeField] private CinemachineVirtualCamera gameScreenVC;
+
+    // Third camera looking at contestants
+    [SerializeField] private CinemachineVirtualCamera contestantsVC;
 
     //Current GameObject virtualCamera is looking at
     [SerializeField] private GameObject currentLookAt;
@@ -18,10 +21,14 @@ public class CameraManager : MonoBehaviour
     //game board Screen
     [SerializeField] private GameObject gameScreen;
 
+    //contestants Screen
+    [SerializeField] private GameObject contestantsScreen;
+
     void Awake()
     {
         virtualCamera.Priority = 1;
-        virtualCamera2.Priority = 0;
+        gameScreenVC.Priority = 0;
+        contestantsVC.Priority = 0;
     }
 
     // Start is called before the first frame update
@@ -49,13 +56,25 @@ public class CameraManager : MonoBehaviour
         //Camera will look at the game screen now.
         currentLookAt = gameScreen;
         virtualCamera.Priority = 0;
-        virtualCamera2.Priority = 1;
-        //ExperimentalGameScreen.Instance.BeginGame();
+        gameScreenVC.Priority = 1;
+        contestantsVC.Priority = 0;
+    }
+
+    // Transition to contestants view
+    public void PerformTransitionToContestants()
+    {
+        currentLookAt = contestantsScreen;
+        virtualCamera.Priority = 0;
+        gameScreenVC.Priority = 0;
+        contestantsVC.Priority = 1;
     }
 
     //Currently really rough, will jump back to menuScreen right now, should be able 
     public void PerformTransitionGoback()
     {
         currentLookAt = menuScreen;
+        virtualCamera.Priority = 1;
+        gameScreenVC.Priority = 0;
+        contestantsVC.Priority = 0;
     }
 }
