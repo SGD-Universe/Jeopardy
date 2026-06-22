@@ -57,6 +57,18 @@ public class GamePanel : MonoBehaviour
     public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
     public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
 
+    /// <summary>
+    /// Injects scene-object references that cannot live on a prefab.
+    /// Must be called while the instance is still disabled (before OnEnable fires).
+    /// </summary>
+    public void Initialize(GameManager manager, QuestionPanelScreen qScreen, GameObject saveSystem, GameObject loadSystem)
+    {
+        gameManager = manager;
+        questionScreen = qScreen;
+        SaveSystem = saveSystem;
+        LoadSystem = loadSystem;
+    }
+
     void OnEnable()
     {
         // Have code set for the following combinations:
