@@ -14,15 +14,10 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
-        quizTemplatePath = Application.persistentDataPath + "/QuizTemplates";
+        quizTemplatePath = Application.streamingAssetsPath + "/QuizTemplates";
         quizTemplateCount = CountQuizTemplateJsonFiles(quizTemplatePath); // Get the number of JSON files in the quiz template path
 
-        //Debug.Log("Number of quiz template JSON files in the quiz template folder: " + quizTemplateCount);
-    }
-
-    void Start()
-    {
-        // If the quiz template folder does not exist...
+                // If the quiz template folder does not exist...
         if (!Directory.Exists(quizTemplatePath))
         {
             // ...create a new quiz template folder...
@@ -39,6 +34,10 @@ public class MainMenu : MonoBehaviour
             //Debug.Log("Quiz template folder already exists at: " + quizTemplatePath);
         }
 
+    }
+
+    void Start()
+    {
         // If there are no quiz template JSON files...
         if (quizTemplateCount == 0)
         {
