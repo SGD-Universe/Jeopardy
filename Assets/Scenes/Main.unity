@@ -7612,6 +7612,7 @@ Transform:
   - {fileID: 1723439825}
   - {fileID: 175084577}
   - {fileID: 1851956720}
+  - {fileID: 2032752687}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1199784909
@@ -8344,7 +8345,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 1
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 1359926141}
   m_Follow: {fileID: 0}
@@ -11661,11 +11662,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 986749409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1680541490 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8370b2156b87f304da77ac0b2499fe47, type: 3}
-  m_PrefabInstance: {fileID: 1504850451}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1684351257
 GameObject:
   m_ObjectHideFlags: 0
@@ -11682,7 +11678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1684351258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11699,7 +11695,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 5
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 953138031}
   m_Follow: {fileID: 0}
@@ -12494,13 +12490,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff60dd7c446c8a04f96b6dbfccdab2e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 1335663486}
+  mainMenuVC: {fileID: 1335663486}
   gameScreenVC: {fileID: 1684351258}
   contestantsVC: {fileID: 2094674262}
   currentLookAt: {fileID: 960876994793786930}
-  menuScreen: {fileID: 1993578017}
-  gameScreen: {fileID: 1680541490}
-  contestantsScreen: {fileID: 1392049985}
+  menuScreen: {fileID: 1335663485}
+  gameScreen: {fileID: 1684351257}
+  contestantsScreen: {fileID: 2094674260}
 --- !u!1 &1887038434
 GameObject:
   m_ObjectHideFlags: 0
@@ -13549,6 +13545,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 738330475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2032752686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2032752687}
+  - component: {fileID: 2032752688}
+  m_Layer: 0
+  m_Name: Quiz Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2032752687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032752686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1197938628}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2032752688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032752686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ef6d9de47a2ea428e2c53060135b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadData:
+    columns: []
+  quizLoaded: 0
+  fileImported: 0
+  importQuizName: 
+  importFilePath: 
 --- !u!1 &2033623777
 GameObject:
   m_ObjectHideFlags: 0
@@ -13741,7 +13787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2094674261
 Transform:
   m_ObjectHideFlags: 0
@@ -13774,7 +13820,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 5
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}

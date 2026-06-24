@@ -4,7 +4,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     //Used to refrence the virtualCamera used to guide the camera
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera mainMenuVC;
 
     // Second camera looking at game board
     [SerializeField] private CinemachineVirtualCamera gameScreenVC;
@@ -26,7 +26,7 @@ public class CameraManager : MonoBehaviour
 
     void Awake()
     {
-        virtualCamera.Priority = 1;
+        mainMenuVC.Priority = 1;
         gameScreenVC.Priority = 0;
         contestantsVC.Priority = 0;
     }
@@ -41,7 +41,7 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         //Camera will look at whichever object is made currentLookAt
-        virtualCamera.LookAt = currentLookAt.transform;
+        mainMenuVC.LookAt = currentLookAt.transform;
 
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -55,7 +55,7 @@ public class CameraManager : MonoBehaviour
     {
         //Camera will look at the game screen now.
         currentLookAt = gameScreen;
-        virtualCamera.Priority = 0;
+        mainMenuVC.Priority = 0;
         gameScreenVC.Priority = 1;
         contestantsVC.Priority = 0;
     }
@@ -64,7 +64,7 @@ public class CameraManager : MonoBehaviour
     public void PerformTransitionToContestants()
     {
         currentLookAt = contestantsScreen;
-        virtualCamera.Priority = 0;
+        mainMenuVC.Priority = 0;
         gameScreenVC.Priority = 0;
         contestantsVC.Priority = 1;
     }
@@ -73,7 +73,7 @@ public class CameraManager : MonoBehaviour
     public void PerformTransitionGoback()
     {
         currentLookAt = menuScreen;
-        virtualCamera.Priority = 1;
+        mainMenuVC.Priority = 1;
         gameScreenVC.Priority = 0;
         contestantsVC.Priority = 0;
     }

@@ -69,6 +69,64 @@ public class GamePanel : MonoBehaviour
         LoadSystem = loadSystem;
     }
 
+    /// <summary>
+    /// Re-reads quiz data from the LoadQuiz component and updates the panel text.
+    /// Call this after quiz data has been loaded to populate category names,
+    /// questions, and answers on panels that were already created.
+    /// </summary>
+    public void RefreshFromLoadData()
+    {
+        if (LoadSystem == null)
+        {
+            Debug.LogWarning("RefreshFromLoadData: LoadSystem is null on panel " + gameObject.name);
+            return;
+        }
+
+        LoadQuiz loadQuiz = LoadSystem.GetComponent<LoadQuiz>();
+        RefreshFromLoadData(loadQuiz);
+    }
+
+    /// <summary>
+    /// Overload that accepts a pre-resolved LoadQuiz reference, avoiding the
+    /// need for each panel to look it up through its own LoadSystem field.
+    /// </summary>
+    public void RefreshFromLoadData(LoadQuiz loadQuiz)
+    {
+        if (loadQuiz == null || !loadQuiz.quizLoaded) return;
+
+        if (panelGroup == 0)
+        {
+            panelText_Primary = loadQuiz.LoadData.Category[panelNumb];
+        }
+        else
+        {
+            panelText_Primary = loadQuiz.LoadData.Question[panelNumb];
+            panelText_Secondary = loadQuiz.LoadData.Answer[panelNumb];
+        }
+
+        // Ensure the panel visual mode is set up (Quiz vs Editor) so that
+        // the correct UI elements are visible. This is needed because
+        // OnEnable may not have configured the mode successfully.
+        if (gameManager != null)
+        {
+            switch (gameManager.quizPlayMode)
+            {
+                case GameManager.QuizPlayMode.Quiz:
+                    SetPanelContentsToQuiz();
+                    break;
+                case GameManager.QuizPlayMode.Editor:
+                    SetPanelContentsToEditor();
+                    break;
+            }
+        }
+
+        // Update the visible UI text
+        if (panelType == PanelType.Category && categoryNameText != null)
+        {
+            categoryNameText.text = panelText_Primary;
+        }
+    }
+
     void OnEnable()
     {
         // Have code set for the following combinations:
@@ -79,7 +137,7 @@ public class GamePanel : MonoBehaviour
 
         //Loads panel data if there is panel data to be loaded. 
         //Shouldn't matter whether it's in the quiz editor or elsewhere, just use the  variables to access relevant data.
-        if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
+        if (LoadSystem != null && LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
         {
             if (panelGroup == 0)
             {

@@ -39,6 +39,37 @@ public class OverviewScreen : MonoBehaviour
     private List<GamePanel> categoryPanels = new List<GamePanel>();
     private List<GamePanel> questionPanels = new List<GamePanel>();
 
+    /// <summary>
+    /// Re-reads quiz data from the LoadQuiz component and pushes it into every
+    /// panel on the board. Call this after LoadQuiz.LoadSavedQuiz() completes
+    /// so that category names, questions, and answers are displayed.
+    /// </summary>
+    public void RefreshAllPanels()
+    {
+        // Resolve LoadQuiz from the serialized reference, or find it in the scene
+        LoadQuiz loadQuiz = null;
+        if (loadSystemObject != null)
+            loadQuiz = loadSystemObject.GetComponent<LoadQuiz>();
+        if (loadQuiz == null)
+            loadQuiz = FindAnyObjectByType<LoadQuiz>();
+
+        if (loadQuiz == null || !loadQuiz.quizLoaded)
+        {
+            Debug.LogWarning("RefreshAllPanels: No loaded quiz data found.");
+            return;
+        }
+
+        foreach (GamePanel panel in categoryPanels)
+        {
+            panel.RefreshFromLoadData(loadQuiz);
+        }
+
+        foreach (GamePanel panel in questionPanels)
+        {
+            panel.RefreshFromLoadData(loadQuiz);
+        }
+    }
+
     void Awake()
     {
         
@@ -48,6 +79,10 @@ public class OverviewScreen : MonoBehaviour
     void Start()
     {
         CreateQuizPanels();
+
+        // If quiz data was already loaded (e.g. user selected a quiz before
+        // the game board became active), populate the panels immediately.
+        RefreshAllPanels();
     }
 
     /// <summary>

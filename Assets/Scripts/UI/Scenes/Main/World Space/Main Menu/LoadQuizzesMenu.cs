@@ -16,6 +16,9 @@ public class LoadQuizzesMenu : MonoBehaviour
     [Header("Camera")]
     public CameraManager cameraManager; // Drag the CameraManager from the scene
 
+    [Header("Overview Screen")]
+    public OverviewScreen overviewScreen; // Drag the OverviewScreen from the scene to refresh panels after loading
+
     void Start()
     {
         // Populate the list when the menu starts up
@@ -79,8 +82,7 @@ public class LoadQuizzesMenu : MonoBehaviour
     {
         Debug.Log("Selected Quiz Path: " + quizFilePath);
         
-        // 5. Pass the path of the selected quiz to your LoadQuiz/Game manager.
-        // For example:
+        // Pass the path of the selected quiz to your LoadQuiz/Game manager.
         LoadQuiz loadQuiz = FindAnyObjectByType<LoadQuiz>();
         if (loadQuiz != null)
         {
@@ -88,18 +90,48 @@ public class LoadQuizzesMenu : MonoBehaviour
             loadQuiz.importQuizName = Path.GetFileNameWithoutExtension(quizFilePath);
             loadQuiz.fileImported = true;
             
-            // Trigger loading operations or proceed to the game
-            loadQuiz.LoadSavedQuiz();
+            // Trigger loading operations — wrapped in try-catch so a parse
+            // error doesn't prevent the camera from switching.
+            try
+            {
+                loadQuiz.LoadSavedQuiz();
 
-            // Transition the camera to the game board
-            if (cameraManager != null)
-            {
-                cameraManager.PerformTransitionToGameScreen();
+                // Set the game mode to Quiz so panels display in-game UI
+                GameManager gameManager = FindAnyObjectByType<GameManager>();
+                if (gameManager != null)
+                    gameManager.quizPlayMode = GameManager.QuizPlayMode.Quiz;
+
+                // Refresh the game board panels now that quiz data is available
+                if (overviewScreen != null)
+                {
+                    overviewScreen.RefreshAllPanels();
+                }
+                else
+                {
+                    // Fallback: try to find it in the scene
+                    OverviewScreen os = FindAnyObjectByType<OverviewScreen>();
+                    if (os != null) os.RefreshAllPanels();
+                }
             }
-            else
+            catch (System.Exception e)
             {
-                Debug.LogWarning("CameraManager reference is missing on LoadQuizzesMenu!");
+                Debug.LogError("Failed to load quiz: " + e);
             }
+        }
+        else
+        {
+            Debug.LogWarning("LoadQuiz component not found in scene!");
+        }
+
+        // Transition the camera to the game board (always runs, even if quiz loading failed)
+        if (cameraManager != null)
+        {
+            Debug.Log("Switching camera to game screen...");
+            cameraManager.PerformTransitionToGameScreen();
+        }
+        else
+        {
+            Debug.LogWarning("CameraManager reference is missing on LoadQuizzesMenu!");
         }
     }
 }
