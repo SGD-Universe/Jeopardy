@@ -16,6 +16,10 @@ public class QuestionPanelScreen : MonoBehaviour
 
     [SerializeField] private Button exitQuestionButton;
     [SerializeField] private Button closeQuestionButton;
+    [SerializeField] private Button confirmCloseButton;
+    [SerializeField] private Button cancelCloseButton;
+
+    private GamePanel currentPanel;
 
     [SerializeField] private GameObject closeQuestionWarningScreen; // TODO: Create a close question warning screen object!
 
@@ -28,12 +32,16 @@ public class QuestionPanelScreen : MonoBehaviour
     {
         exitQuestionButton.onClick.AddListener(CloseQuestionPanelScreen);
         closeQuestionButton.onClick.AddListener(OpenCloseQuestionWarningScreen);
+        confirmCloseButton.onClick.AddListener(CloseQuestionPanelScreen);
+        cancelCloseButton.onClick.AddListener(CancelCloseQuestion);
     }
 
     void OnDisable()
     {
         exitQuestionButton.onClick.RemoveAllListeners();
         closeQuestionButton.onClick.RemoveAllListeners();
+        confirmCloseButton.onClick.RemoveAllListeners();
+        cancelCloseButton.onClick.RemoveAllListeners();
     }
 
     // Start is called before the first frame update
@@ -51,14 +59,41 @@ public class QuestionPanelScreen : MonoBehaviour
             TeamButton teamButtonInstance = Instantiate(teamButtonPrefab, teamButtonsGroup.transform);
         }
     }
+    public void ShowQuestion(GamePanel panel)
+    {
+        currentPanel = panel;
+        panelQuestionText.text = panel.panelText_Primary;
+    }
 
+    public void OpenQuestion()
+    {
+        ShowQuestion(currentPanel);
+        gameObject.SetActive(true);
+    }
+    
     public void CloseQuestionPanelScreen()
     {
         this.gameObject.SetActive(false);
+        
     }
 
     public void OpenCloseQuestionWarningScreen()
     {
+        closeQuestionWarningScreen.SetActive(true);
+    }
 
+    void ConfirmCloseQuestion()
+    {
+       if(currentPanel != null)
+       {
+        currentPanel.CloseQuestion();
+       } 
+       closeQuestionWarningScreen.SetActive(false);
+       CloseQuestionPanelScreen();
+    }
+
+    void CancelCloseQuestion()
+    {
+       closeQuestionWarningScreen.SetActive(false); 
     }
 }

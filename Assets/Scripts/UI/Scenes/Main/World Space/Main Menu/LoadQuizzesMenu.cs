@@ -81,7 +81,7 @@ public class LoadQuizzesMenu : MonoBehaviour
         
         // 5. Pass the path of the selected quiz to your LoadQuiz/Game manager.
         // For example:
-        LoadQuiz loadQuiz = FindObjectOfType<LoadQuiz>();
+        LoadQuiz loadQuiz = FindAnyObjectByType<LoadQuiz>();
         if (loadQuiz != null)
         {
             loadQuiz.importFilePath = quizFilePath;

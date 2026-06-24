@@ -3223,6 +3223,8 @@ MonoBehaviour:
   teamButtonPrefab: {fileID: 4803466630914439247, guid: f259e094dfe9b3a4f913a3ad2fe74389, type: 3}
   exitQuestionButton: {fileID: 88524611}
   closeQuestionButton: {fileID: 4855181}
+  confirmCloseButton: {fileID: 0}
+  cancelCloseButton: {fileID: 0}
   closeQuestionWarningScreen: {fileID: 0}
 --- !u!1 &548893670
 GameObject:
@@ -8325,7 +8327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1335663486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8813,7 +8815,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 50
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -8839,8 +8841,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392049985}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0002449555, y: -0.50746197, z: -0.00014426059, w: 0.86167413}
-  m_LocalPosition: {x: -4.0900497, y: 3.4994454, z: 19.007208}
+  m_LocalRotation: {x: 0.045271438, y: 0.6962847, z: -0.04408777, w: 0.7149786}
+  m_LocalPosition: {x: 7.75595, y: 3.1284456, z: 6.451207}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11680,7 +11682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1684351258
 MonoBehaviour:
   m_ObjectHideFlags: 0
