@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - audioMixer: {instanceID: 0}
+  - audioMixer: {fileID: 24100000, guid: 478d81cbe51272346a0c7ac9c4146522, type: 2}
   - musicSource: {instanceID: 0}
   - sfxSource: {instanceID: 0}
   - Buzzer: {fileID: 8300000, guid: 1e8e807a36d4a4783990077fe6810b98, type: 3}

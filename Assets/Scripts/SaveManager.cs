@@ -19,6 +19,29 @@ public class SaveManager : MonoBehaviour
         quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
         teamScoring = new TeamScoringData();
     }
+public static int SaveBoardData(BoardData boardData, string fileName)
+{
+    // Verify File Name first
+    int validity = VerifyFileName(fileName);
+    if (validity < 0) return validity;
+
+    // Define the StreamingAssets/QuizTemplates path
+    string folderPath = Path.Combine(Application.streamingAssetsPath, "QuizTemplates");
+
+    // Ensure directory exists
+    if (!Directory.Exists(folderPath))
+    {
+        Directory.CreateDirectory(folderPath);
+    }
+
+    string quizTemplatefilePath = Path.Combine(folderPath, fileName + ".json");
+    string json = JsonUtility.ToJson(boardData, true);
+
+    File.WriteAllText(quizTemplatefilePath, json);
+    UnityEngine.Debug.Log("Saved quiz to: " + quizTemplatefilePath);
+
+    return 0;
+}
 
     private void Update()
     {
@@ -100,30 +123,30 @@ public class SaveManager : MonoBehaviour
         return 0;
     }
 
-    public static int SaveBoardData(BoardData boardData, string fileName)
-    {
-        quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
-        // Verify File Name
-        char[] invalid = Path.GetInvalidFileNameChars();
+    // public static int SaveBoardData(BoardData boardData, string fileName)
+    // {
+    //     quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
+    //     // Verify File Name
+    //     char[] invalid = Path.GetInvalidFileNameChars();
 
-        if(string.IsNullOrWhiteSpace(fileName)) return -1;
+    //     if(string.IsNullOrWhiteSpace(fileName)) return -1;
 
-        foreach(char c in fileName)
-        {
-            if(invalid.Contains(c)) return -2;
-        }
+    //     foreach(char c in fileName)
+    //     {
+    //         if(invalid.Contains(c)) return -2;
+    //     }
 
-        // Save Data to file
-        UnityEngine.Debug.Log(quizTemplateFolderPath);
-        string json = JsonUtility.ToJson(boardData, true);
-        if(!Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
-        string quizTemplatefilePath = quizTemplateFolderPath + "/" + fileName + ".json";
-        UnityEngine.Debug.Log(quizTemplatefilePath);
-        File.WriteAllText(quizTemplatefilePath, json);
-        Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(quizTemplatefilePath) + "\"");
-        //It Works!
-        return 0;
-    }
+    //     // Save Data to file
+    //     UnityEngine.Debug.Log(quizTemplateFolderPath);
+    //     string json = JsonUtility.ToJson(boardData, true);
+    //     if(!Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
+    //     string quizTemplatefilePath = quizTemplateFolderPath + "/" + fileName + ".json";
+    //     UnityEngine.Debug.Log(quizTemplatefilePath);
+    //     File.WriteAllText(quizTemplatefilePath, json);
+    //     Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(quizTemplatefilePath) + "\"");
+    //     //It Works!
+    //     return 0;
+    // }
 
     public static BoardData LoadRandomBoardData()
     {

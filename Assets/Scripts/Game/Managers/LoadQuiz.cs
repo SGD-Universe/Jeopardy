@@ -16,14 +16,112 @@ public class LoadQuiz : MonoBehaviour
     public string importQuizName = "";
     public string importFilePath = "";
 
+    // --- Data classes that mirror the JSON structure ---
+
+    [System.Serializable]
+    public class PanelData
+    {
+        public bool isCategory;
+        public string primaryText;
+        public string secondaryText;
+    }
+
+    [System.Serializable]
+    public class ColumnData
+    {
+        public PanelData[] panels;
+    }
+
     [System.Serializable]
     public class BoardLoadData
     {
-        public string Title; 
-        public string[] Category = new string[6];
-        public string[] Question = new string[30];
-        public string[] Answer = new string[30];
+        // Fixed board dimensions — must match OverviewScreen constants
+        public const int MAX_CATEGORIES = 6;
+        public const int MAX_QUESTIONS_PER_CATEGORY = 5;
+        public const int MAX_QUESTIONS = MAX_CATEGORIES * MAX_QUESTIONS_PER_CATEGORY; // 30
+
+        // This is what JsonUtility reads from the JSON file.
+        public ColumnData[] columns;
+
+        // --- Backward-compatible accessors ---
+        // GamePanel.cs uses Category[panelNumb], Question[panelNumb], Answer[panelNumb].
+        // These properties extract that data from the new columns structure
+        // so nothing else in the project needs to change.
+        // Arrays are ALWAYS fixed-size (6 categories, 30 questions, 30 answers).
+
+        /// <summary>
+        /// Always returns string[6] — one category name per column.
+        /// Category name = the primaryText of the first panel in each column.
+        /// </summary>
+        public string[] Category
+        {
+            get
+            {
+                string[] cats = new string[MAX_CATEGORIES];
+                for (int i = 0; i < MAX_CATEGORIES; i++)
+                {
+                    if (columns != null && i < columns.Length
+                        && columns[i].panels != null && columns[i].panels.Length > 0)
+                        cats[i] = columns[i].panels[0].primaryText;
+                    else
+                        cats[i] = "";
+                }
+                return cats;
+            }
+        }
+
+        /// <summary>
+        /// Always returns string[30] — questions in row-major order (left-to-right, top-to-bottom).
+        /// Index = row * 6 + column, matching how OverviewScreen creates panels.
+        /// </summary>
+        public string[] Question
+        {
+            get
+            {
+                string[] questions = new string[MAX_QUESTIONS];
+                for (int row = 0; row < MAX_QUESTIONS_PER_CATEGORY; row++)
+                {
+                    for (int col = 0; col < MAX_CATEGORIES; col++)
+                    {
+                        int panelIndex = row + 1; // +1 to skip the category header
+                        int flatIndex = row * MAX_CATEGORIES + col;
+                        if (columns != null && col < columns.Length
+                            && columns[col].panels != null && panelIndex < columns[col].panels.Length)
+                            questions[flatIndex] = columns[col].panels[panelIndex].primaryText;
+                        else
+                            questions[flatIndex] = "";
+                    }
+                }
+                return questions;
+            }
+        }
+
+        /// <summary>
+        /// Always returns string[30] — answers in the same row-major order as Question.
+        /// </summary>
+        public string[] Answer
+        {
+            get
+            {
+                string[] answers = new string[MAX_QUESTIONS];
+                for (int row = 0; row < MAX_QUESTIONS_PER_CATEGORY; row++)
+                {
+                    for (int col = 0; col < MAX_CATEGORIES; col++)
+                    {
+                        int panelIndex = row + 1;
+                        int flatIndex = row * MAX_CATEGORIES + col;
+                        if (columns != null && col < columns.Length
+                            && columns[col].panels != null && panelIndex < columns[col].panels.Length)
+                            answers[flatIndex] = columns[col].panels[panelIndex].secondaryText;
+                        else
+                            answers[flatIndex] = "";
+                    }
+                }
+                return answers;
+            }
+        }
     }
+
     void Start()
     {
         
@@ -31,13 +129,19 @@ public class LoadQuiz : MonoBehaviour
 
     public void LoadSavedQuiz()
     {
-        string filePath = importFilePath;
         string QuizLoadData = File.ReadAllText(importFilePath);
 
         LoadData = JsonUtility.FromJson<BoardLoadData>(QuizLoadData);
-        Debug.Log(LoadData.Title + " has been loaded");
 
-        //find objects with a tag that distinguishes the panels, or simply loaded data for them while proving the greenlight to take data from it.
+        if (LoadData.columns != null)
+        {
+            quizLoaded = true;
+            Debug.Log("Quiz loaded successfully! Columns: " + LoadData.columns.Length);
+        }
+        else
+        {
+            Debug.LogError("Failed to parse quiz JSON — 'columns' is null. Check the JSON file format.");
+        }
     }
 
     //checks to see if a file has been imported before a the quiz edit screen is pulled up.
@@ -60,10 +164,10 @@ public class LoadQuiz : MonoBehaviour
     {
         string localImport = "";
 
-        if (importQuizName != null || importQuizName != "")
+        if (importQuizName != null && importQuizName != "")
         {
             Debug.Log("Importing Quiz...");
-            localImport = Application.persistentDataPath + "/QuizTemplates/" + importQuizName + ".json";
+            localImport = Application.streamingAssetsPath + "/QuizTemplates/" + importQuizName + ".json";
             if (File.Exists(localImport) == true)
             {
                 importFilePath = localImport;

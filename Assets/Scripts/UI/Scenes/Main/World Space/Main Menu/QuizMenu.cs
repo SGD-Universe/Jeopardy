@@ -1,7 +1,8 @@
-using System.Diagnostics;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class QuizMenu : MonoBehaviour
 {
@@ -9,10 +10,8 @@ public class QuizMenu : MonoBehaviour
     public Button editQuizButton;
     public Button importQuizButton;
 
-    void Start()
-    {
-        
-    }
+    [Header("UI Reference")]
+    public LoadQuizzesMenu loadQuizzesMenu;
 
     void OnEnable()
     {
@@ -68,18 +67,21 @@ public class QuizMenu : MonoBehaviour
 
     public void ImportQuizFile()
     {
-        string targetApplication = "explorer.exe";
-        string quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
+        string quizTemplateFolderPath = Application.streamingAssetsPath + "/QuizTemplates";
+        if (!Directory.Exists(quizTemplateFolderPath))
+        {
+            Directory.CreateDirectory(quizTemplateFolderPath);
+            UnityEngine.Debug.Log("Directory created");
+        }
 
-        UnityEngine.Debug.Log("Import Quiz File clicked - feature to be implemented");
-        // This will need file browser functionality later
-
-        // TODO: Open the File Explorer into the quiz template folder path when the respective button is pressed
-
-        Process.Start(targetApplication, $"/select,\"" + quizTemplateFolderPath + "\"");
-
-        UnityEngine.Debug.Log(targetApplication + " opened to file path: " + quizTemplateFolderPath);
-
-        // Opens the File Explorer, but does not take the player to the quiz templates folder and does not let the player to select a quiz template file
+        // Refresh the scroll view with all quizzes in the folder
+        if (loadQuizzesMenu != null)
+        {
+            loadQuizzesMenu.PopulateQuizList();
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("LoadQuizzesMenu reference is missing on QuizMenu script!");
+        }
     }
 }
