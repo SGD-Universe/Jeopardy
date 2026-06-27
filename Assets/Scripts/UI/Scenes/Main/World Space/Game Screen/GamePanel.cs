@@ -129,11 +129,24 @@ public class GamePanel : MonoBehaviour
 
     void OnEnable()
     {
-        // Have code set for the following combinations:
-        // Quiz, category
-        // Quiz, question
-        // Editor, category
-        // Editor, question
+        // Always register button listeners, even if gameManager isn't ready yet
+        if (inGameButton != null)
+        {
+            inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
+            inGameButton.onClick.AddListener(CheckIfDailyDouble);
+        }
+
+        if (gameManager == null)
+        {
+            Debug.LogWarning("OnEnable: gameManager is null on panel '" + gameObject.name + "'. "
+                + "Initialize() may not have been called yet. Button listeners registered, but skipping mode setup.");
+
+            // Still enable the in-game group so buttons are visible even without gameManager
+            if (inGameGroup != null)
+                inGameGroup.SetActive(true);
+
+            return;
+        }
 
         //Loads panel data if there is panel data to be loaded. 
         //Shouldn't matter whether it's in the quiz editor or elsewhere, just use the  variables to access relevant data.
@@ -180,9 +193,6 @@ public class GamePanel : MonoBehaviour
 
                 break;
         }
-
-        inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
-        inGameButton.onClick.AddListener(CheckIfDailyDouble);
     }
 
     void OnDisable()
@@ -277,12 +287,59 @@ public class GamePanel : MonoBehaviour
     // This function is for opening the question panel screen when a panel is clicked on.
     public void OpenQuestion()
     {
+        // If questionScreen wasn't injected (Inspector slot empty), find it in the scene
+        if (questionScreen == null)
+        {
+            questionScreen = FindAnyObjectByType<QuestionPanelScreen>(FindObjectsInactive.Include);
+            if (questionScreen != null)
+            {
+                Debug.LogWarning("OpenQuestion: questionScreen was null on panel '" + gameObject.name
+                    + "'. Found one in the scene automatically. "
+                    + "Consider assigning it in the OverviewScreen Inspector to avoid this lookup.");
+            }
+        }
+
+        if (questionScreen == null)
+        {
+            Debug.LogError("OpenQuestion: No QuestionPanelScreen found anywhere in the scene! "
+                + "Make sure a GameObject with the QuestionPanelScreen component exists.");
+            return;
+        }
+
+        // Pass this panel's data (question + answer loaded from JSON) to the screen
+        questionScreen.ShowQuestion(this);
         questionScreen.gameObject.SetActive(true);
+
+        // --- Debug: help diagnose if the screen isn't appearing visually ---
+        Debug.Log("OpenQuestion: questionScreen.gameObject.activeSelf = " + questionScreen.gameObject.activeSelf);
+        Debug.Log("OpenQuestion: questionScreen.gameObject.activeInHierarchy = " + questionScreen.gameObject.activeInHierarchy);
+        Debug.Log("OpenQuestion: questionScreen parent = "
+            + (questionScreen.transform.parent != null ? questionScreen.transform.parent.name : "NONE (root)"));
+        Debug.Log("OpenQuestion: questionScreen world position = " + questionScreen.transform.position);
+
+        // Check if any parent in the hierarchy is disabled
+        Transform current = questionScreen.transform.parent;
+        while (current != null)
+        {
+            if (!current.gameObject.activeSelf)
+            {
+                Debug.LogWarning("OpenQuestion: PARENT '" + current.name + "' IS DISABLED — the question screen won't be visible!");
+            }
+            current = current.parent;
+        }
     }
 
     // This function is for exiting the question panel screen, but does not close the question.
     public void ExitQuestion()
     {
+        if (questionScreen == null)
+            questionScreen = FindAnyObjectByType<QuestionPanelScreen>(FindObjectsInactive.Include);
+
+        if (questionScreen == null)
+        {
+            Debug.LogWarning("ExitQuestion: questionScreen is null on panel '" + gameObject.name + "'.");
+            return;
+        }
         questionScreen.gameObject.SetActive(false);
     }
 
