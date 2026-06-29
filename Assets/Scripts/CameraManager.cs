@@ -19,7 +19,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject menuScreen;
 
     //game board Screen
-    [SerializeField] private GameObject gameScreen;
+    [SerializeField] public GameObject gameScreen;
 
     //contestants Screen
     [SerializeField] private GameObject contestantsScreen;
@@ -29,6 +29,7 @@ public class CameraManager : MonoBehaviour
         mainMenuVC.Priority = 1;
         gameScreenVC.Priority = 0;
         contestantsVC.Priority = 0;
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MusMainMenu);
     }
 
     // Start is called before the first frame update
@@ -53,6 +54,7 @@ public class CameraManager : MonoBehaviour
     //called from gameobject: CreateNewQuiz: Button
     public void PerformTransitionToGameScreen()
     {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MusQuizGame);
         //Camera will look at the game screen now.
         currentLookAt = gameScreen;
         mainMenuVC.Priority = 0;

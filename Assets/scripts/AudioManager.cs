@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -44,8 +45,12 @@ public class AudioManager : MonoBehaviour
         audioMixer.SetFloat("musicVolume", Mathf.Log10(musicVolume) * 20);
         audioMixer.SetFloat("sfxVolume", Mathf.Log10(sfxVolume) * 20);
 
-        musicSource.clip = MusMainMenu;
-        musicSource.Play();
+        if (SceneManager.GetActiveScene().name == "test-creation-mode")
+        {
+            musicSource.clip = MusEditor;
+            musicSource.Play();
+        }
+
     }
 
     public void PlaySoundCorrect()
@@ -63,5 +68,12 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(QuestionReveal);
     }
 
-    
+     public void PlayMusic(AudioClip clip)
+    {
+        musicSource.Stop();
+        musicSource.clip = clip;
+        musicSource.Play();
+    }
+
+     
 }
