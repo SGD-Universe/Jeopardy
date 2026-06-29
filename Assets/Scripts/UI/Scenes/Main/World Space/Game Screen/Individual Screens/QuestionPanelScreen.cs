@@ -7,6 +7,7 @@ using TMPro;
 public class QuestionPanelScreen : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private TextMeshProUGUI panelQuestionText;
 
@@ -65,6 +66,7 @@ public class QuestionPanelScreen : MonoBehaviour
         if (teamButtonPrefab != null && gameManager != null)
         {
             CreateTeamButtons(teamButtonPrefab);
+
         }
         else
         {
@@ -90,15 +92,29 @@ public class QuestionPanelScreen : MonoBehaviour
     {
         currentPanel = panel;
         if (panelQuestionText != null)
-            panelQuestionText.text = panel.panelText_Primary;
+
+        { panelQuestionText.text = panel.panelText_Primary; }
+
         else
-            Debug.LogWarning("QuestionPanelScreen: panelQuestionText is not assigned — cannot display question text.");
+        { 
+            Debug.LogWarning("QuestionPanelScreen: panelQuestionText is not assigned — cannot display question text."); }
+        Debug.Log("ShowQuestion: about to play sound. AudioManager.Instance = " + AudioManager.Instance);
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayQuestionReveal();
+            Debug.Log("ShowQuestion: PlayQuestionReveal() called.");
+        }
+        else
+        {
+            Debug.LogWarning("ShowQuestion: AudioManager.Instance is NULL — sound will not play.");
+        }
     }
 
     public void OpenQuestion()
     {
         ShowQuestion(currentPanel);
         gameObject.SetActive(true);
+        Debug.Log("This is the question opening");
     }
     
     public void CloseQuestionPanelScreen()

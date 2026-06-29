@@ -28,7 +28,11 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null) Instance = this;
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else Destroy(gameObject);
     }
 
@@ -53,4 +57,11 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(Incorrect);
     }
+
+    public void PlayQuestionReveal()
+    {
+        sfxSource.PlayOneShot(QuestionReveal);
+    }
+
+    
 }
