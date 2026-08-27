@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         // Load volume preferences - Default value is 0.5f
-        float musicVolume = PlayerPrefs.GetFloat("musicVolume", 0.5f);
+        float musicVolume = PlayerPrefs.GetFloat("musicVolume", 0.2f);
         float sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
         audioMixer.SetFloat("musicVolume", Mathf.Log10(musicVolume) * 20);
         audioMixer.SetFloat("sfxVolume", Mathf.Log10(sfxVolume) * 20);
