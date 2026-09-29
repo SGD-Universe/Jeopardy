@@ -4,10 +4,13 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     //Used to refrence the virtualCamera used to guide the camera
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera mainMenuVC;
 
     // Second camera looking at game board
-    [SerializeField] private CinemachineVirtualCamera virtualCamera2;
+    [SerializeField] private CinemachineVirtualCamera gameScreenVC;
+
+    // Third camera looking at contestants
+    [SerializeField] private CinemachineVirtualCamera contestantsVC;
 
     //Current GameObject virtualCamera is looking at
     [SerializeField] private GameObject currentLookAt;
@@ -16,12 +19,17 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject menuScreen;
 
     //game board Screen
-    [SerializeField] private GameObject gameScreen;
+    [SerializeField] public GameObject gameScreen;
+
+    //contestants Screen
+    [SerializeField] private GameObject contestantsScreen;
 
     void Awake()
     {
-        virtualCamera.Priority = 1;
-        virtualCamera2.Priority = 0;
+        mainMenuVC.Priority = 1;
+        gameScreenVC.Priority = 0;
+        contestantsVC.Priority = 0;
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MusMainMenu);
     }
 
     // Start is called before the first frame update
@@ -34,7 +42,7 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         //Camera will look at whichever object is made currentLookAt
-        virtualCamera.LookAt = currentLookAt.transform;
+        mainMenuVC.LookAt = currentLookAt.transform;
 
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -46,16 +54,29 @@ public class CameraManager : MonoBehaviour
     //called from gameobject: CreateNewQuiz: Button
     public void PerformTransitionToGameScreen()
     {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MusQuizGame);
         //Camera will look at the game screen now.
         currentLookAt = gameScreen;
-        virtualCamera.Priority = 0;
-        virtualCamera2.Priority = 1;
-        //ExperimentalGameScreen.Instance.BeginGame();
+        mainMenuVC.Priority = 0;
+        gameScreenVC.Priority = 1;
+        contestantsVC.Priority = 0;
+    }
+
+    // Transition to contestants view
+    public void PerformTransitionToContestants()
+    {
+        currentLookAt = contestantsScreen;
+        mainMenuVC.Priority = 0;
+        gameScreenVC.Priority = 0;
+        contestantsVC.Priority = 1;
     }
 
     //Currently really rough, will jump back to menuScreen right now, should be able 
     public void PerformTransitionGoback()
     {
         currentLookAt = menuScreen;
+        mainMenuVC.Priority = 1;
+        gameScreenVC.Priority = 0;
+        contestantsVC.Priority = 0;
     }
 }

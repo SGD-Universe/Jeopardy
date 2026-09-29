@@ -517,6 +517,12 @@ MonoBehaviour:
   panelPointValue: 200
   isDailyDouble: 0
   isClosed: 0
+  panelGroup: 0
+  panelNumb: 0
+  panelText_Primary: 
+  panelText_Secondary: 
+  SaveSystem: {fileID: 0}
+  LoadSystem: {fileID: 0}
 --- !u!1 &2682120004476964713
 GameObject:
   m_ObjectHideFlags: 0

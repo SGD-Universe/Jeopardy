@@ -57,17 +57,100 @@ public class GamePanel : MonoBehaviour
     public GameObject SaveSystem; //should be set to whatever object the 'SaveQuiz' script is attached to
     public GameObject LoadSystem; //should be set to whatever object the 'LoadQuiz' script is attached to
 
+    /// <summary>
+    /// Injects scene-object references that cannot live on a prefab.
+    /// Must be called while the instance is still disabled (before OnEnable fires).
+    /// </summary>
+    public void Initialize(GameManager manager, QuestionPanelScreen qScreen, GameObject saveSystem, GameObject loadSystem)
+    {
+        gameManager = manager;
+        questionScreen = qScreen;
+        SaveSystem = saveSystem;
+        LoadSystem = loadSystem;
+    }
+
+    /// <summary>
+    /// Re-reads quiz data from the LoadQuiz component and updates the panel text.
+    /// Call this after quiz data has been loaded to populate category names,
+    /// questions, and answers on panels that were already created.
+    /// </summary>
+    public void RefreshFromLoadData()
+    {
+        if (LoadSystem == null)
+        {
+            Debug.LogWarning("RefreshFromLoadData: LoadSystem is null on panel " + gameObject.name);
+            return;
+        }
+
+        LoadQuiz loadQuiz = LoadSystem.GetComponent<LoadQuiz>();
+        RefreshFromLoadData(loadQuiz);
+    }
+
+    /// <summary>
+    /// Overload that accepts a pre-resolved LoadQuiz reference, avoiding the
+    /// need for each panel to look it up through its own LoadSystem field.
+    /// </summary>
+    public void RefreshFromLoadData(LoadQuiz loadQuiz)
+    {
+        if (loadQuiz == null || !loadQuiz.quizLoaded) return;
+
+        if (panelGroup == 0)
+        {
+            panelText_Primary = loadQuiz.LoadData.Category[panelNumb];
+        }
+        else
+        {
+            panelText_Primary = loadQuiz.LoadData.Question[panelNumb];
+            panelText_Secondary = loadQuiz.LoadData.Answer[panelNumb];
+        }
+
+        // Ensure the panel visual mode is set up (Quiz vs Editor) so that
+        // the correct UI elements are visible. This is needed because
+        // OnEnable may not have configured the mode successfully.
+        if (gameManager != null)
+        {
+            switch (gameManager.quizPlayMode)
+            {
+                case GameManager.QuizPlayMode.Quiz:
+                    SetPanelContentsToQuiz();
+                    break;
+                case GameManager.QuizPlayMode.Editor:
+                    SetPanelContentsToEditor();
+                    break;
+            }
+        }
+
+        // Update the visible UI text
+        if (panelType == PanelType.Category && categoryNameText != null)
+        {
+            categoryNameText.text = panelText_Primary;
+        }
+    }
+
     void OnEnable()
     {
-        // Have code set for the following combinations:
-        // Quiz, category
-        // Quiz, question
-        // Editor, category
-        // Editor, question
+        // Always register button listeners, even if gameManager isn't ready yet
+        if (inGameButton != null)
+        {
+            inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
+            inGameButton.onClick.AddListener(CheckIfDailyDouble);
+        }
+
+        if (gameManager == null)
+        {
+            Debug.LogWarning("OnEnable: gameManager is null on panel '" + gameObject.name + "'. "
+                + "Initialize() may not have been called yet. Button listeners registered, but skipping mode setup.");
+
+            // Still enable the in-game group so buttons are visible even without gameManager
+            if (inGameGroup != null)
+                inGameGroup.SetActive(true);
+
+            return;
+        }
 
         //Loads panel data if there is panel data to be loaded. 
         //Shouldn't matter whether it's in the quiz editor or elsewhere, just use the  variables to access relevant data.
-        if (LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
+        if (LoadSystem != null && LoadSystem.GetComponent<LoadQuiz>().quizLoaded == true)
         {
             if (panelGroup == 0)
             {
@@ -110,9 +193,6 @@ public class GamePanel : MonoBehaviour
 
                 break;
         }
-
-        inGameButton.onClick.AddListener(OpenQuestion); // In-game, question
-        inGameButton.onClick.AddListener(CheckIfDailyDouble);
     }
 
     void OnDisable()
@@ -207,12 +287,59 @@ public class GamePanel : MonoBehaviour
     // This function is for opening the question panel screen when a panel is clicked on.
     public void OpenQuestion()
     {
+        // If questionScreen wasn't injected (Inspector slot empty), find it in the scene
+        if (questionScreen == null)
+        {
+            questionScreen = FindAnyObjectByType<QuestionPanelScreen>(FindObjectsInactive.Include);
+            if (questionScreen != null)
+            {
+                Debug.LogWarning("OpenQuestion: questionScreen was null on panel '" + gameObject.name
+                    + "'. Found one in the scene automatically. "
+                    + "Consider assigning it in the OverviewScreen Inspector to avoid this lookup.");
+            }
+        }
+
+        if (questionScreen == null)
+        {
+            Debug.LogError("OpenQuestion: No QuestionPanelScreen found anywhere in the scene! "
+                + "Make sure a GameObject with the QuestionPanelScreen component exists.");
+            return;
+        }
+
+        // Pass this panel's data (question + answer loaded from JSON) to the screen
+        questionScreen.ShowQuestion(this);
         questionScreen.gameObject.SetActive(true);
+
+        // --- Debug: help diagnose if the screen isn't appearing visually ---
+        Debug.Log("OpenQuestion: questionScreen.gameObject.activeSelf = " + questionScreen.gameObject.activeSelf);
+        Debug.Log("OpenQuestion: questionScreen.gameObject.activeInHierarchy = " + questionScreen.gameObject.activeInHierarchy);
+        Debug.Log("OpenQuestion: questionScreen parent = "
+            + (questionScreen.transform.parent != null ? questionScreen.transform.parent.name : "NONE (root)"));
+        Debug.Log("OpenQuestion: questionScreen world position = " + questionScreen.transform.position);
+
+        // Check if any parent in the hierarchy is disabled
+        Transform current = questionScreen.transform.parent;
+        while (current != null)
+        {
+            if (!current.gameObject.activeSelf)
+            {
+                Debug.LogWarning("OpenQuestion: PARENT '" + current.name + "' IS DISABLED — the question screen won't be visible!");
+            }
+            current = current.parent;
+        }
     }
 
     // This function is for exiting the question panel screen, but does not close the question.
     public void ExitQuestion()
     {
+        if (questionScreen == null)
+            questionScreen = FindAnyObjectByType<QuestionPanelScreen>(FindObjectsInactive.Include);
+
+        if (questionScreen == null)
+        {
+            Debug.LogWarning("ExitQuestion: questionScreen is null on panel '" + gameObject.name + "'.");
+            return;
+        }
         questionScreen.gameObject.SetActive(false);
     }
 

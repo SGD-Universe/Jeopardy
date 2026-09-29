@@ -47,7 +47,7 @@ public class SaveQuiz : MonoBehaviour
         }
 
         string QuizSaveData = JsonUtility.ToJson(SaveData);
-        string filePath = Application.persistentDataPath + "/" + fileName + ".json";
+        string filePath = Application.streamingAssetsPath + fileName + ".json";
         File.WriteAllText(filePath, QuizSaveData);
     }
 }
