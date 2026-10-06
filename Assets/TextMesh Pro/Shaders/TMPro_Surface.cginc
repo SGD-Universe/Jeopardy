@@ -25,13 +25,12 @@ void VertShader(inout appdata_full v, out Input data)
 	data.param.y = scale;
 #endif
 
-	data.param.x = (lerp(_WeightNormal, _WeightBold, bold) / 4.0 + _FaceDilate) * _ScaleRatioA * 0.5; //
+	data.param.x = (lerp(_WeightNormal, _WeightBold, bold) / 4.0 + _FaceDilate) * _ScaleRatioA * 0.5;
 	data.viewDirEnv = mul((float3x3)_EnvMatrix, WorldSpaceViewDir(v.vertex));
 }
 
 void PixShader(Input input, inout SurfaceOutput o)
 {
-
 #if USE_DERIVATIVE
 	float2 pixelSize = float2(ddx(input.uv_MainTex.y), ddy(input.uv_MainTex.y));
 	pixelSize *= _TextureWidth * .75;

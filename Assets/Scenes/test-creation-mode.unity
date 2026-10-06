@@ -7885,7 +7885,7 @@ Transform:
   m_GameObject: {fileID: 2126464392}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4854203, y: 0.14611304, z: 4.9719634}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9110,8 +9110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a37198054b135409e1c817bef0c7f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelTemplate: {fileID: 474856843}
-  panelSpacing: {x: 3, y: 1.85}
 --- !u!222 &7070857180264471439
 CanvasRenderer:
   m_ObjectHideFlags: 0

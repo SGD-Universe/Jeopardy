@@ -1,13 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-
 namespace TMPro.Examples
 {
-
     public class Benchmark04 : MonoBehaviour
     {
-
         public int SpawnType = 0;
 
         public int MinPointSize = 12;
@@ -17,7 +14,6 @@ namespace TMPro.Examples
         private Transform m_Transform;
         //private TextMeshProFloatingText floatingText_Script;
         //public Material material;
-
 
         void Start()
         {
@@ -32,7 +28,7 @@ namespace TMPro.Examples
                 if (SpawnType == 0)
                 {
                     // TextMesh Pro Implementation
-                    GameObject go = new GameObject("Text - " + i + " Pts");
+                    GameObject go = new("Text - " + i + " Pts");
 
                     if (lineHeight > orthoSize * 2) return;
 
@@ -80,6 +76,5 @@ namespace TMPro.Examples
                 }
             }
         }
-
     }
 }

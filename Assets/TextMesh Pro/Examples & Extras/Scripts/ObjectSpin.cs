@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 namespace TMPro.Examples
 {
-
     public class ObjectSpin : MonoBehaviour
     {
         #pragma warning disable 0414
         public enum MotionType { Rotation, SearchLight, Translation };
         public MotionType Motion;
 
-        public Vector3 TranslationDistance = new Vector3(5, 0, 0);
+        public Vector3 TranslationDistance = new(5, 0, 0);
         public float TranslationSpeed = 1.0f;
         public float SpinSpeed = 5;
         public int RotationRange = 15;
@@ -32,7 +30,6 @@ namespace TMPro.Examples
             Light light = GetComponent<Light>();
             m_lightColor = light != null ? light.color : Color.black;
         }
-
 
         // Update is called once per frame
         void Update()
@@ -55,9 +52,9 @@ namespace TMPro.Examples
 
                     m_transform.position = m_initial_Position + new Vector3(x, z, y);
 
-                    // Drawing light patterns because they can be cool looking.
+                    // Drawing light patterns because they can be cool looking
                     //if (Time.frameCount > 1)
-                    //    Debug.DrawLine(m_transform.position, m_prevPOS, m_lightColor, 100f);
+                        //Debug.DrawLine(m_transform.position, m_prevPOS, m_lightColor, 100f);
 
                     m_prevPOS = m_transform.position;
                     break;
