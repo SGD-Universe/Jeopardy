@@ -66,6 +66,7 @@ public class QuizMenu : MonoBehaviour
 
     public void ImportQuizFile()
     {
+        // Ensure the QuizTemplates folder exists
         string quizTemplateFolderPath = Application.streamingAssetsPath + "/QuizTemplates";
         if (!Directory.Exists(quizTemplateFolderPath))
         {
@@ -73,9 +74,13 @@ public class QuizMenu : MonoBehaviour
             Debug.Log("Directory created");
         }
 
-        // Refresh the scroll view with all quizzes in the folder
+        // Show the scroll list and refresh it with available quizzes
         if (loadQuizzesMenu != null)
+        {
+            loadQuizzesMenu.gameObject.SetActive(true);
             loadQuizzesMenu.PopulateQuizList();
+            Debug.Log("Quiz list refreshed from: " + quizTemplateFolderPath);
+        }
         else
             Debug.LogError("LoadQuizzesMenu reference is missing on QuizMenu script!");
     }
