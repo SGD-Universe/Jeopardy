@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 
-
 namespace TMPro.Examples
 {
     public class TMP_TextEventCheck : MonoBehaviour
     {
-
         public TMP_TextEventHandler TextEventHandler;
 
         private TMP_Text m_TextComponent;
@@ -17,27 +15,25 @@ namespace TMPro.Examples
                 // Get a reference to the text component
                 m_TextComponent = TextEventHandler.GetComponent<TMP_Text>();
                 
-                TextEventHandler.onCharacterSelection.AddListener(OnCharacterSelection);
-                TextEventHandler.onSpriteSelection.AddListener(OnSpriteSelection);
-                TextEventHandler.onWordSelection.AddListener(OnWordSelection);
-                TextEventHandler.onLineSelection.AddListener(OnLineSelection);
-                TextEventHandler.onLinkSelection.AddListener(OnLinkSelection);
+                TextEventHandler.OnCharacterSelection.AddListener(OnCharacterSelection);
+                TextEventHandler.OnSpriteSelection.AddListener(OnSpriteSelection);
+                TextEventHandler.OnWordSelection.AddListener(OnWordSelection);
+                TextEventHandler.OnLineSelection.AddListener(OnLineSelection);
+                TextEventHandler.OnLinkSelection.AddListener(OnLinkSelection);
             }
         }
-
 
         void OnDisable()
         {
             if (TextEventHandler != null)
             {
-                TextEventHandler.onCharacterSelection.RemoveListener(OnCharacterSelection);
-                TextEventHandler.onSpriteSelection.RemoveListener(OnSpriteSelection);
-                TextEventHandler.onWordSelection.RemoveListener(OnWordSelection);
-                TextEventHandler.onLineSelection.RemoveListener(OnLineSelection);
-                TextEventHandler.onLinkSelection.RemoveListener(OnLinkSelection);
+                TextEventHandler.OnCharacterSelection.RemoveListener(OnCharacterSelection);
+                TextEventHandler.OnSpriteSelection.RemoveListener(OnSpriteSelection);
+                TextEventHandler.OnWordSelection.RemoveListener(OnWordSelection);
+                TextEventHandler.OnLineSelection.RemoveListener(OnLineSelection);
+                TextEventHandler.OnLinkSelection.RemoveListener(OnLinkSelection);
             }
         }
-
 
         void OnCharacterSelection(char c, int index)
         {
@@ -66,8 +62,7 @@ namespace TMPro.Examples
                 TMP_LinkInfo linkInfo = m_TextComponent.textInfo.linkInfo[linkIndex];
             }
             
-            Debug.Log("Link Index: " + linkIndex + " with ID [" + linkID + "] and Text \"" + linkText + "\" has been selected.");
+            Debug.Log($"Link Index: {linkIndex} with ID [{linkID}] and Text \"{linkText}\" has been selected.");
         }
-
     }
 }

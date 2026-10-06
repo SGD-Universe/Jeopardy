@@ -1,0 +1,208 @@
+{
+    "columns": [
+        {
+            "panels": [
+                {
+                    "isCategory": true,
+                    "primaryText": "SHOES",
+                    "secondaryText": ""
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This popular brand of shoes is named after an aquatic reptile",
+                    "secondaryText": "What is Crocs?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This line of shoes shares a name with the call sign for the aircraft carrying the US president",
+                    "secondaryText": "What is Air Force 1?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This category of shoes was named for how quiet they sound when walking",
+                    "secondaryText": "What are sneakers?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This type of shoes was originally worn by men to help secure their feet in stirrups while horseback riding",
+                    "secondaryText": "What are high heels?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "These sandal-like shoes share their name with a kind of bistable electronic circuit",
+                    "secondaryText": "What are flip-flops?"
+                }
+            ]
+        },
+        {
+            "panels": [
+                {
+                    "isCategory": true,
+                    "primaryText": "CHEMISTRY",
+                    "secondaryText": ""
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This common solvent is atypical in that it becomes less dense when frozen",
+                    "secondaryText": "What is water?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This chemical element has a ubiquitous presence in organic compounds",
+                    "secondaryText": "What is carbon?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This diatomic molecule is produced by plants and cyanobacteria in a process known as photosynthesis",
+                    "secondaryText": "What is oxygen?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This strong acid is represented with the chemical formula H2SO4",
+                    "secondaryText": "What is sulfuric acid?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This quantity, named after an Italian scientist, relates the amount of particles to their total mass",
+                    "secondaryText": "What is the Avogadro number?"
+                }
+            ]
+        },
+        {
+            "panels": [
+                {
+                    "isCategory": true,
+                    "primaryText": "MUSIC",
+                    "secondaryText": ""
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This interval between notes is found between one tone that has twice the frequency of the other",
+                    "secondaryText": "What is an octave?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This musical technique involves playing notes of a chord separately",
+                    "secondaryText": "What is arpeggio?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "'Rickrolling' is a prank involving the unexpected appearance of a song performed by this singer",
+                    "secondaryText": "Who is Rick Astley?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This musician is best known for his development of, and musical composition for, Undertale and Deltarune",
+                    "secondaryText": "Who is Toby Fox?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This major scale has 7 sharps in its key signature",
+                    "secondaryText": "What is C sharp major?"
+                }
+            ]
+        },
+        {
+            "panels": [
+                {
+                    "isCategory": true,
+                    "primaryText": "ASTRONOMY",
+                    "secondaryText": ""
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This celestial body is responsible for the tides",
+                    "secondaryText": "What is the Moon?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This red supergiant appears in the top left of the constellation of Orion",
+                    "secondaryText": "What is Betelgeuse?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This spiral galaxy is expected to collide with the Milky Way in about four billion years",
+                    "secondaryText": "What is the Andromeda Galaxy?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This Galilean moon is the largest moon of the solar system",
+                    "secondaryText": "What is Ganymede?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This supermassive black hole lies at the center of our galaxy",
+                    "secondaryText": "What is Sagittarius A Star?"
+                }
+            ]
+        },
+        {
+            "panels": [
+                {
+                    "isCategory": true,
+                    "primaryText": "VIDEO GAMES",
+                    "secondaryText": ""
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This game consists of stacking seven differently colored blocks",
+                    "secondaryText": "What is Tetris?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "Originally known as Jumpman, this popular character's last name is the same as his first name",
+                    "secondaryText": "Who is Mario Mario?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This protein, involved in embryonic development, is named after the protagonist of a 1991 game",
+                    "secondaryText": "What is Sonic hedgehog protein?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This game was the first in history to support cross-play between computers, mobile, and both Xbox and PlayStation",
+                    "secondaryText": "What is Fortnite: Battle Royale?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This term describes the use of gameplay mechanics to support the game's narrative",
+                    "secondaryText": "What is ludonarrative consistency?"
+                }
+            ]
+        },
+        {
+            "panels": [
+                {
+                    "isCategory": true,
+                    "primaryText": "TABLETOP TOYS",
+                    "secondaryText": ""
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This board game consists of four amphibious mammals consuming marbles",
+                    "secondaryText": "What is Hungry Hungry Hippos?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "In this board game, pawns can slide into other pawns, sending them back to the start",
+                    "secondaryText": "What is Sorry!?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This toy company produces more tires than any tire manufacturer",
+                    "secondaryText": "What is Lego?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This card game has only two basic rules: 'Draw 1, Play 1'",
+                    "secondaryText": "What is Fluxx?"
+                },
+                {
+                    "isCategory": false,
+                    "primaryText": "This is the only legal move in chess in which two pieces are moved at once",
+                    "secondaryText": "What is castling?"
+                }
+            ]
+        }
+    ]
+}

@@ -24,12 +24,17 @@ public class AudioManager : MonoBehaviour
     public AudioClip QuestionReveal;
     public AudioClip QuizIntro;
     public AudioClip WinClapping;
-    //If you change or remove any sound files (music or sfx), please change or remove the above clips appropriately.
+    // If you change or remove any sound files (music or sfx), please change or remove the above clips appropriately
 
     private void Awake()
     {
-        if(Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -39,8 +44,21 @@ public class AudioManager : MonoBehaviour
         float sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
         audioMixer.SetFloat("musicVolume", Mathf.Log10(musicVolume) * 20);
         audioMixer.SetFloat("sfxVolume", Mathf.Log10(sfxVolume) * 20);
+    }
 
+    public void PlayMainMenuMusic()
+    {
+        if (musicSource.clip == MusMainMenu)
+            return;
         musicSource.clip = MusMainMenu;
+        musicSource.Play();
+    }
+
+    public void PlayEditorMusic()
+    {
+        if (musicSource.clip == MusEditor)
+            return;
+        musicSource.clip = MusEditor;
         musicSource.Play();
     }
 
@@ -53,4 +71,5 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(Incorrect);
     }
+
 }

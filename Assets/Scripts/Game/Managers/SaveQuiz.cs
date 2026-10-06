@@ -8,10 +8,9 @@ using UnityEngine;
 
 public class SaveQuiz : MonoBehaviour
 {
-
     public BoardSaveData SaveData = new BoardSaveData();
 
-    //let these variables be accessed by the GamePanel Script and use the provided input for the save data
+    // Let these variables be accessed by the GamePanel Script and use the provided input for the save data
     public string savedQuizTitle;
     public string[] savedQuizCategory = new string[6];
     public string[] savedQuizQuestion = new string[30];
@@ -33,12 +32,12 @@ public class SaveQuiz : MonoBehaviour
 
     public void SaveNewQuiz()
     {
-        SaveData.Title = savedQuizTitle; //replace with quiz title input
+        SaveData.Title = savedQuizTitle; // replace with quiz title input
         string fileName = savedQuizTitle;
 
         for (int i = 0; i < 6; i++)
         {
-            SaveData.Category[i] = savedQuizCategory[i]; //replace with each game panel under the categories type
+            SaveData.Category[i] = savedQuizCategory[i]; // replace with each game panel under the categories type
         }
         for (int j = 0; j < 30; j++)
         {

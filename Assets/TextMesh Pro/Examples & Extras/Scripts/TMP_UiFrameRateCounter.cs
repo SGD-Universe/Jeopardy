@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 namespace TMPro.Examples
 {
-
     public class TMP_UiFrameRateCounter : MonoBehaviour
     {
         public float UpdateInterval = 5.0f;
@@ -30,7 +28,7 @@ namespace TMPro.Examples
 
             Application.targetFrameRate = 1000;
 
-            GameObject frameCounter = new GameObject("Frame Counter");
+            GameObject frameCounter = new("Frame Counter");
             m_frameCounter_transform = frameCounter.AddComponent<RectTransform>();
 
             m_frameCounter_transform.SetParent(this.transform, false);
@@ -48,13 +46,11 @@ namespace TMPro.Examples
             last_AnchorPosition = AnchorPosition;
         }
 
-
         void Start()
         {
             m_LastInterval = Time.realtimeSinceStartup;
             m_Frames = 0;
         }
-
 
         void Update()
         {
@@ -85,7 +81,6 @@ namespace TMPro.Examples
                 m_LastInterval = timeNow;
             }
         }
-
 
         void Set_FrameCounter_Position(FpsCounterAnchorPositions anchor_position)
         {

@@ -3,14 +3,12 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-
 namespace TMPro.Examples
 {
-
     public class TMP_TextInfoDebugTool : MonoBehaviour
     {
-        // Since this script is used for debugging, we exclude it from builds.
-        // TODO: Rework this script to make it into an editor utility.
+        // Since this script is used for debugging, we exclude it from builds
+        // TODO: Rework this script to make it into an editor utility
         #if UNITY_EDITOR
         public bool ShowCharacters;
         public bool ShowWords;
@@ -31,7 +29,6 @@ namespace TMPro.Examples
         private float m_ScaleMultiplier;
         private float m_HandleSize;
 
-
         void OnDrawGizmos()
         {
             if (m_TextComponent == null)
@@ -41,7 +38,7 @@ namespace TMPro.Examples
                 if (m_TextComponent == null)
                     return;
             }
-
+            
             m_Transform = m_TextComponent.transform;
 
             // Get a reference to the text object's textInfo
@@ -49,54 +46,37 @@ namespace TMPro.Examples
 
             // Update Text Statistics
             ObjectStats = "Characters: " + m_TextInfo.characterCount + "   Words: " + m_TextInfo.wordCount + "   Spaces: " + m_TextInfo.spaceCount + "   Sprites: " + m_TextInfo.spriteCount + "   Links: " + m_TextInfo.linkCount
-                          + "\nLines: " + m_TextInfo.lineCount + "   Pages: " + m_TextInfo.pageCount;
+                        + "\nLines: " + m_TextInfo.lineCount + "   Pages: " + m_TextInfo.pageCount;
 
             // Get the handle size for drawing the various
             m_ScaleMultiplier = m_TextComponent.GetType() == typeof(TextMeshPro) ? 1 : 0.1f;
             m_HandleSize = HandleUtility.GetHandleSize(m_Transform.position) * m_ScaleMultiplier;
 
             // Draw line metrics
-            #region Draw Lines
             if (ShowLines)
                 DrawLineBounds();
-            #endregion
 
             // Draw word metrics
-            #region Draw Words
             if (ShowWords)
                 DrawWordBounds();
-            #endregion
 
             // Draw character metrics
-            #region Draw Characters
             if (ShowCharacters)
                 DrawCharactersBounds();
-            #endregion
 
             // Draw Quads around each of the words
-            #region Draw Links
             if (ShowLinks)
                 DrawLinkBounds();
-            #endregion
 
             // Draw Quad around the bounds of the text
-            #region Draw Bounds
             if (ShowMeshBounds)
                 DrawBounds();
-            #endregion
 
-            // Draw Quad around the rendered region of the text.
-            #region Draw Text Bounds
+            // Draw Quad around the rendered region of the text
             if (ShowTextBounds)
                 DrawTextBounds();
-            #endregion
         }
-
-
-        /// <summary>
-        /// Method to draw a rectangle around each character.
-        /// </summary>
-        /// <param name="text"></param>
+        /// <summary> Draws a rectangle around each character </summary>
         void DrawCharactersBounds()
         {
             int characterCount = m_TextInfo.characterCount;
@@ -140,25 +120,25 @@ namespace TMPro.Examples
 
                 float origin = characterInfo.origin;
                 float advance = characterInfo.xAdvance;
-                float ascentline = characterInfo.ascender;
+                float ascentLine = characterInfo.ascender;
                 float baseline = characterInfo.baseLine;
-                float descentline = characterInfo.descender;
+                float descentLine = characterInfo.descender;
 
                 //Draw Ascent line
-                Vector3 ascentlineStart = m_Transform.TransformPoint(new Vector3(origin, ascentline, 0));
-                Vector3 ascentlineEnd = m_Transform.TransformPoint(new Vector3(advance, ascentline, 0));
+                Vector3 ascentLineStart = m_Transform.TransformPoint(new Vector3(origin, ascentLine, 0));
+                Vector3 ascentLineEnd = m_Transform.TransformPoint(new Vector3(advance, ascentLine, 0));
 
                 Handles.color = Color.cyan;
-                Handles.DrawDottedLine(ascentlineStart, ascentlineEnd, dottedLineSize);
+                Handles.DrawDottedLine(ascentLineStart, ascentLineEnd, dottedLineSize);
 
                 // Draw Cap Height & Mean line
-                float capline = characterInfo.fontAsset == null ? 0 : baseline + characterInfo.fontAsset.faceInfo.capLine * characterInfo.scale;
-                Vector3 capHeightStart = new Vector3(topLeft.x, m_Transform.TransformPoint(new Vector3(0, capline, 0)).y, 0);
-                Vector3 capHeightEnd = new Vector3(topRight.x, m_Transform.TransformPoint(new Vector3(0, capline, 0)).y, 0);
+                float capLine = characterInfo.fontAsset == null ? 0 : baseline + characterInfo.fontAsset.faceInfo.capLine * characterInfo.scale;
+                Vector3 capHeightStart = new(topLeft.x, m_Transform.TransformPoint(new Vector3(0, capLine, 0)).y, 0);
+                Vector3 capHeightEnd = new(topRight.x, m_Transform.TransformPoint(new Vector3(0, capLine, 0)).y, 0);
 
-                float meanline = characterInfo.fontAsset == null ? 0 : baseline + characterInfo.fontAsset.faceInfo.meanLine * characterInfo.scale;
-                Vector3 meanlineStart = new Vector3(topLeft.x, m_Transform.TransformPoint(new Vector3(0, meanline, 0)).y, 0);
-                Vector3 meanlineEnd = new Vector3(topRight.x, m_Transform.TransformPoint(new Vector3(0, meanline, 0)).y, 0);
+                float meanLine = characterInfo.fontAsset == null ? 0 : baseline + characterInfo.fontAsset.faceInfo.meanLine * characterInfo.scale;
+                Vector3 meanLineStart = new(topLeft.x, m_Transform.TransformPoint(new Vector3(0, meanLine, 0)).y, 0);
+                Vector3 meanLineEnd = new(topRight.x, m_Transform.TransformPoint(new Vector3(0, meanLine, 0)).y, 0);
 
                 if (characterInfo.isVisible)
                 {
@@ -168,7 +148,7 @@ namespace TMPro.Examples
 
                     // Mean line
                     Handles.color = Color.cyan;
-                    Handles.DrawDottedLine(meanlineStart, meanlineEnd, dottedLineSize);
+                    Handles.DrawDottedLine(meanLineStart, meanLineEnd, dottedLineSize);
                 }
 
                 //Draw Base line
@@ -179,11 +159,11 @@ namespace TMPro.Examples
                 Handles.DrawDottedLine(baselineStart, baselineEnd, dottedLineSize);
 
                 //Draw Descent line
-                Vector3 descentlineStart = m_Transform.TransformPoint(new Vector3(origin, descentline, 0));
-                Vector3 descentlineEnd = m_Transform.TransformPoint(new Vector3(advance, descentline, 0));
+                Vector3 descentLineStart = m_Transform.TransformPoint(new Vector3(origin, descentLine, 0));
+                Vector3 descentLineEnd = m_Transform.TransformPoint(new Vector3(advance, descentLine, 0));
 
                 Handles.color = Color.cyan;
-                Handles.DrawDottedLine(descentlineStart, descentlineEnd, dottedLineSize);
+                Handles.DrawDottedLine(descentLineStart, descentLineEnd, dottedLineSize);
 
                 // Draw Origin
                 Vector3 originPosition = m_Transform.TransformPoint(new Vector3(origin, baseline, 0));
@@ -197,7 +177,7 @@ namespace TMPro.Examples
                 // Draw text labels for metrics
                if (m_HandleSize < 0.5f)
                {
-                   GUIStyle style = new GUIStyle(GUI.skin.GetStyle("Label"));
+                   GUIStyle style = new(GUI.skin.GetStyle("Label"));
                    style.normal.textColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
                    style.fontSize = 12;
                    style.fixedWidth = 200;
@@ -206,17 +186,19 @@ namespace TMPro.Examples
                    Vector3 labelPosition;
                    float center = (origin + advance) / 2;
 
-                   //float baselineMetrics = 0;
-                   //float ascentlineMetrics = ascentline - baseline;
-                   //float caplineMetrics = capline - baseline;
-                   //float meanlineMetrics = meanline - baseline;
-                   //float descentlineMetrics = descentline - baseline;
+                   /*
+                   float baselineMetrics = 0;
+                   float ascentLineMetrics = ascentLine - baseline;
+                   float capLineMetrics = capLine - baseline;
+                   float meanLineMetrics = meanLine - baseline;
+                   float descentLineMetrics = descentLine - baseline;
+                   */
 
                    // Ascent Line
-                   labelPosition = m_Transform.TransformPoint(new Vector3(center, ascentline, 0));
+                   labelPosition = m_Transform.TransformPoint(new Vector3(center, ascentLine, 0));
                    style.alignment = TextAnchor.UpperCenter;
                    Handles.Label(labelPosition, "Ascent Line", style);
-                   //Handles.Label(labelPosition, "Ascent Line (" + ascentlineMetrics.ToString("f3") + ")" , style);
+                   //Handles.Label(labelPosition, "Ascent Line (" + ascentLineMetrics.ToString("f3") + ")" , style);
 
                    // Base Line
                    labelPosition = m_Transform.TransformPoint(new Vector3(center, baseline, 0));
@@ -224,23 +206,23 @@ namespace TMPro.Examples
                    //Handles.Label(labelPosition, "Base Line (" + baselineMetrics.ToString("f3") + ")" , style);
 
                    // Descent line
-                   labelPosition = m_Transform.TransformPoint(new Vector3(center, descentline, 0));
+                   labelPosition = m_Transform.TransformPoint(new Vector3(center, descentLine, 0));
                    Handles.Label(labelPosition, "Descent Line", style);
-                   //Handles.Label(labelPosition, "Descent Line (" + descentlineMetrics.ToString("f3") + ")" , style);
+                   //Handles.Label(labelPosition, "Descent Line (" + descentLineMetrics.ToString("f3") + ")" , style);
 
                    if (characterInfo.isVisible)
                    {
                        // Cap Line
-                       labelPosition = m_Transform.TransformPoint(new Vector3(center, capline, 0));
+                       labelPosition = m_Transform.TransformPoint(new Vector3(center, capLine, 0));
                        style.alignment = TextAnchor.UpperCenter;
                        Handles.Label(labelPosition, "Cap Line", style);
-                       //Handles.Label(labelPosition, "Cap Line (" + caplineMetrics.ToString("f3") + ")" , style);
+                       //Handles.Label(labelPosition, "Cap Line (" + capLineMetrics.ToString("f3") + ")" , style);
 
                        // Mean Line
-                       labelPosition = m_Transform.TransformPoint(new Vector3(center, meanline, 0));
+                       labelPosition = m_Transform.TransformPoint(new Vector3(center, meanLine, 0));
                        style.alignment = TextAnchor.UpperCenter;
                        Handles.Label(labelPosition, "Mean Line", style);
-                       //Handles.Label(labelPosition, "Mean Line (" + ascentlineMetrics.ToString("f3") + ")" , style);
+                       //Handles.Label(labelPosition, "Mean Line (" + ascentLineMetrics.ToString("f3") + ")" , style);
 
                        // Origin
                        labelPosition = m_Transform.TransformPoint(new Vector3(origin, baseline, 0));
@@ -256,11 +238,7 @@ namespace TMPro.Examples
             }
         }
 
-
-        /// <summary>
-        /// Method to draw rectangles around each word of the text.
-        /// </summary>
-        /// <param name="text"></param>
+        /// <summary> Draws rectangles around each word of the text </summary>
         void DrawWordBounds()
         {
             for (int i = 0; i < m_TextInfo.wordCount; i++)
@@ -271,7 +249,7 @@ namespace TMPro.Examples
 
                 Vector3 bottomLeft = Vector3.zero;
                 Vector3 topLeft = Vector3.zero;
-                Vector3 bottomRight = Vector3.zero;
+                Vector3 bottomRight = Vector3.zero; // These 2 are unused
                 Vector3 topRight = Vector3.zero;
 
                 float maxAscender = -Mathf.Infinity;
@@ -286,9 +264,9 @@ namespace TMPro.Examples
                     TMP_CharacterInfo currentCharInfo = m_TextInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
 
-                    bool isCharacterVisible = characterIndex > m_TextComponent.maxVisibleCharacters ||
-                                              currentCharInfo.lineNumber > m_TextComponent.maxVisibleLines ||
-                                             (m_TextComponent.overflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != m_TextComponent.pageToDisplay) ? false : true;
+                    bool isCharacterVisible = characterIndex <= m_TextComponent.maxVisibleCharacters &&
+                                             currentCharInfo.lineNumber <= m_TextComponent.maxVisibleLines &&
+                                             (m_TextComponent.overflowMode != TextOverflowModes.Page || currentCharInfo.pageNumber + 1 == m_TextComponent.pageToDisplay);
 
                     // Track Max Ascender and Min Descender
                     maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
@@ -335,7 +313,7 @@ namespace TMPro.Examples
 
                         //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
                     }
-                    // If Word is split on more than one line.
+                    // If Word is split on more than one line
                     else if (isBeginRegion && currentLine != m_TextInfo.characterInfo[characterIndex + 1].lineNumber)
                     {
                         isBeginRegion = false;
@@ -350,21 +328,14 @@ namespace TMPro.Examples
                         //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
                         maxAscender = -Mathf.Infinity;
                         minDescender = Mathf.Infinity;
-
                     }
                 }
 
                 //Debug.Log(wInfo.GetWord(m_TextMeshPro.textInfo.characterInfo));
             }
-
-
         }
 
-
-        /// <summary>
-        /// Draw rectangle around each of the links contained in the text.
-        /// </summary>
-        /// <param name="text"></param>
+        /// <summary> Draws rectangle around each of the links contained in the text </summary>
         void DrawLinkBounds()
         {
             TMP_TextInfo textInfo = m_TextComponent.textInfo;
@@ -392,9 +363,10 @@ namespace TMPro.Examples
                     TMP_CharacterInfo currentCharInfo = textInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
 
-                    bool isCharacterVisible = characterIndex > m_TextComponent.maxVisibleCharacters ||
-                                              currentCharInfo.lineNumber > m_TextComponent.maxVisibleLines ||
-                                             (m_TextComponent.overflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != m_TextComponent.pageToDisplay) ? false : true;
+                    bool isCharacterVisible = characterIndex <= m_TextComponent.maxVisibleCharacters &&
+                                              currentCharInfo.lineNumber <= m_TextComponent.maxVisibleLines &&
+                                              (m_TextComponent.overflowMode != TextOverflowModes.Page ||
+                                              currentCharInfo.pageNumber + 1 == m_TextComponent.pageToDisplay);
 
                     // Track Max Ascender and Min Descender
                     maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
@@ -464,11 +436,7 @@ namespace TMPro.Examples
             }
         }
 
-
-        /// <summary>
-        /// Draw Rectangles around each lines of the text.
-        /// </summary>
-        /// <param name="text"></param>
+        /// <summary> Draws rectangle around each lines of the text </summary>
         void DrawLineBounds()
         {
             int lineCount = m_TextInfo.lineCount;
@@ -479,18 +447,22 @@ namespace TMPro.Examples
                 TMP_CharacterInfo firstCharacterInfo = m_TextInfo.characterInfo[lineInfo.firstCharacterIndex];
                 TMP_CharacterInfo lastCharacterInfo = m_TextInfo.characterInfo[lineInfo.lastCharacterIndex];
 
-                bool isLineVisible = (lineInfo.characterCount == 1 && (firstCharacterInfo.character == 10 || firstCharacterInfo.character == 11 || firstCharacterInfo.character == 0x2028 || firstCharacterInfo.character == 0x2029)) ||
-                                      i > m_TextComponent.maxVisibleLines ||
-                                     (m_TextComponent.overflowMode == TextOverflowModes.Page && firstCharacterInfo.pageNumber + 1 != m_TextComponent.pageToDisplay) ? false : true;
+                bool isLineVisible = (lineInfo.characterCount != 1 || firstCharacterInfo.character != 10 &&
+                                     firstCharacterInfo.character != 11 &&
+                                     firstCharacterInfo.character != 0x2028 &&
+                                     firstCharacterInfo.character != 0x2029) &&
+                                     i <= m_TextComponent.maxVisibleLines &&
+                                     (m_TextComponent.overflowMode != TextOverflowModes.Page ||
+                                     firstCharacterInfo.pageNumber + 1 == m_TextComponent.pageToDisplay);
 
                 if (!isLineVisible) continue;
 
                 float lineBottomLeft = firstCharacterInfo.bottomLeft.x;
                 float lineTopRight = lastCharacterInfo.topRight.x;
 
-                float ascentline = lineInfo.ascender;
+                float ascentLine = lineInfo.ascender;
                 float baseline = lineInfo.baseline;
-                float descentline = lineInfo.descender;
+                float descentLine = lineInfo.descender;
 
                 float dottedLineSize = 12;
 
@@ -498,11 +470,11 @@ namespace TMPro.Examples
                 DrawDottedRectangle(m_Transform.TransformPoint(lineInfo.lineExtents.min), m_Transform.TransformPoint(lineInfo.lineExtents.max), Color.green, 4);
 
                 // Draw Ascent line
-                Vector3 ascentlineStart = m_Transform.TransformPoint(new Vector3(lineBottomLeft, ascentline, 0));
-                Vector3 ascentlineEnd = m_Transform.TransformPoint(new Vector3(lineTopRight, ascentline, 0));
+                Vector3 ascentLineStart = m_Transform.TransformPoint(new Vector3(lineBottomLeft, ascentLine, 0));
+                Vector3 ascentLineEnd = m_Transform.TransformPoint(new Vector3(lineTopRight, ascentLine, 0));
 
                 Handles.color = Color.yellow;
-                Handles.DrawDottedLine(ascentlineStart, ascentlineEnd, dottedLineSize);
+                Handles.DrawDottedLine(ascentLineStart, ascentLineEnd, dottedLineSize);
 
                 // Draw Base line
                 Vector3 baseLineStart = m_Transform.TransformPoint(new Vector3(lineBottomLeft, baseline, 0));
@@ -512,8 +484,8 @@ namespace TMPro.Examples
                 Handles.DrawDottedLine(baseLineStart, baseLineEnd, dottedLineSize);
 
                 // Draw Descent line
-                Vector3 descentLineStart = m_Transform.TransformPoint(new Vector3(lineBottomLeft, descentline, 0));
-                Vector3 descentLineEnd = m_Transform.TransformPoint(new Vector3(lineTopRight, descentline, 0));
+                Vector3 descentLineStart = m_Transform.TransformPoint(new Vector3(lineBottomLeft, descentLine, 0));
+                Vector3 descentLineEnd = m_Transform.TransformPoint(new Vector3(lineTopRight, descentLine, 0));
 
                 Handles.color = Color.yellow;
                 Handles.DrawDottedLine(descentLineStart, descentLineEnd, dottedLineSize);
@@ -521,7 +493,7 @@ namespace TMPro.Examples
                 // Draw text labels for metrics
                 if (m_HandleSize < 1.0f)
                 {
-                    GUIStyle style = new GUIStyle();
+                    GUIStyle style = new();
                     style.normal.textColor = new Color(0.8f, 0.8f, 0.8f, 1.0f);
                     style.fontSize = 12;
                     style.fixedWidth = 200;
@@ -529,7 +501,7 @@ namespace TMPro.Examples
                     Vector3 labelPosition;
 
                     // Ascent Line
-                    labelPosition = m_Transform.TransformPoint(new Vector3(lineBottomLeft, ascentline, 0));
+                    labelPosition = m_Transform.TransformPoint(new Vector3(lineBottomLeft, ascentLine, 0));
                     style.padding = new RectOffset(0, 10, 0, 5);
                     style.alignment = TextAnchor.MiddleRight;
                     Handles.Label(labelPosition, "Ascent Line", style);
@@ -539,16 +511,13 @@ namespace TMPro.Examples
                     Handles.Label(labelPosition, "Base Line", style);
 
                     // Descent line
-                    labelPosition = m_Transform.TransformPoint(new Vector3(lineBottomLeft, descentline, 0));
+                    labelPosition = m_Transform.TransformPoint(new Vector3(lineBottomLeft, descentLine, 0));
                     Handles.Label(labelPosition, "Descent Line", style);
                 }
             }
         }
 
-
-        /// <summary>
-        /// Draw Rectangle around the bounds of the text object.
-        /// </summary>
+        /// <summary> Draws rectangle around the bounds of the text object </summary>
         void DrawBounds()
         {
             Bounds meshBounds = m_TextComponent.bounds;
@@ -560,7 +529,6 @@ namespace TMPro.Examples
             DrawRectangle(bottomLeft, topRight, new Color(1, 0.5f, 0));
         }
 
-
         void DrawTextBounds()
         {
             Bounds textBounds = m_TextComponent.textBounds;
@@ -570,7 +538,6 @@ namespace TMPro.Examples
 
             DrawRectangle(bottomLeft, topRight, new Color(0f, 0.5f, 0.5f));
         }
-
 
         // Draw Rectangles
         void DrawRectangle(Vector3 BL, Vector3 TR, Color color)
@@ -593,19 +560,20 @@ namespace TMPro.Examples
         }
 
         void DrawSolidRectangle(Vector3 bottomLeft, Vector3 topRight, Color color, float size = 5.0f)
+        // size is unimplemented
         {
             Handles.color = color;
-            Rect rect = new Rect(bottomLeft, topRight - bottomLeft);
+            Rect rect = new(bottomLeft, topRight - bottomLeft);
             Handles.DrawSolidRectangleWithOutline(rect, color, Color.black);
         }
 
         void DrawSquare(Vector3 position, float size, Color color)
         {
             Handles.color = color;
-            Vector3 bottomLeft = new Vector3(position.x - size, position.y - size, position.z);
-            Vector3 topLeft = new Vector3(position.x - size, position.y + size, position.z);
-            Vector3 topRight = new Vector3(position.x + size, position.y + size, position.z);
-            Vector3 bottomRight = new Vector3(position.x + size, position.y - size, position.z);
+            Vector3 bottomLeft = new(position.x - size, position.y - size, position.z);
+            Vector3 topLeft = new(position.x - size, position.y + size, position.z);
+            Vector3 topRight = new(position.x + size, position.y + size, position.z);
+            Vector3 bottomRight = new(position.x + size, position.y - size, position.z);
 
             Handles.DrawLine(bottomLeft, topLeft);
             Handles.DrawLine(topLeft, topRight);
@@ -621,7 +589,6 @@ namespace TMPro.Examples
             Handles.DrawLine(new Vector3(position.x, position.y - size, position.z), new Vector3(position.x, position.y + size, position.z));
         }
 
-
         // Draw Rectangles
         void DrawRectangle(Vector3 bl, Vector3 tl, Vector3 tr, Vector3 br, Color color)
         {
@@ -632,7 +599,6 @@ namespace TMPro.Examples
             Gizmos.DrawLine(tr, br);
             Gizmos.DrawLine(br, bl);
         }
-
 
         // Draw Rectangles
         void DrawDottedRectangle(Vector3 bl, Vector3 tl, Vector3 tr, Vector3 br, Color color)
@@ -649,4 +615,3 @@ namespace TMPro.Examples
         #endif
     }
 }
-

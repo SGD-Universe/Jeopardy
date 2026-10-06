@@ -4,14 +4,11 @@ using System;
 
 namespace TMPro
 {
-    /// <summary>
-    /// Example of a Custom Character Input Validator to only allow phone number in the (800) 555-1212 format.
-    /// </summary>
+    /// <summary> Custom Character Input Validator: Only allows phone number in the (800) 555-1212 format </summary>
     [Serializable]
     //[CreateAssetMenu(fileName = "InputValidator - Phone Numbers.asset", menuName = "TextMeshPro/Input Validators/Phone Numbers")]
     public class TMP_PhoneNumberValidator : TMP_InputValidator
     {
-        // Custom text input validation function
         public override char Validate(ref string text, ref int pos, char ch)
         {
             Debug.Log("Trying to validate...");
@@ -21,7 +18,7 @@ namespace TMPro
 
             int length = text.Length;
 
-            // Enforce Phone Number format for every character input.
+            // Enforce Phone Number format for every character input
             for (int i = 0; i < length + 1; i++)
             {
                 switch (i)

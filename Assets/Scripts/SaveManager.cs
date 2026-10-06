@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class SaveManager : MonoBehaviour
 {
@@ -34,31 +35,30 @@ public static int SaveBoardData(BoardData boardData, string fileName)
         Directory.CreateDirectory(folderPath);
     }
 
-    string quizTemplatefilePath = Path.Combine(folderPath, fileName + ".json");
+    string quizTemplateFilePath = Path.Combine(folderPath, fileName + ".json");
     string json = JsonUtility.ToJson(boardData, true);
 
-    File.WriteAllText(quizTemplatefilePath, json);
-    UnityEngine.Debug.Log("Saved quiz to: " + quizTemplatefilePath);
+    File.WriteAllText(quizTemplateFilePath, json);
+    Debug.Log("Saved quiz to: " + quizTemplateFilePath);
 
     return 0;
 }
 
     private void Update()
     {
-        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamOneScore)); //For testing and showcase purposes, shows scores every frame
-        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamTwoScore));
-        UnityEngine.Debug.Log(Mathf.Round(gameManager.teamThreeScore));
+        Debug.Log(Mathf.Round(gameManager.teamOneScore)); //For testing and showcase purposes, shows scores every frame
+        Debug.Log(Mathf.Round(gameManager.teamTwoScore));
+        Debug.Log(Mathf.Round(gameManager.teamThreeScore));
 
-        // Type-casted so that integers will be accepted instead of floats.
-        gameManager.teamOneScore += (int)(1 * Time.deltaTime);
-        gameManager.teamTwoScore += (int)(2 * Time.deltaTime);
-        gameManager.teamThreeScore += (int)(3 * Time.deltaTime);
+        // Type-casted so that integers will be accepted instead of floats
+        gameManager.teamOneScore += (int)(1 * Time.deltaTime); // What does this achieve?
+        gameManager.teamTwoScore += (int)(2 * Time.deltaTime); // Multiply score by time passed?
+        gameManager.teamThreeScore += (int)(3 * Time.deltaTime); // Different for each team? Why?
 
         teamScoring.teamOneScore = gameManager.teamOneScore;
         teamScoring.teamTwoScore = gameManager.teamTwoScore;
         teamScoring.teamThreeScore = gameManager.teamThreeScore;
     }
-
 
     [System.Serializable]
     public class PanelData
@@ -76,7 +76,7 @@ public static int SaveBoardData(BoardData boardData, string fileName)
     }
 
     [System.Serializable]
-    public class TeamScoringData //Holds score data for JSON file saving
+    public class TeamScoringData // Holds score data for JSON file saving
     {
         public float teamOneScore;
         public float teamTwoScore;
@@ -113,48 +113,50 @@ public static int SaveBoardData(BoardData boardData, string fileName)
     {
         char[] invalid = Path.GetInvalidFileNameChars();
 
-        if(string.IsNullOrWhiteSpace(fileName)) return -1;
+        if (string.IsNullOrWhiteSpace(fileName)) return -1;
 
         foreach(char c in fileName)
         {
-            if(invalid.Contains(c)) return -2;
+            if (invalid.Contains(c)) return -2;
         }
 
         return 0;
     }
 
-    // public static int SaveBoardData(BoardData boardData, string fileName)
-    // {
-    //     quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
-    //     // Verify File Name
-    //     char[] invalid = Path.GetInvalidFileNameChars();
+    /*
+    public static int SaveBoardData(BoardData boardData, string fileName)
+    {
+        quizTemplateFolderPath = Application.persistentDataPath + "/QuizTemplates";
+        // Verify File Name
+        char[] invalid = Path.GetInvalidFileNameChars();
 
-    //     if(string.IsNullOrWhiteSpace(fileName)) return -1;
+        if (string.IsNullOrWhiteSpace(fileName)) return -1;
 
-    //     foreach(char c in fileName)
-    //     {
-    //         if(invalid.Contains(c)) return -2;
-    //     }
+        foreach(char c in fileName)
+        {
+            if (invalid.Contains(c)) return -2;
+        }
 
-    //     // Save Data to file
-    //     UnityEngine.Debug.Log(quizTemplateFolderPath);
-    //     string json = JsonUtility.ToJson(boardData, true);
-    //     if(!Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
-    //     string quizTemplatefilePath = quizTemplateFolderPath + "/" + fileName + ".json";
-    //     UnityEngine.Debug.Log(quizTemplatefilePath);
-    //     File.WriteAllText(quizTemplatefilePath, json);
-    //     Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(quizTemplatefilePath) + "\"");
-    //     //It Works!
-    //     return 0;
-    // }
+        // Save Data to file
+        Debug.Log(quizTemplateFolderPath);
+        string json = JsonUtility.ToJson(boardData, true);
+        if (!Directory.Exists(quizTemplateFolderPath)) Directory.CreateDirectory(quizTemplateFolderPath);
+        string quizTemplateFilePath = quizTemplateFolderPath + "/" + fileName + ".json";
+        Debug.Log(quizTemplateFilePath);
+        File.WriteAllText(quizTemplateFilePath, json);
+        Process.Start("explorer.exe", "/select,\"" + Path.GetFullPath(quizTemplateFilePath) + "\"");
+        // It Works!
+        return 0;
+    }
+    */
 
     public static BoardData LoadRandomBoardData()
     {
         string[] quizTemplates = Directory.GetFiles(quizTemplateFolderPath, "*.json");
 
-        if(quizTemplates.Length == 0)
+        if (quizTemplates.Length == 0)
         {
-            UnityEngine.Debug.LogError("No Quiz Templates Found");
+            Debug.LogError("No Quiz Templates Found");
             return new BoardData();
         }
 
@@ -163,32 +165,28 @@ public static int SaveBoardData(BoardData boardData, string fileName)
         return boardData;
     }
 
-    public void SaveGame() //Saves game data (Currently just team scores)
+    public void SaveGame() // Saves game data (Currently just team scores)
     {
-
-        teamScoring.teamOneScore = gameManager.teamOneScore; //Ensures scores are saved properly
+        teamScoring.teamOneScore = gameManager.teamOneScore; // Ensures scores are saved properly
         teamScoring.teamTwoScore = gameManager.teamTwoScore;
         teamScoring.teamThreeScore = gameManager.teamThreeScore;
-        string teamScoringData = JsonUtility.ToJson(teamScoring); //Saves JSON formatted scores to a string
-        UnityEngine.Debug.Log(saveScoreFilePath); //Displays file path in debug log
-        System.IO.File.WriteAllText(saveScoreFilePath, teamScoringData); //Writes JSON formatted string to the file path specified in the saveScoreFilePath variable
-        UnityEngine.Debug.Log("Scores saved."); //Displays "Scores saved."
-
+        string teamScoringData = JsonUtility.ToJson(teamScoring); // Saves JSON formatted scores to a string
+        Debug.Log(saveScoreFilePath); // Displays file path in debug log
+        System.IO.File.WriteAllText(saveScoreFilePath, teamScoringData);
+        // Writes JSON formatted string to the file path specified in the saveScoreFilePath variable
+        Debug.Log("Scores saved."); // Displays "Scores saved."
     }
 
     public void LoadGame()
     {
-
-        string teamScoringData = System.IO.File.ReadAllText(saveScoreFilePath); //Sets string to the text found in the JSON file
-        teamScoring = JsonUtility.FromJson<TeamScoringData>(teamScoringData); //Converts it to floats
+        string teamScoringData = System.IO.File.ReadAllText(saveScoreFilePath); // Sets string to the text found in the JSON file
+        teamScoring = JsonUtility.FromJson<TeamScoringData>(teamScoringData); // Converts it to floats
 
         // Type-casted so that integers will be accepted instead of floats.
-        gameManager.teamOneScore = (int)teamScoring.teamOneScore; //Sets all team scores to what they are in the save file
+        gameManager.teamOneScore = (int)teamScoring.teamOneScore; // Sets all team scores to what they are in the save file
         gameManager.teamTwoScore = (int)teamScoring.teamTwoScore;
         gameManager.teamThreeScore = (int)teamScoring.teamThreeScore;
 
-        UnityEngine.Debug.Log("Scores loaded."); //Displays "Scores loaded." in the debug log
-
+        Debug.Log("Scores loaded."); // Displays "Scores loaded." in the debug log
     }
-
 }
