@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    //Used to refrence the virtualCamera used to guide the camera
+    // Used to reference the virtualCamera used to guide the camera
     [SerializeField] private CinemachineVirtualCamera mainMenuVC;
 
     // Second camera looking at game board
@@ -12,16 +12,16 @@ public class CameraManager : MonoBehaviour
     // Third camera looking at contestants
     [SerializeField] private CinemachineVirtualCamera contestantsVC;
 
-    //Current GameObject virtualCamera is looking at
+    // Current GameObject virtualCamera is looking at
     [SerializeField] private GameObject currentLookAt;
 
-    //Game Menu screen
+    // Game Menu screen
     [SerializeField] private GameObject menuScreen;
 
-    //game board Screen
+    // Game Board Screen
     [SerializeField] private GameObject gameScreen;
 
-    //contestants Screen
+    // Contestants Screen
     [SerializeField] private GameObject contestantsScreen;
 
     void Awake()
@@ -31,26 +31,22 @@ public class CameraManager : MonoBehaviour
         contestantsVC.Priority = 0;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //Camera will look at whichever object is made currentLookAt
+        // Camera will look at whichever object is made currentLookAt
         mainMenuVC.LookAt = currentLookAt.transform;
-
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PerformTransitionGoback();
+            PerformTransitionGoBack();
         }
+        /* Doesn't work for:
+        ContestantsVC (at all)
+        GameScreenVC (Dollies away but doesn't look back at main)
+        */
     }
 
-    //called from gameobject: CreateNewQuiz: Button
+    // Called from GameObject: CreateNewQuiz: Button
     public void PerformTransitionToGameScreen()
     {
         //Camera will look at the game screen now.
@@ -69,8 +65,8 @@ public class CameraManager : MonoBehaviour
         contestantsVC.Priority = 1;
     }
 
-    //Currently really rough, will jump back to menuScreen right now, should be able 
-    public void PerformTransitionGoback()
+    // Currently really rough, will jump back to menuScreen right now, should be able... Comment cuts off here
+    public void PerformTransitionGoBack()
     {
         currentLookAt = menuScreen;
         mainMenuVC.Priority = 1;

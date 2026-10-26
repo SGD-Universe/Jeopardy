@@ -7,7 +7,7 @@ public class ExperimentalCategoryIntroduction : MonoBehaviour
 {
     [SerializeField] private Transform categoriesContainer;
 
-    private List<GameObject> categories = new List<GameObject>();
+    private List<GameObject> categories = new();
     private GameObject currentCategory;
     private Animator currentCategoryAnimator;
     private int currentCategoryIndex = 0;
@@ -16,13 +16,13 @@ public class ExperimentalCategoryIntroduction : MonoBehaviour
 
     public UnityEvent OnFinalCategoryDisplayed;
 
-
     void Start()
     {
         // Extract all children from categoriesContainer into our own list
         foreach(Transform category in categoriesContainer)
         {
             if(category.gameObject.activeSelf) category.gameObject.SetActive(false);
+
             categories.Add(category.gameObject);
         }
 
@@ -31,21 +31,22 @@ public class ExperimentalCategoryIntroduction : MonoBehaviour
 
     void Update()
     {
-            if(isPresenting) isFadingOut = currentCategoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("CategoryFadeOut");
-            if(isFadingOut)
+        if(isPresenting) isFadingOut = currentCategoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("CategoryFadeOut");
+        
+        if (isFadingOut)
+        {
+            if (currentCategoryIndex < categories.Count - 1)
             {
-                if(currentCategoryIndex < categories.Count - 1)
-                {
-                    currentCategoryIndex++;
-                    currentCategory = categories[currentCategoryIndex];
-                    currentCategory.SetActive(true);
-                    currentCategoryAnimator = currentCategory.GetComponent<Animator>();
-                }
-                else
-                {
-                    OnFinalCategoryDisplayed.Invoke();
-                }
+                currentCategoryIndex++;
+                currentCategory = categories[currentCategoryIndex];
+                currentCategory.SetActive(true);
+                currentCategoryAnimator = currentCategory.GetComponent<Animator>();
             }
+            else
+            {
+                OnFinalCategoryDisplayed.Invoke();
+            }
+        }
     }
 
     public void BeginIntroduction()

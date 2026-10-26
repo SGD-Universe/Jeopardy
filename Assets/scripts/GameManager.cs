@@ -5,14 +5,14 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     public enum QuizPlayMode
     {
         None,
         Quiz,
         Editor
     }
-
-    public static GameManager Instance;
 
     public QuizPlayMode quizPlayMode;
 
@@ -23,17 +23,15 @@ public class GameManager : MonoBehaviour
     public int teamTwoScore;
     public int teamThreeScore;
 
-
     private void Awake()
     {
-        if(Instance == null) Instance = this;
-        else Destroy(gameObject);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void TriggerQuestionCorrect()

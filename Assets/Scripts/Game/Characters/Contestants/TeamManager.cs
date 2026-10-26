@@ -1,76 +1,59 @@
 using UnityEngine;
+/*
+Manages exactly two teams for a Jeopardy game.
 
-/// <summary>
-/// Manages exactly two teams for a Jeopardy game.
-/// 
-/// This is a singleton — only one TeamManager should exist in the scene.
-/// It holds references to Team 1 and Team 2 (which each use the existing Team script)
-/// and provides helper methods to look up a team by number, get scores, and
-/// reset scores between rounds.
-///
-/// ========== WHERE TO ATTACH IN UNITY ==========
-/// 1. Create an empty GameObject in your scene hierarchy.
-///    - Right-click in the Hierarchy → Create Empty.
-///    - Rename it to "TeamManager".
-/// 2. Drag this script (TeamManager.cs) onto the "TeamManager" GameObject
-///    in the Inspector.
-/// 3. In the Inspector, you will see two fields:
-///       • Team One  — drag the GameObject that has the Team script with teamNumber = 1.
-///       • Team Two  — drag the GameObject that has the Team script with teamNumber = 2.
-///    These are the existing Team GameObjects in your scene (e.g. the podium objects
-///    that already have Team.cs attached).
-/// ==============================================
-/// </summary>
+This is a singleton — only one TeamManager should exist in the scene.
+It holds references to Team 1 and Team 2 (which each use the existing Team script)
+and provides helper methods to look up a team by number, get scores, and
+reset scores between rounds.
+
+========== WHERE TO ATTACH IN UNITY ==========
+1. Create an empty GameObject in your scene hierarchy.
+   - Right-click in the Hierarchy → Create Empty.
+   - Rename it to "TeamManager".
+2. Drag this script (TeamManager.cs) onto the "TeamManager" GameObject
+   in the Inspector.
+3. In the Inspector, you will see two fields:
+      • Team One  — drag the GameObject that has the Team script with teamNumber = 1.
+      • Team Two  — drag the GameObject that has the Team script with teamNumber = 2.
+   These are the existing Team GameObjects in your scene (e.g. the podium objects
+   that already have Team.cs attached).
+==============================================
+*/
 public class TeamManager : MonoBehaviour
 {
-    // ──────────────────────────────────────────────
-    //  Singleton
-    // ──────────────────────────────────────────────
-    public static TeamManager Instance;
+    public static TeamManager Instance; // Singleton
 
-    // ──────────────────────────────────────────────
-    //  Team References (assign in Inspector)
-    // ──────────────────────────────────────────────
-    [Header("Team References")]
+    [Header("Team References")] // Assign in Inspector
     [Tooltip("Drag the GameObject that has the Team script with teamNumber = 1.")]
     [SerializeField] private Team teamOne;
 
     [Tooltip("Drag the GameObject that has the Team script with teamNumber = 2.")]
     [SerializeField] private Team teamTwo;
 
-    // ──────────────────────────────────────────────
-    //  Public read-only accessors
-    // ──────────────────────────────────────────────
-    /// <summary>Returns the Team 1 reference.</summary>
-    public Team TeamOne => teamOne;
+    // Team 3?
 
-    /// <summary>Returns the Team 2 reference.</summary>
+    // Public read-only accessors
+    /// <summary> Returns the Team 1 reference </summary>
+    public Team TeamOne => teamOne;
+    /// <summary> Returns the Team 2 reference </summary>
     public Team TeamTwo => teamTwo;
 
-    // ──────────────────────────────────────────────
-    //  Unity Lifecycle
-    // ──────────────────────────────────────────────
+    // Unity Lifecycle
     private void Awake()
     {
-        // Standard singleton pattern — matches what GameManager and AudioManager already use.
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // This maintains the gameObject should the scene change
     }
 
-    // ──────────────────────────────────────────────
-    //  Helper Methods
-    // ──────────────────────────────────────────────
-
-    /// <summary>
-    /// Returns the Team whose teamNumber matches the given number (1 or 2).
-    /// Returns null if the number is invalid or the reference is unassigned.
-    /// </summary>
+#region Helper Methods
+    // Returns the Team whose teamNumber matches the given number (1 or 2)
+    /// <summary> Returns null if the number is invalid or the reference is unassigned </summary>
     public Team GetTeamByNumber(int teamNumber)
     {
         switch (teamNumber)
@@ -83,20 +66,16 @@ public class TeamManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Returns the score of the specified team (1 or 2).
-    /// Returns 0 if the team number is invalid.
-    /// </summary>
+    // Returns the score of the specified team (1 or 2)
+    /// <summary> Returns 0 if the team number is invalid </summary>
     public int GetTeamScore(int teamNumber)
     {
         Team team = GetTeamByNumber(teamNumber);
         return team != null ? team.teamScore : 0;
     }
 
-    /// <summary>
-    /// Resets both teams' scores to zero.
-    /// Useful when starting a new round or a new game.
-    /// </summary>
+    /* Resets both teams' scores to zero
+    Useful when starting a new round or a new game */
     public void ResetAllScores()
     {
         if (teamOne != null)
@@ -112,4 +91,5 @@ public class TeamManager : MonoBehaviour
             teamTwo.AddPoints(0);
         }
     }
+#endregion Helper Methods
 }

@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 namespace TMPro.Examples
 {
-    
     public class ShaderPropAnimator : MonoBehaviour
     {
-
         private Renderer m_Renderer;
         private Material m_Material;
 
@@ -20,7 +17,7 @@ namespace TMPro.Examples
             // Cache a reference to object's renderer
             m_Renderer = GetComponent<Renderer>();
 
-            // Cache a reference to object's material and create an instance by doing so.
+            // Cache a reference to object's material and create an instance by doing so
             m_Material = m_Renderer.material;
         }
 

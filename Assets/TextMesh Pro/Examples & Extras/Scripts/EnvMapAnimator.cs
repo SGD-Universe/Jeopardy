@@ -3,7 +3,6 @@ using System.Collections;
 using TMPro;
 
 public class EnvMapAnimator : MonoBehaviour {
-
     //private Vector3 TranslationSpeeds;
     public Vector3 RotationSpeeds;
     private TMP_Text m_textMeshPro;
@@ -20,7 +19,7 @@ public class EnvMapAnimator : MonoBehaviour {
     // Use this for initialization
 	IEnumerator Start ()
     {
-        Matrix4x4 matrix = new Matrix4x4(); 
+        Matrix4x4 matrix = new();
         
         while (true)
         {

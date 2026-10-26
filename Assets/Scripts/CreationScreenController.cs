@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 public class CreationScreenController : MonoBehaviour
 {
     [SerializeField] private GameObject panelTemplate;
-    [SerializeField] private Vector2 panelSpacing = new Vector2(4, 3);
+    [SerializeField] private Vector2 panelSpacing = new(4, 3);
     [SerializeField] private TMP_InputField titleInput;
     [SerializeField] private float titleInputColorLerpFactor = 0f;
     [SerializeField] private TMP_Text warningText;
@@ -22,36 +22,35 @@ public class CreationScreenController : MonoBehaviour
 
     private Color titleInputOriginalColor;
 
-    private Vector2 panelCount = new Vector2(6, 6);
-    private List<List<MonitorPlane>> panelsBoard = new List<List<MonitorPlane>>();
+    private Vector2 panelCount = new(6, 6);
+    private List<List<MonitorPlane>> panelsBoard = new();
 
     private Animator animator;
 
     private SaveManager.BoardData boardData;
 
-
     // Start is called before the first frame update
     void Start()
     {
-        for(int c  = 0; c < panelCount.x; c ++)
+        for (int c  = 0; c < panelCount.x; c ++)
         {
-            List<MonitorPlane> panelsColumn = new List<MonitorPlane>();
-            for(int r  = 0; r < panelCount.y; r ++)
+            List<MonitorPlane> panelsColumn = new();
+            for (int r  = 0; r < panelCount.y; r ++)
             {
-                
-                // float spawnX = (c + 0.5f - panelCount.x / 2f) * panelTemplate.transform.localScale.x * panelSpacing.x;
-                // float spawnY = (r + 0.5f - panelCount.y / 2f) * panelTemplate.transform.localScale.y * panelSpacing.y;
+                //float spawnX = (c + 0.5f - panelCount.x / 2f) * panelTemplate.transform.localScale.x * panelSpacing.x;
+                //float spawnY = (r + 0.5f - panelCount.y / 2f) * panelTemplate.transform.localScale.y * panelSpacing.y;
                 // Spawns from top-to-bottom, left-to-right
                 float spawnX = ((c + 0.5f) - (panelCount.x / 2f)) * panelTemplate.transform.localScale.x * panelSpacing.x;
                 float spawnY = ((panelCount.y / 2f) - (r + 0.5f)) * panelTemplate.transform.localScale.y * panelSpacing.y;
-                Vector3 spawnPosition = new Vector3(spawnX, spawnY, 0f);
+                Vector3 spawnPosition = new(spawnX, spawnY, 0f);
                 
                 GameObject panelClone = Instantiate(panelTemplate, transform);
                 panelClone.transform.localPosition = spawnPosition;
                 
                 MonitorPlane monitorPlane = panelClone.GetComponent<MonitorPlane>();
-                if(r == 0) monitorPlane.SetPanelType(MonitorPlane.Type.Category);
+                if (r == 0) monitorPlane.SetPanelType(MonitorPlane.Type.Category);
                 else monitorPlane.SetPanelType(MonitorPlane.Type.Question);
+                
                 panelsColumn.Add(monitorPlane);
             }
             panelsBoard.Add(panelsColumn);
@@ -62,12 +61,13 @@ public class CreationScreenController : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
+        AudioManager.Instance.PlayEditorMusic();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             eraseButton.SetActive(!eraseButton.activeInHierarchy);
             fillButton.SetActive(!fillButton.activeInHierarchy);
@@ -80,7 +80,7 @@ public class CreationScreenController : MonoBehaviour
 
     public void SaveBoardData()
     {
-        if(VerifyBoardData())
+        if (VerifyBoardData())
         {
             boardData = new SaveManager.BoardData();
             int c = 0;
@@ -99,22 +99,21 @@ public class CreationScreenController : MonoBehaviour
             string fileName = titleInput.text.Trim();
             int saveValidity = SaveManager.SaveBoardData(boardData, fileName);
 
-
-            if(saveValidity == -1)
+            if (saveValidity == -1)
             {
                 animator.Play("CreationScreenTitleError", 0, 0f);
                 animator.Play("CreationScreenWarningFlash", 1, 0f);
                 warningText.text = "Please give your quiz a title";
                 return;
             }
-            else if(saveValidity == -2)
+            else if (saveValidity == -2)
             {
                 animator.Play("CreationScreenTitleError", 0, 0f);
                 animator.Play("CreationScreenWarningFlash", 1, 0f);
                 warningText.text = "Quiz title has invalid characters. Please give it a different name.";
                 return;
             }
-            else if(saveValidity == 0)
+            else if (saveValidity == 0)
             {
                 // Turn off warning flash and play success flash
                 animator.Play("CreationScreenIdle", 1, 0f);
@@ -132,19 +131,19 @@ public class CreationScreenController : MonoBehaviour
             {
                 string string1 = panel.GetPrimaryInputString();
                 string string2 = panel.GetSecondaryInputString();
-                if(string.IsNullOrEmpty(string1))
+                if (string.IsNullOrEmpty(string1))
                 {
                     panel.FlashError();
                     dataIsValid = false;
                 }
-                else if(panel.GetPanelType() == MonitorPlane.Type.Question && string.IsNullOrEmpty(string2))
+                else if (panel.GetPanelType() == MonitorPlane.Type.Question && string.IsNullOrEmpty(string2))
                 {
                     panel.FlashError();
                     dataIsValid = false;
                 }
             }
         }
-        if(dataIsValid == false)
+        if (dataIsValid == false)
         {
             animator.Play("CreationScreenWarningFlash", 1, 0f);
             warningText.text = "Please fill out all the panels";
@@ -158,14 +157,14 @@ public class CreationScreenController : MonoBehaviour
         {
             foreach(MonitorPlane panel in panelsColumn)
             {
-                if(panel.GetPanelType() == MonitorPlane.Type.Category)
+                if (panel.GetPanelType() == MonitorPlane.Type.Category)
                 {
                     panel.SetPrimaryInputString("SHOES");
                 }
-                else if(panel.GetPanelType() == MonitorPlane.Type.Question)
+                else if (panel.GetPanelType() == MonitorPlane.Type.Question)
                 {
-                    panel.SetPrimaryInputString("These shoes are named after Florida's iconic reptile");
-                    panel.SetSecondaryInputString("What are Crocs?");
+                    panel.SetPrimaryInputString("This popular brand of shoes is named after an aquatic reptile");
+                    panel.SetSecondaryInputString("What is Crocs?");
                 }
             }
         }
@@ -178,7 +177,6 @@ public class CreationScreenController : MonoBehaviour
             foreach(MonitorPlane panel in panelsColumn)
             {
                 //File.ReadAllText("File Name");
-
             }
         }
     }
@@ -199,5 +197,4 @@ public class CreationScreenController : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
-
 }

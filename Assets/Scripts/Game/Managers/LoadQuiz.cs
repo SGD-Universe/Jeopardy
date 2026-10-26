@@ -8,8 +8,7 @@ using System.Globalization;
 
 public class LoadQuiz : MonoBehaviour
 {
-
-    public BoardLoadData LoadData = new BoardLoadData();
+    public BoardLoadData LoadData = new();
 
     public bool quizLoaded = false;
     public bool fileImported = false;
@@ -43,15 +42,14 @@ public class LoadQuiz : MonoBehaviour
         // This is what JsonUtility reads from the JSON file.
         public ColumnData[] columns;
 
-        // --- Backward-compatible accessors ---
-        // GamePanel.cs uses Category[panelNumb], Question[panelNumb], Answer[panelNumb].
-        // These properties extract that data from the new columns structure
-        // so nothing else in the project needs to change.
-        // Arrays are ALWAYS fixed-size (6 categories, 30 questions, 30 answers).
-
+        /* --- Backward-compatible accessors ---
+        GamePanel.cs uses Category[panelNumb], Question[panelNumb], Answer[panelNumb]
+        These properties extract that data from the new columns structure
+        so nothing else in the project needs to change.
+        Arrays are ALWAYS fixed-size (6 categories, 30 questions, 30 answers) */
         /// <summary>
-        /// Always returns string[6] — one category name per column.
-        /// Category name = the primaryText of the first panel in each column.
+        /// Always returns string[6] — one category name per column
+        /// <br> Category name = the primaryText of the first panel in each column </br>
         /// </summary>
         public string[] Category
         {
@@ -60,8 +58,8 @@ public class LoadQuiz : MonoBehaviour
                 string[] cats = new string[MAX_CATEGORIES];
                 for (int i = 0; i < MAX_CATEGORIES; i++)
                 {
-                    if (columns != null && i < columns.Length
-                        && columns[i].panels != null && columns[i].panels.Length > 0)
+                    if (columns is not null && i < columns.Length
+                        && columns[i].panels is not null && columns[i].panels.Length > 0)
                         cats[i] = columns[i].panels[0].primaryText;
                     else
                         cats[i] = "";
@@ -69,10 +67,9 @@ public class LoadQuiz : MonoBehaviour
                 return cats;
             }
         }
-
         /// <summary>
-        /// Always returns string[30] — questions in row-major order (left-to-right, top-to-bottom).
-        /// Index = row * 6 + column, matching how OverviewScreen creates panels.
+        /// Always returns string[30] — Questions in row-major order (left-to-right, top-to-bottom)
+        /// <br> Index = row * 6 + column, matching how OverviewScreen creates panels </br>
         /// </summary>
         public string[] Question
         {
@@ -85,8 +82,8 @@ public class LoadQuiz : MonoBehaviour
                     {
                         int panelIndex = row + 1; // +1 to skip the category header
                         int flatIndex = row * MAX_CATEGORIES + col;
-                        if (columns != null && col < columns.Length
-                            && columns[col].panels != null && panelIndex < columns[col].panels.Length)
+                        if (columns is not null && col < columns.Length
+                        && columns[col].panels is not null && panelIndex < columns[col].panels.Length)
                             questions[flatIndex] = columns[col].panels[panelIndex].primaryText;
                         else
                             questions[flatIndex] = "";
@@ -95,10 +92,7 @@ public class LoadQuiz : MonoBehaviour
                 return questions;
             }
         }
-
-        /// <summary>
-        /// Always returns string[30] — answers in the same row-major order as Question.
-        /// </summary>
+        /// <summary> Always returns string[30] — Answers in the same row-major order as Question </summary>
         public string[] Answer
         {
             get
@@ -110,8 +104,8 @@ public class LoadQuiz : MonoBehaviour
                     {
                         int panelIndex = row + 1;
                         int flatIndex = row * MAX_CATEGORIES + col;
-                        if (columns != null && col < columns.Length
-                            && columns[col].panels != null && panelIndex < columns[col].panels.Length)
+                        if (columns is not null && col < columns.Length
+                        && columns[col].panels is not null && panelIndex < columns[col].panels.Length)
                             answers[flatIndex] = columns[col].panels[panelIndex].secondaryText;
                         else
                             answers[flatIndex] = "";
@@ -122,18 +116,13 @@ public class LoadQuiz : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        
-    }
-
     public void LoadSavedQuiz()
     {
         string QuizLoadData = File.ReadAllText(importFilePath);
 
         LoadData = JsonUtility.FromJson<BoardLoadData>(QuizLoadData);
 
-        if (LoadData.columns != null)
+        if (LoadData.columns is not null)
         {
             quizLoaded = true;
             Debug.Log("Quiz loaded successfully! Columns: " + LoadData.columns.Length);
@@ -144,10 +133,9 @@ public class LoadQuiz : MonoBehaviour
         }
     }
 
-    //checks to see if a file has been imported before a the quiz edit screen is pulled up.
+    // Checks to see if a file has been imported before a the quiz edit screen is pulled up
     public void DefaultEdit()
     {
-
         if (fileImported == true)
         {
             LoadSavedQuiz();
@@ -157,14 +145,13 @@ public class LoadQuiz : MonoBehaviour
         {
             quizLoaded = false;
         }
-
     }
 
     public void DefaultImport()
     {
-        string localImport = "";
+        string localImport;
 
-        if (importQuizName != null && importQuizName != "")
+        if (importQuizName is not null && importQuizName != "")
         {
             Debug.Log("Importing Quiz...");
             localImport = Application.streamingAssetsPath + "/QuizTemplates/" + importQuizName + ".json";
@@ -185,12 +172,11 @@ public class LoadQuiz : MonoBehaviour
         }
 
         // This will need file browser functionality later, probably
-
     }
 
     public void DefaultRead()
     {
-        //importQuizName = importField.text;
+        // importQuizName = importField.text;
         Debug.Log(importQuizName);
     }
 }

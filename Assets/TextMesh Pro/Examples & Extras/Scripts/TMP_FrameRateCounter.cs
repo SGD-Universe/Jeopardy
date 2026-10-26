@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 namespace TMPro.Examples
 {
-
     public class TMP_FrameRateCounter : MonoBehaviour
     {
         public float UpdateInterval = 5.0f;
@@ -32,12 +30,11 @@ namespace TMPro.Examples
             m_camera = Camera.main;
             Application.targetFrameRate = 9999;
 
-            GameObject frameCounter = new GameObject("Frame Counter");
+            GameObject frameCounter = new("Frame Counter");
 
             m_TextMeshPro = frameCounter.AddComponent<TextMeshPro>();
             m_TextMeshPro.font = Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");
             m_TextMeshPro.fontSharedMaterial = Resources.Load<Material>("Fonts & Materials/LiberationSans SDF - Overlay");
-
 
             m_frameCounter_transform = frameCounter.transform;
             m_frameCounter_transform.SetParent(m_camera.transform);
@@ -45,20 +42,20 @@ namespace TMPro.Examples
 
             m_TextMeshPro.textWrappingMode = TextWrappingModes.NoWrap;
             m_TextMeshPro.fontSize = 24;
-            //m_TextMeshPro.FontColor = new Color32(255, 255, 255, 128);
-            //m_TextMeshPro.edgeWidth = .15f;
-            //m_TextMeshPro.isOverlay = true;
+            /*
+            m_TextMeshPro.FontColor = new Color32(255, 255, 255, 128);
+            m_TextMeshPro.edgeWidth = .15f;
+            m_TextMeshPro.isOverlay = true;
 
-            //m_TextMeshPro.FaceColor = new Color32(255, 128, 0, 0);
-            //m_TextMeshPro.EdgeColor = new Color32(0, 255, 0, 255);
-            //m_TextMeshPro.FontMaterial.renderQueue = 4000;
+            m_TextMeshPro.FaceColor = new Color32(255, 128, 0, 0);
+            m_TextMeshPro.EdgeColor = new Color32(0, 255, 0, 255);
+            m_TextMeshPro.FontMaterial.renderQueue = 4000;
 
-            //m_TextMeshPro.CreateSoftShadowClone(new Vector2(1f, -1f));
+            m_TextMeshPro.CreateSoftShadowClone(new Vector2(1f, -1f));
+            */
 
             Set_FrameCounter_Position(AnchorPosition);
             last_AnchorPosition = AnchorPosition;
-
-
         }
 
         void Start()
@@ -99,7 +96,6 @@ namespace TMPro.Examples
                 m_LastInterval = timeNow;
             }
         }
-
 
         void Set_FrameCounter_Position(FpsCounterAnchorPositions anchor_position)
         {

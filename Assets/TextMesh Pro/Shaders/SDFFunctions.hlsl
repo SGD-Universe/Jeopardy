@@ -22,7 +22,7 @@ float3 GetSpecular(float3 n, float3 l)
 	return _SpecularColor.rgb * spec * _SpecularPower;
 }
 
-void GetSurfaceNormal_float(texture2D atlas, float textureWidth, float textureHeight, float2 uv, bool isFront, out float3 nornmal)
+void GetSurfaceNormal_float(texture2D atlas, float textureWidth, float textureHeight, float2 uv, bool isFront, out float3 normal)
 {
 	float3 delta = float3(1.0 / textureWidth, 1.0 / textureHeight, 0.0);
 
@@ -54,7 +54,7 @@ void GetSurfaceNormal_float(texture2D atlas, float textureWidth, float textureHe
 
 	float3 f = float3(1, 1, 1);
 	if (isFront) f = float3(1, 1, -1);
-	nornmal = cross(va, vb) * f;
+	normal = cross(va, vb) * f;
 }
 
 void EvaluateLight_float(float4 faceColor, float3 n, out float4 color)
@@ -75,8 +75,6 @@ void EvaluateLight_float(float4 faceColor, float3 n, out float4 color)
 
 // Add custom function to handle time in HDRP
 
-
-//
 void GenerateUV_float(float2 inUV, float4 transform, float2 animSpeed, out float2 outUV)
 {
 	outUV = inUV * transform.xy + transform.zw + (animSpeed * _Time.y);
@@ -94,9 +92,11 @@ void ScreenSpaceRatio2_float(float4x4 projection, float4 position, float2 object
 	SSR = rsqrt(dot(pixelSize, pixelSize)*2) * fontScale;
 }
 
-// UV			: Texture coordinate of the source distance field texture
-// TextureSize	: Size of the source distance field texture
-// Filter		: Enable perspective filter (soften)
+/*
+UV			: Texture coordinate of the source distance field texture
+TextureSize	: Size of the source distance field texture
+Filter		: Enable perspective filter (soften)
+*/
 void ScreenSpaceRatio_float(float2 UV, float TextureSize, bool Filter, out float SSR)
 {
 	if(Filter)
@@ -113,15 +113,17 @@ void ScreenSpaceRatio_float(float2 UV, float TextureSize, bool Filter, out float
 	}
 }
 
-// SSR : Screen Space Ratio
-// SD  : Signed Distance (encoded : Distance / SDR + .5)
-// SDR : Signed Distance Ratio
-//
-// IsoPerimeter : Dilate / Contract the shape
+/*
+SSR : Screen Space Ratio
+SD  : Signed Distance (encoded : Distance / SDR + .5)
+SDR : Signed Distance Ratio
+
+IsoPerimeter : Dilate / Contract the shape
+*/
 void ComputeSDF_float(float SSR, float SD, float SDR, float isoPerimeter, float softness, out float outAlpha)
 {
 	softness *= SSR * SDR;
-	float d = (SD - 0.5) * SDR;																				// Signed distance to edge, in Texture space
+	float d = (SD - 0.5) * SDR;																					// Signed distance to edge, in Texture space
 	outAlpha = saturate((d * 2.0 * SSR + 0.5 + isoPerimeter * SDR * SSR + softness * 0.5) / (1.0 + softness));	// Screen pixel coverage (alpha)
 }
 

@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class MonitorPlane : MonoBehaviour
 {
-    // Used to animate the position of the panel to the center of the screen
-    // (Grow/shrink animations are handled with an actual animator component)
+    /* Used to animate the position of the panel to the center of the screen
+    (Grow/shrink animations are handled with an actual animator component) */
     [Space(10)]
     [SerializeField] private bool isEditable = false;
     [Space(10)]
@@ -67,11 +67,12 @@ public class MonitorPlane : MonoBehaviour
         Vector3 calculatedPosition = Vector3.Lerp(originalPosition, fullscreenPosition, positionLerpFactor);
         if(isHovered || isFullscreen) calculatedPosition.z = -1f;
         else calculatedPosition.z = 0f;
+
         transform.localPosition = calculatedPosition;
 
         material.color = displayColor;
 
-        if(isFullscreen && type == Type.Question && isEditable)
+        if (isFullscreen && type == Type.Question && isEditable)
         {
             primaryInputField.transform.localPosition = new Vector3(-0.1f, inputFieldsSpacing, 0f);
             secondaryInputField.transform.localPosition = new Vector3(-0.1f, -inputFieldsSpacing, 0f);
@@ -83,15 +84,15 @@ public class MonitorPlane : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape)) OnEscapeDown();
 
-        if(isFullscreen && !isAnswered)
+        if (isFullscreen && !isAnswered)
         {
-            if(Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 GameManager.Instance.TriggerQuestionCorrect();
                 animator.Play("MonitorPlaneCorrect", 2, 0f);
                 isAnswered = true;
             }
-            else if(Input.GetKeyDown(KeyCode.Delete))
+            else if (Input.GetKeyDown(KeyCode.Delete))
             {
                 GameManager.Instance.TriggerQuestionIncorrect();
                 animator.Play("MonitorPlaneIncorrect", 2, 0f);
@@ -102,27 +103,25 @@ public class MonitorPlane : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if(!isHovered && !isFullscreen)
+        if (!isHovered && !isFullscreen)
         {
             animator.CrossFadeInFixedTime("MonitorPlaneHover", 0.1f);
             isHovered = true;
         }
-
     }
 
     private void OnMouseExit()
     {
-        if(!isFullscreen)
+        if (!isFullscreen)
         {
             animator.CrossFadeInFixedTime("MonitorPlaneUnhover", 0.1f);
             isHovered = false;
         }
-
     }
 
     private void OnMouseDown()
     {
-        if(!isFullscreen)
+        if (!isFullscreen)
         {
             animator.Play("MonitorPlaneFullscreen");
             animator.Play("MonitorPlaneCenter");
@@ -130,10 +129,10 @@ public class MonitorPlane : MonoBehaviour
             isFullscreen = true;
             isHovered = false;
 
-            if(isEditable)
+            if (isEditable)
             {
                 primaryInputField.interactable = true;
-                if(type == Type.Question)
+                if (type == Type.Question)
                 {
                     primaryInputField.pointSize = 12f;
                     secondaryInputField.gameObject.SetActive(true);
@@ -141,24 +140,23 @@ public class MonitorPlane : MonoBehaviour
                     dividerGraphic.gameObject.SetActive(true);
                 }
             }
-
         }
     }
 
     private void OnEscapeDown()
     {
-        if(isFullscreen)
+        if (isFullscreen)
         {
             animator.Play("MonitorPlaneMinimize");
             animator.Play("MonitorPlaneUncenter");
 
             isFullscreen = false;
 
-            if(isEditable)
+            if (isEditable)
             {
                 primaryInputField.interactable = false;
 
-                if(type == Type.Question)
+                if (type == Type.Question)
                 {
                     primaryInputField.pointSize = 18f;
                     secondaryInputField.gameObject.SetActive(false);
@@ -176,18 +174,16 @@ public class MonitorPlane : MonoBehaviour
         UpdatePlaceholderText();
     }
 
-    public Type GetPanelType()
-    {
-        return this.type;
-    }
+    public Type GetPanelType() => type;
 
     private void UpdatePlaceholderText()
     {
-        if(primaryInputField == null) Debug.LogError("You forgot to assign a reference to the InputField in the MonitorPlane template, silly");
+        if (primaryInputField == null) Debug.LogError("You forgot to assign a reference to the InputField in the MonitorPlane template, silly");
         else
         {
             if(placeholderText == null) placeholderText = primaryInputField.placeholder as TMP_Text;
-            if(type == Type.Category)
+
+            if (type == Type.Category)
             {
                 primaryInputField.pointSize = 40f;
                 RectTransform _rect = primaryInputField.gameObject.GetComponent<RectTransform>();
@@ -202,10 +198,8 @@ public class MonitorPlane : MonoBehaviour
         }
     }
 
-    public string GetPrimaryInputString()
-    {
-        return primaryInputString;
-    }
+    public string GetPrimaryInputString() => 
+        primaryInputString;
 
     public void SetPrimaryInputString(string newText)
     {
@@ -213,10 +207,8 @@ public class MonitorPlane : MonoBehaviour
         primaryInputString = newText;
     }
     
-    public string GetSecondaryInputString()
-    {
-        return secondaryInputString;
-    }
+    public string GetSecondaryInputString() =>
+        secondaryInputString;
 
     public void SetSecondaryInputString(string newText)
     {
